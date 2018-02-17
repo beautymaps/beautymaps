@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { SupplyanddemandComponent } from './supplyanddemand/supplyanddemand.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SupplyanddemandComponent
   ],
   imports: [
     BrowserModule
