@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
-import {import { bm_constants } from 'bmconfig/bmconfig.module' } from 'bmconfig/bmconfig'
+
 
 import { AppComponent } from './app.component';
 import { SupplyanddemandComponent } from './supplyanddemand/supplyanddemand.component';
