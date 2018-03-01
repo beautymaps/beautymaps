@@ -1,3 +1,13 @@
-<div> 
-  <router-outlet></router-outlet>
-</div>
+<mat-toolbar>
+  <div class="nav-container">
+      <div class="right-nav">
+        <a routerLink="/" routerLinkActive="active">Beauty Maps</a>
+      </div>
+      <div class="left-nav">
+          <a routerLink="/map-view" routerLinkActive="active">Maps</a>
+          <a routerLink="/products" routerLinkActive="active">Products</a>
+          
+      </div>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>

@@ -3,11 +3,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { SupplyanddemandComponent } from './supplyanddemand/supplyanddemand.component';
 import { HomeMapComponent } from './home-map/home-map.component';
+import { MapViewComponent } from './map-view/map-view.component';
+import { ProductsComponent } from './products/products.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeMapComponent}
@@ -17,7 +20,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     SupplyanddemandComponent,
-    HomeMapComponent
+    HomeMapComponent,
+    MapViewComponent,
+    ProductsComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),
@@ -26,7 +31,12 @@ const appRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAdFT1dyR4vrkIt3CXQiGekHUl2V7cqdII',
       libraries: ["places"]
-    })
+    }),
+    MatButtonModule, 
+    MatCardModule, 
+    MatMenuModule, 
+    MatToolbarModule, 
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
