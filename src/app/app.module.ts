@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule, MatFormFieldModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { SupplyanddemandComponent } from './supplyanddemand/supplyanddemand.component';
@@ -36,7 +36,10 @@ const appRoutes: Routes = [
     MatCardModule, 
     MatMenuModule, 
     MatToolbarModule, 
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
