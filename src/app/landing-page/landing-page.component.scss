@@ -1,0 +1,24 @@
+.heading {
+    background: url("../../assets/img/homebg.jpg") no-repeat top;
+    background-size: 2000px;
+    justify-content: center;
+    h2 {
+        color: #fff;
+    }
+    mat-form-field {
+        color: #fff;
+    }
+}
+.mat-form-field-label {
+    color: red !important;
+
+}
+mat-grid-tile {
+    background: lightblue;
+}
+
+aside {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
