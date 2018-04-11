@@ -5,15 +5,19 @@ import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule, MatFormFieldModule } from '@angular/material';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 import { SupplyanddemandComponent } from './supplyanddemand/supplyanddemand.component';
 import { HomeMapComponent } from './home-map/home-map.component';
 import { MapViewComponent } from './map-view/map-view.component';
 import { ProductsComponent } from './products/products.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeMapComponent}
+  {path: '', component: LandingPageComponent},
+  {path: 'home', component: HomeMapComponent}
 ];
 
 @NgModule({
@@ -22,7 +26,9 @@ const appRoutes: Routes = [
     SupplyanddemandComponent,
     HomeMapComponent,
     MapViewComponent,
-    ProductsComponent
+    ProductsComponent,
+    LandingPageComponent,
+    FooterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),
@@ -39,7 +45,8 @@ const appRoutes: Routes = [
     MatIconModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
