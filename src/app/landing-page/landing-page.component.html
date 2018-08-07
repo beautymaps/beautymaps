@@ -1,5 +1,5 @@
 <app-header></app-header>
-<section id="main-heading">
+<section id="home">
   <div class="content-container">
     <div class="text-container">
         <h2 class="heading">
@@ -8,29 +8,34 @@
         <p class="sub-heading">in your neighborhood, when you need them</p>
     </div>
   
-    <div class="full">
+    <div class="main-content full">
         <input type="text" placeholder="products, brand, trends">
         <input placeholder="Current Location">
         <app-action-button ctaText="Search" size="'lg'"></app-action-button>
     </div>
 
-    <div class="mobile">
+    <div class="main-content mobile">
       <input type="text" name="" id="" placeholder="products, brand, trends">
       <app-action-button ctaText="Search" size="'md'"></app-action-button>
     </div>
   </div>
 </section>
-<section>
-  <h1>Browse & Discover</h1>
-  <mat-grid-list cols="3">
-    <mat-grid-tile>HI-IN-DEMAND</mat-grid-tile>
-    <mat-grid-tile>SUPPLIERS</mat-grid-tile>
-    <mat-grid-tile>TRENDS</mat-grid-tile>
-  </mat-grid-list>
-</section>
 <aside>
-  <h3>The #1 platform for african seamstress and retailers</h3>
-  <p>Manage your business, accept payments and grow your clientele using AfricanMarket software</p>
-  <button mat-raised-button >Set up your business</button>  
-</aside>
+    <h3>The #1 platform for local store owners</h3>
+    <p>Manage your business, accept payments and grow your clientele using AfricanMarket software</p>
+    <button mat-raised-button >Set up your store</button>  
+  </aside>
+<section id="browse">
+  <h1>Browse & Discover</h1>
+  <mat-grid-list cols="3" class="content-container full">
+    <mat-grid-tile class="block-one">SUPPLIERS</mat-grid-tile>
+    <mat-grid-tile class="block-two">HI-IN-DEMAND</mat-grid-tile>
+    <mat-grid-tile class="block-three">TRENDS</mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="1" class="content-container mobile">
+      <mat-grid-tile class="block-one">HI-IN-DEMAND</mat-grid-tile>
+      <mat-grid-tile class="block-two">SUPPLIERS</mat-grid-tile>
+      <mat-grid-tile class="block-three">TRENDS</mat-grid-tile>
+    </mat-grid-list>
+</section>
 <app-footer></app-footer>

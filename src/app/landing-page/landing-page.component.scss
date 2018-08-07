@@ -1,4 +1,4 @@
-#main-heading {
+#home {
     background: url("../../assets/img/homebg.jpg") no-repeat top;
     background-size: 2000px;
     justify-content: center;
@@ -35,9 +35,20 @@ aside {
     justify-content: center;
     align-items: center;
     text-align: center;
+    background: #ed6a4c;
+    color: #fff;
+    padding: 30px 0px;
+
+    button.mat-raised-button {
+        color: #000;
+    }
+
+    h3 {
+        margin: 0;
+    }
 }
 
-.full {
+.main-content.full {
     display: flex;
     input {
         background: #fff;
@@ -48,17 +59,38 @@ aside {
     }
 
 }
+#browse {
+    .content-container.mobile {
+        display: none;
+    }
+    mat-grid-tile {
+        color: #fff;
+    }
+    mat-grid-tile.block-two {
+        background: url("../../assets/img/beautysupply.jpg") no-repeat top;
+        background-size: 152vw;
+    }
+    mat-grid-tile.block-one {
+        background: url("../../assets/img/mayvenn.jpg") no-repeat top;
+    }
+    mat-grid-tile.block-three {
+        background: url("../../assets/img/dreads.jpg") no-repeat top;
+    }
+}
 
-.mobile {
+.main-content.mobile {
     display: none;
 }
 
 @media(max-width: 600px) {
-    .full {
+    #home {
+        height: 300px;
+    }
+    .main-content.full {
         display: none ;
     }
     
-    .mobile {
+    .main-content.mobile {
         display: flex;
         justify-content: center;
         input {
@@ -69,8 +101,24 @@ aside {
             padding-left: 10px;
             border: 1px solid #eaeaea;
         }
+    }
 
-
+    #browse {
+        .content-container.full {
+            display: none;
+        }
+        .content-container.mobile {
+            display: inherit;
+        }
+        mat-grid-tile.block-one {
+            // background: url("../../assets/img/beautysupply.jpeg") no-repeat top;
+        }
+        mat-grid-tile.block-two {
+            background: url("../../assets/img/mayvenn.jpg") no-repeat top 66vw;
+        }
+        mat-grid-tile.block-three {
+            // background: url("../../assets/img/beautysupply.jpeg") no-repeat top;
+        }
     }
 }
 
