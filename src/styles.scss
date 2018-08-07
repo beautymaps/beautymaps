@@ -37,3 +37,10 @@ mat-grid-list {
 .mat-form-field-ripple {
     background-color: #FD5300;
 }
+
+@media(max-width: 600px) {
+    section {
+        min-height: 200px;
+    }
+
+}
