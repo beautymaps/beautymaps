@@ -1,0 +1,73 @@
+mat-toolbar {
+    justify-content: center;
+    background: #fff;
+    box-shadow: 2px -13px 35px;
+    height: 54px;
+    align-items: center; 
+    a {
+        color: #FD5300;
+        margin: 0 20px;
+    }
+    @media only screen and (min-width: 650px) {
+        .nav-container.mobile {
+            display: none;
+        }
+        .nav-container {
+            display: flex;
+            width: 100%;
+            text-align: center;
+            max-width: 1280px;
+            justify-content: space-between;
+            .left-nav {
+                display: flex;
+                width: 300px;
+                justify-content: space-between;
+            }
+
+            .logo {
+                color: #ed6a4c;
+                font-size: 30px;
+                display: flex;
+                align-items: center;
+            }
+        
+            .example-form {
+                min-width: 150px;
+                max-width: 500px;
+                width: 100%;
+            }
+            
+            .example-full-width {
+                width: 100%;
+            }
+            .mat-input-element {
+                font-size: 16px;
+            }
+            .left-nav {
+                font-size: 14px;
+                margin: 0 15px;
+            }
+        }
+    }
+    @media only screen and (max-width: 649px){
+        .nav-container.main {
+            display: none;
+        }
+        .nav-container {
+            text-align: left;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        mat-icon {
+            width:10%;
+        }
+        .logo {
+            width: 90%;
+            text-align: center;
+            margin-right: 10%;
+        }
+    }
+}

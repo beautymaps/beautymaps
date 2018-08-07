@@ -1,22 +1,31 @@
-<section class="heading">
-  <h2>
-    Custom style and design for the afro revolution 
-  </h2>
-  <div>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="location" value="arlington">
-    </mat-form-field>
-  </div>
-  <h3>
+<app-header></app-header>
+<section id="main-heading">
+  <div class="content-container">
+    <div class="text-container">
+        <h2 class="heading">
+            Find products
+        </h2>
+        <p class="sub-heading">in your neighborhood, when you need them</p>
+    </div>
+  
+    <div class="full">
+        <input type="text" placeholder="products, brand, trends">
+        <input placeholder="Current Location">
+        <app-action-button ctaText="Search" size="'lg'"></app-action-button>
+    </div>
 
-  </h3>
+    <div class="mobile">
+      <input type="text" name="" id="" placeholder="products, brand, trends">
+      <app-action-button ctaText="Search" size="'md'"></app-action-button>
+    </div>
+  </div>
 </section>
 <section>
   <h1>Browse & Discover</h1>
   <mat-grid-list cols="3">
-    <mat-grid-tile>MEN'S FASHION</mat-grid-tile>
-    <mat-grid-tile>WOMEN'S FASHION</mat-grid-tile>
-    <mat-grid-tile>TOP RETAILERS</mat-grid-tile>
+    <mat-grid-tile>HI-IN-DEMAND</mat-grid-tile>
+    <mat-grid-tile>SUPPLIERS</mat-grid-tile>
+    <mat-grid-tile>TRENDS</mat-grid-tile>
   </mat-grid-list>
 </section>
 <aside>

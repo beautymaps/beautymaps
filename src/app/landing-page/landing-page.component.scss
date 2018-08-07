@@ -1,9 +1,23 @@
-.heading {
+#main-heading {
     background: url("../../assets/img/homebg.jpg") no-repeat top;
     background-size: 2000px;
     justify-content: center;
-    h2 {
+
+    .text-container {
+        margin: 15px;
+        text-align: center;
+    }
+    .heading, .sub-heading {
+        margin: 0;
+    }
+    .heading {
         color: #fff;
+        font-size: 18px;
+        margin: 0;
+    }
+    .sub-heading {
+        color: #D0D0D0;
+        
     }
     mat-form-field {
         color: #fff;
@@ -22,3 +36,42 @@ aside {
     align-items: center;
     text-align: center;
 }
+
+.full {
+    display: flex;
+    input {
+        background: #fff;
+        height: 50px;
+        width: 150px;
+        padding-left: 10px;
+        border: 1px solid #eaeaea;
+    }
+
+}
+
+.mobile {
+    display: none;
+}
+
+@media(max-width: 600px) {
+    .full {
+        display: none ;
+    }
+    
+    .mobile {
+        display: flex;
+        justify-content: center;
+        input {
+            background: #fff;
+            height: 50px;
+            min-width: 150px;
+            width: 50vw;
+            padding-left: 10px;
+            border: 1px solid #eaeaea;
+        }
+
+
+    }
+}
+
+

@@ -14,6 +14,8 @@ import { MapViewComponent } from './map-view/map-view.component';
 import { ProductsComponent } from './products/products.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { ActionButtonComponent } from './shared/action-button/action-button.component';
 
 const appRoutes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -28,7 +30,9 @@ const appRoutes: Routes = [
     MapViewComponent,
     ProductsComponent,
     LandingPageComponent,
-    FooterComponent
+    FooterComponent,
+    HeaderComponent,
+    ActionButtonComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),
