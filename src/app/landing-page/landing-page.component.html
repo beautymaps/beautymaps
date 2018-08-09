@@ -11,18 +11,18 @@
     <div class="main-content full">
         <input type="text" placeholder="products, brand, trends">
         <input placeholder="Current Location">
-        <app-action-button ctaText="Search" size="'lg'"></app-action-button>
+        <app-action-button ctaText="Search" size="'lg'" (click)="goToMapView()"></app-action-button>
     </div>
 
     <div class="main-content mobile">
       <input type="text" name="" id="" placeholder="products, brand, trends">
-      <app-action-button ctaText="Search" size="'md'"></app-action-button>
+      <app-action-button ctaText="Search" size="'md'" (click)="goToMapView()"></app-action-button>
     </div>
   </div>
 </section>
 <aside>
     <h3>The #1 platform for local store owners</h3>
-    <p>Manage your business, accept payments and grow your clientele using AfricanMarket software</p>
+    <p>Manage your business, accept payments and grow your clientele using ProductMap software</p>
     <button mat-raised-button >Set up your store</button>  
   </aside>
 <section id="browse">
