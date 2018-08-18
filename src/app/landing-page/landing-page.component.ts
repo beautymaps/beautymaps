@@ -1,16 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+
+class Category {
+  name?: string;
+}
+
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
+  categoryList: AngularFirestoreCollection<Category>;
+  categories: Observable<any[]>;
 
-  categories:any [];
-  constructor(private router: Router) { }
-
-  ngOnInit() {
+  constructor(private afs: AngularFirestore, private router: Router) {
+    this.categoryList = this.afs.collection('categories');
+    this.categories = this.categoryList.valueChanges();
+    console.log('this is the categories in constructor :', this.categoryList);
+    }
+    
+    ngOnInit() {
+      this.categoryList = this.afs.collection<Category>('/categories');
+      this.categories = this.categoryList.valueChanges();
+      console.log('this is the categories :', this.categoryList);
   }
 
   goToMapView () {
