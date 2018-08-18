@@ -7,6 +7,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class LandingPageComponent implements OnInit {
 
+  categories:any [];
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -14,5 +15,13 @@ export class LandingPageComponent implements OnInit {
 
   goToMapView () {
     this.router.navigate(['/home'], {skipLocationChange: false});
+  }
+
+  searchDatabase() {
+    if(this.categories) {
+      console.log('these are the categories', this.categories);
+    } else {
+      this.router.navigate(['/create_demand', {skipLocationChange: false}])
+    }
   }
 }

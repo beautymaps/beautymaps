@@ -26,7 +26,8 @@ import { RegisterComponent } from "./register/register.component";
 import { UserComponent } from "./user/user.component";
 
 import { AuthGuardService as AuthGuard } from './services/auth/auth-guard.service';
-import { AuthService } from './services/auth/auth.service'
+import { AuthService } from './services/auth/auth.service';
+import { CreateDemandComponent } from './create-demand/create-demand.component'
 
 const appRoutes: Routes = [
   {path: 'search', component: LandingPageComponent},
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
-  { path: 'user', component: UserComponent,  resolve: { data: ''}}
+  { path: 'user', component: UserComponent,  resolve: { data: ''}},
+  { path: 'create_demand', component: CreateDemandComponent}
 ];
 
 @NgModule({
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     ActionButtonComponent,
     LoginComponent,
     RegisterComponent,
-    UserComponent
+    UserComponent,
+    CreateDemandComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),
