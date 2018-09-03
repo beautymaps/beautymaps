@@ -1,3 +1,9 @@
-<p>
-  create-demand works!
-</p>
+<app-header></app-header>
+<input [(ngModel)]="newContent.name" />
+<input [(ngModel)]="newContent.category" /> 
+<input [(ngModel)]="newContent.subcategory" /> 
+<button (click)="collectData()"></button>
+
+<div *ngFor="let product of products | async">
+{{product | json}}
+</div>

@@ -7,40 +7,36 @@
         </h2>
         <p class="sub-heading">in your neighborhood, when you need them</p>
         <div *ngFor="let category of categories | async">
-          {{category.name | json}}
+          {{category| json}}
+          
+                  <div *ngFor="let cat of category.subcategories">  {{cat | json}}
+                      
+                  </div>
         </div>
     </div>
   
     <div class="main-content full">
-        <button [matMenuTriggerFor]="menu">
+        <button [matMenuTriggerFor]="search">
           <input type="text" placeholder="products, brand, trends">
           <input placeholder="Current Location">
         </button>
         <app-action-button ctaText="Search" size="'lg'" (click)="searchDatabase()"></app-action-button>
-      
-        <!-- <div  *ngFor="let category of categories | async"> -->
-            <mat-menu #menu="matMenu"> 
-                <button mat-menu-item>  A REASON</button>
-                <button mat-menu-item  *ngFor="let category of categories | async">  {{category.name | json}}</button>
-            </mat-menu> 
-        <!-- </div> -->
-   
+        <mat-menu #search="matMenu"> 
+            <button (click)="searchDatabase()" mat-menu-item *ngFor="let category of categories | async">  {{category.name | json}}</button>
+        </mat-menu> 
     </div>
 
     <div class="main-content mobile">
-      <!-- <button [matMenuTriggerFor]="menu"> -->
+      <button [matMenuTriggerFor]="menu">
         <input type="text" name="" id="" placeholder="products, brand, trends" >
-      <!-- </button> -->
+      </button>
       <app-action-button (click)="searchDatabase()" ctaText="Search" size="'md'">
       </app-action-button>
-
-      <!-- <mat-menu #menu="matMenu">
-          <button mat-menu-item>hair_care</button>          
-          <button mat-menu-item>category</button>
-      </mat-menu> -->
-
-
+      <mat-menu #menu="matMenu"> 
+          <button (click)="searchDatabase()" mat-menu-item *ngFor="let category of categories | async">  {{category.name | json}}</button>
+      </mat-menu> 
     </div>
+
   </div>
 </section>
 <aside>

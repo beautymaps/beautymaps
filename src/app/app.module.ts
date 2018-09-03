@@ -4,7 +4,8 @@ import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule, MatFormFieldModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule, MatFormFieldModule,
+  MatDialog, MatDialogModule } from '@angular/material';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -61,6 +62,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAdFT1dyR4vrkIt3CXQiGekHUl2V7cqdII',
@@ -79,10 +81,11 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatDialogModule,
     AngularFireModule,
     AngularFireDatabaseModule
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService, MatDialog],
   bootstrap: [AppComponent]
 })
 

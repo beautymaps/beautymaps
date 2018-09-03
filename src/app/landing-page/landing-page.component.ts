@@ -7,6 +7,22 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 
 class Category {
   name?: string;
+  subcategories?: [
+    {
+      name?: string, 
+      products?: [
+        {
+
+        }
+      ]
+    }
+  ]
+
+}
+
+class SubCategory {
+  name?: string;
+
 }
 
 @Component({
@@ -18,16 +34,21 @@ export class LandingPageComponent implements OnInit {
   categoryList: AngularFirestoreCollection<Category>;
   categories: Observable<any[]>;
 
+  categoryDoc: AngularFirestoreDocument<Category>;
+  category: Observable<Category>;
+
   constructor(private afs: AngularFirestore, private router: Router) {
     this.categoryList = this.afs.collection('categories');
     this.categories = this.categoryList.valueChanges();
     console.log('this is the categories in constructor :', this.categoryList);
     }
     
-    ngOnInit() {
-      this.categoryList = this.afs.collection<Category>('/categories');
-      this.categories = this.categoryList.valueChanges();
-      console.log('this is the categories :', this.categoryList);
+  ngOnInit() {
+    this.categoryList = this.afs.collection<Category>('/categories');
+    this.categories = this.categoryList.valueChanges();
+    console.log('this is the categories :', this.categoryList);
+    this.categoryDoc = this.afs.doc('categories/PMhBPkMtT3H0LEYBT44K');
+    this.category = this.categoryDoc.valueChanges();
   }
 
   goToMapView () {
@@ -35,10 +56,10 @@ export class LandingPageComponent implements OnInit {
   }
 
   searchDatabase() {
-    if(this.categories) {
-      console.log('these are the categories', this.categories);
-    } else {
+    // if(this.categories) {
+      // console.log('these are the categories', this.categories);
+    // } else {
       this.router.navigate(['/create_demand', {skipLocationChange: false}])
-    }
+    // }
   }
 }
