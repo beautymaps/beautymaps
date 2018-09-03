@@ -16,9 +16,9 @@ export class HeaderComponent implements OnInit {
   }
 
   startSignIn() {
-    const loginRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width:'100%'
-    })
+    // const loginRef = this.dialog.open(DialogOverviewExampleDialog, {
+    //   width:'100%'
+    // })
   }
   signIn() {
     try { 
@@ -39,17 +39,17 @@ export class HeaderComponent implements OnInit {
   }
 }
 
-@Component({
-  selector: 'dialog-overview-example-dialog',
-})
-export class DialogOverviewExampleDialog {
+// @Component({
+//   selector: 'dialog-overview-example-dialog',
+// })
+// export class DialogOverviewExampleDialog {
 
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-  ) {}
+//   constructor(
+//     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+//   ) {}
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
 
-}
+// }
