@@ -23,7 +23,7 @@ class Product {
 export class CreateDemandComponent implements OnInit {
   productList: AngularFirestoreCollection<Product>;
   products: Observable<any[]>
-  newContent={};
+  newContent: {name:string ,category: string, subcategory:string};
 
   constructor(private afs: AngularFirestore) {
     this.productList = this.afs.collection<Product>('/products');
