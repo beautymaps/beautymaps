@@ -6,7 +6,8 @@ import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule, MatFormFieldModule,
   MatDialog, MatDialogModule } from '@angular/material';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSidenavModule } from '@angular/material/sidenav'
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -78,6 +79,7 @@ const appRoutes: Routes = [
     MatToolbarModule, 
     MatIconModule,
     MatInputModule,
+    MatSidenavModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatGridListModule,
