@@ -48,6 +48,11 @@ mat-toolbar {
                 margin: 0 15px;
             }
         }
+        .nav-container.authorized {
+            .left-nav {
+                justify-content: flex-end;
+            }
+        }
     }
     @media only screen and (max-width: 649px){
         .nav-container.main {

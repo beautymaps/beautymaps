@@ -10,9 +10,16 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class HeaderComponent implements OnInit {
 
+  authorizedUser: boolean;
+  currentUser: any;
+
   constructor(private authService: AuthService, public dialog: MatDialog) { }
 
   ngOnInit() {
+   this.authService.authState.subscribe((auth) => {
+    this.authorizedUser = auth ? true : false;
+    if(this.authorizedUser && auth.providerData) this.setCurrentUser(auth);
+   })
   }
 
   startSignIn() {
@@ -23,14 +30,13 @@ export class HeaderComponent implements OnInit {
   signIn() {
     try { 
       let login = this.authService.doFacebookLogin()
-      this.setCurrentUser();
     } catch (NullValueException){
       console.log('sorry we couldnt log you in')
     }
   }
-  setCurrentUser() {
-    this.authService.getCurrentUser();
-    console.log('we are ready to set the current user')
+  setCurrentUser(user) {
+    this.currentUser = user.providerData[0];
+    console.log('we are ready to set the current user', this.currentUser)
   }
 
   logOut() {

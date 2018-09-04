@@ -9,13 +9,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable()
 export class AuthService {
   currentUser: any;
+  authState: any;
   constructor(public afAuth: AngularFireAuth, private af: FirebaseApp) {
-    af.auth().onAuthStateChanged((auth)=>{console.log('this the current auth state', auth)})
-    afAuth.authState.subscribe((auth)=>{
-      console.log('this is the authstate', auth);
-      this.currentUser = auth.providerData[0];
-    })
-    console.log('this is the afauth', this.currentUser);
+    // af.auth().onAuthStateChanged((auth)=>{
+    //   console.log('this the current auth state', auth)
+    // })
+    this.authState = afAuth.authState;
     
     // authState.subscribe((auth) => {
     //   this.authState = auth;
@@ -23,8 +22,7 @@ export class AuthService {
    }
 
   getCurrentUser() {
-    this.currentUser;
-    console.log('this is the current user :', this.currentUser);
+    return this.currentUser;
   }
 
   doFacebookLogin(){
