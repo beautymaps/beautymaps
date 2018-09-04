@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit {
 
   authorizedUser: boolean;
   currentUser: any;
+  events: string[] = [];
+  opened: boolean;
 
   constructor(private authService: AuthService, public dialog: MatDialog) { }
 
