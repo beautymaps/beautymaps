@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service'
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { ModalWindowComponent } from '../modal-window/modal-window.component';
 
 @Component({
   selector: 'app-header',
@@ -25,9 +26,14 @@ export class HeaderComponent implements OnInit {
   }
 
   startSignIn() {
-    // const loginRef = this.dialog.open(DialogOverviewExampleDialog, {
-    //   width:'100%'
-    // })
+    const loginRef = this.dialog.open(ModalWindowComponent, {
+      width:'400px',
+      data: {heading: 'hey girl this worked', subheading: 'i know girl lets work '}
+    })
+    loginRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      
+    });
   }
   signIn() {
     try { 

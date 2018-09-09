@@ -1,0 +1,60 @@
+.button-container {
+    display: flex;
+    margin: 30px 0;
+}
+.button {
+    color: white;
+    background-color: #FD5300;
+    display: flex;
+    height: 50px;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+
+mat-icon.logo {
+    background-color: #FD5300;
+}
+mat-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.small-text{
+    font-size: 9px;
+    text-align: center;
+    a {
+        color: #4e81af;
+        text-decoration: underline;
+    }
+}
+.button-container .material-icons {
+    font-size: 34px;
+}
+
+.facebook-button.button {
+    background-color: #3c5a99;
+}
+
+.divider-container {
+    display: flex;
+    justify-content: center;
+}
+input {
+    background: #fff;
+    height: 50px;
+    min-width: 150px;
+    width: 50vw;
+    padding-left: 10px;
+    border: 1px solid #eaeaea;
+}
+
+.cta-button {
+    position: relative;
+    width: 350px;
+    margin-top: 50px;
+}
