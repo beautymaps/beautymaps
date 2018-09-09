@@ -24,7 +24,14 @@ mat-icon {
     justify-content: center;
     align-items: center;
 }
-
+.small-text{
+    font-size: 9px;
+    text-align: center;
+    a {
+        color: #4e81af;
+        text-decoration: underline;
+    }
+}
 .button-container .material-icons {
     font-size: 34px;
 }
