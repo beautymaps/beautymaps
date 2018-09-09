@@ -5,7 +5,8 @@ import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule, MatFormFieldModule,
-  MatDialog, MatDialogModule } from '@angular/material';
+  MatDialog, MatDialogModule, MatTabsModule } from '@angular/material';
+ 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { AngularFireModule } from 'angularfire2';
@@ -31,7 +32,9 @@ import { UserComponent } from "./user/user.component";
 
 import { AuthGuardService as AuthGuard } from './services/auth/auth-guard.service';
 import { AuthService } from './services/auth/auth.service';
-import { CreateDemandComponent } from './create-demand/create-demand.component'
+import { CreateDemandComponent } from './create-demand/create-demand.component';
+import { ModalWindowComponent } from './shared/modal-window/modal-window.component';
+import { IconRegisterComponent } from './shared/icon-register/icon-register.component'
 
 
 const appRoutes: Routes = [
@@ -58,7 +61,9 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     UserComponent,
-    CreateDemandComponent
+    CreateDemandComponent,
+    ModalWindowComponent,
+    IconRegisterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),
@@ -85,10 +90,15 @@ const appRoutes: Routes = [
     MatGridListModule,
     MatDialogModule,
     AngularFireModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MatTabsModule
   ],
   providers: [AuthGuard, AuthService, MatDialog],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalWindowComponent,
+    IconRegisterComponent
+  ]
 })
 
 export class AppModule { }

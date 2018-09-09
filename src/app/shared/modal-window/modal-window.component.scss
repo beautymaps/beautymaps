@@ -1,0 +1,34 @@
+.button-container {
+    display: flex;
+    margin: 20px 0;
+}
+.button {
+    color: white;
+    background-color: #FD5300;
+    display: flex;
+    height: 50px;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+
+mat-icon.logo {
+    background-color: #FD5300;
+}
+mat-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container .material-icons {
+    font-size: 34px;
+}
+
+.facebook-button.button {
+    background-color: #3c5a99;
+}
