@@ -13,7 +13,7 @@
       </div>
   </div>
   <div class="nav-container mobile">
-    <mat-icon (click)="signIn()">menu</mat-icon>
+    <mat-icon (click)="startSignIn()">menu</mat-icon>
     <div class="logo">
         <a routerLink="/" routerLinkActive="active">
           <span>Product</span>
@@ -39,7 +39,7 @@
   </div>
   <div class="nav-container mobile">
 
-    <div (click)="logOut()" class="right-nav menu">
+    <div (click)="startSignIn()" class="right-nav menu">
       <img *ngIf="!currentUser.photoURL"  width="35px" height="35px" src="../../../assets/img/profileicon.png" alt="">
       <img *ngIf="currentUser.photoURL" width="35px" height="35px" src="{{currentUser.photoURL}}" alt="User Image"> 
       <p>{{currentUser.displayName}}</p>    
