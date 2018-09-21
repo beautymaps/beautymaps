@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit {
 //     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
 //   ) {}
 
-//   onNoClick(): void {
+//   externalClick(): void {
 //     this.dialogRef.close();
 //   }
 

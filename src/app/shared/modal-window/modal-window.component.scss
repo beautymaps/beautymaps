@@ -1,6 +1,7 @@
 .button-container {
     display: flex;
     margin: 30px 0;
+    cursor: pointer;
 }
 .button {
     color: white;
@@ -30,6 +31,7 @@ mat-icon {
     a {
         color: #4e81af;
         text-decoration: underline;
+        cursor: pointer;
     }
 }
 .button-container .material-icons {
