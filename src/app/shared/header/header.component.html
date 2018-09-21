@@ -31,16 +31,16 @@
           <span>Map</span>
         </a>
       </div>
-      <div class="left-nav">
+      <div (click)="logOut()" class="left-nav">
         Welcome, {{currentUser.displayName}}       
-        <img *ngIf="!currentUser.photoURL" (click)="logOut()" width="30px" height="30px" src="../../../assets/img/profileicon.png" alt="">
+        <img (click)="logOut()" width="30px" height="30px" src="../../../assets/img/profileicon.png" alt="">
         <img *ngIf="currentUser.photoURL" (click)="logOut()" width="30px" height="30px" src="{{currentUser.photoURL}}" alt="User Image"> 
       </div>
   </div>
   <div class="nav-container mobile">
 
-    <div (click)="startSignIn()" class="right-nav menu">
-      <img *ngIf="!currentUser.photoURL"  width="35px" height="35px" src="../../../assets/img/profileicon.png" alt="">
+    <div (click)="logOut()" class="right-nav menu">
+      <img  width="35px" height="35px" src="../../../assets/img/profileicon.png" alt="">
       <img *ngIf="currentUser.photoURL" width="35px" height="35px" src="{{currentUser.photoURL}}" alt="User Image"> 
       <p>{{currentUser.displayName}}</p>    
     </div>

@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     })
     loginRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
-      
+      this.authorizedUser = result;      
     });
   }
   signIn() {
@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     this.authService.logOut();
+    this.authorizedUser = false;
     console.log('this is a logged out user', this.authService.getCurrentUser())
   }
 }
@@ -62,7 +63,7 @@ export class HeaderComponent implements OnInit {
 //     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
 //   ) {}
 
-//   onNoClick(): void {
+//   externalClick(): void {
 //     this.dialogRef.close();
 //   }
 
