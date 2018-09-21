@@ -39,7 +39,7 @@
   </div>
   <div class="nav-container mobile">
 
-    <div (click)="startSignIn()" class="right-nav menu">
+    <div (click)="logOut()" class="right-nav menu">
       <img  width="35px" height="35px" src="../../../assets/img/profileicon.png" alt="">
       <img *ngIf="currentUser.photoURL" width="35px" height="35px" src="{{currentUser.photoURL}}" alt="User Image"> 
       <p>{{currentUser.displayName}}</p>    

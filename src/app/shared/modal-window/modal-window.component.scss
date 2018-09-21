@@ -61,3 +61,12 @@ input {
     width: 350px;
     margin-top: 50px;
 }
+
+@media only screen and (max-width: 649px){
+    input {
+        width: 63vw;
+    }
+    .cta-button {
+        width: 250px;
+    }
+}
