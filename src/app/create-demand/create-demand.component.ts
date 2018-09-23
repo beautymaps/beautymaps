@@ -28,8 +28,11 @@ export class CreateDemandComponent implements OnInit {
   constructor(private afs: AngularFirestore) {
     this.productList = this.afs.collection<Product>('/products');
     this.products = this.productList.valueChanges();
+
+    this.newContent = {name: '', category:'', subcategory: ''}
    }
 
+   
   ngOnInit() {
 
     this.productList = this.afs.collection<Product>('/products');

@@ -1,57 +1,100 @@
-<mat-toolbar *ngIf="!authorizedUser">
-  <div class="nav-container main">
-      <div class="right-nav logo">
-        <a routerLink="/" routerLinkActive="active">
-          <span>Product</span>
-          <span>Map</span>
-        </a>
+<mat-drawer-container>
+  <mat-drawer #drawer class="main-drawer">
+    <div class="list-item action-button" *ngIf="!authorizedUser">
+      <div>
+          <app-action-button ctaText="Login" size="'lg'" (click)="startSignIn(0)"></app-action-button>          
       </div>
-      <div class="left-nav">
-        <span (click)="startSignIn()">Sign In</span>
-        <span>For Business</span>
-        <span>About</span>
+      <div>
+          <app-action-button ctaText="SignUp" size="'lg'" (click)="startSignIn(1)"></app-action-button>          
       </div>
-  </div>
-  <div class="nav-container mobile">
-    <mat-icon (click)="startSignIn()">menu</mat-icon>
-    <div class="logo">
-        <a routerLink="/" routerLinkActive="active">
-          <span>Product</span>
-          <span>Map</span>
-        </a>
-      </div>
-  </div>
-</mat-toolbar>
-
-<mat-toolbar *ngIf="authorizedUser">
-  <div class="nav-container main authorized">
-      <div class="right-nav logo">
-        <a routerLink="/" routerLinkActive="active">
-          <span>Product</span>
-          <span>Map</span>
-        </a>
-      </div>
-      <div (click)="logOut()" class="left-nav">
-        Welcome, {{currentUser.displayName}}       
-        <img (click)="logOut()" width="30px" height="30px" src="../../../assets/img/profileicon.png" alt="">
-        <img *ngIf="currentUser.photoURL" (click)="logOut()" width="30px" height="30px" src="{{currentUser.photoURL}}" alt="User Image"> 
-      </div>
-  </div>
-  <div class="nav-container mobile">
-
-    <div (click)="logOut()" class="right-nav menu">
-      <img  width="35px" height="35px" src="../../../assets/img/profileicon.png" alt="">
-      <img *ngIf="currentUser.photoURL" width="35px" height="35px" src="{{currentUser.photoURL}}" alt="User Image"> 
-      <p>{{currentUser.displayName}}</p>    
     </div>
-    
-    
-
-    <div class="logo">
-        <a routerLink="/" routerLinkActive="active">
-          <span>Product</span>
-          <span>Map</span>
-        </a>
+    <div *ngIf="authorizedUser">
+      <div class="right-nav menu" (click)="drawer.toggle()">
+        <img  width="35px" height="35px" src="../../../assets/img/profileicon.png" alt="">
+        <img *ngIf="currentUser && currentUser.photoURL" width="35px" height="35px" src="{{currentUser.photoURL}}" alt="User Image"> 
+        <p>Welcome, Carine</p>    
       </div>
-  </div>
-</mat-toolbar>
+      <div class="list-item" routerLink="/profile">Profile</div>
+      <mat-divider></mat-divider>
+      <div class="list-item">Your Products</div>  
+      <mat-divider></mat-divider>
+      <div class="list-item">Your Orders</div>     
+      <mat-divider></mat-divider>
+      <div class="list-item">Favoritess</div>  
+    </div>
+    <mat-divider></mat-divider>
+    <div class="list-item">
+      Home
+    </div>
+    <mat-divider></mat-divider>
+    <div class="list-item">
+      Search
+    </div>
+    <mat-divider></mat-divider>
+    <div class="list-item">
+      About
+    </div>
+    <mat-divider></mat-divider>
+    <div class="list-item" (click)="logOut()" *ngIf="authorizedUser">
+      Logout
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+      <mat-toolbar *ngIf="!authorizedUser">
+        <div class="nav-container main">
+            <div class="right-nav logo">
+              <a routerLink="/" routerLinkActive="active">
+                <span>Product</span>
+                <span>Map</span>
+              </a>
+            </div>
+            <div class="left-nav">
+              <span (click)="startSignIn()">Sign In</span>
+              <span>For Business</span>
+              <span>About</span>
+            </div>
+        </div>
+        <div class="nav-container mobile">
+          <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+          <div class="logo">
+              <a routerLink="/" routerLinkActive="active">
+                <span>Product</span>
+                <span>Map</span>
+              </a>
+            </div>
+        </div>
+      </mat-toolbar>
+
+      <mat-toolbar *ngIf="authorizedUser">
+        <div class="nav-container main authorized">
+            <div class="right-nav logo">
+              <a routerLink="/" routerLinkActive="active">
+                <span>Product</span>
+                <span>Map</span>
+              </a>
+            </div>
+            <div [matMenuTriggerFor]="settingsMenu" class="left-nav">
+              Welcome, Carine      
+              <img width="30px" height="30px" src="../../../assets/img/profileicon.png" alt="">
+              <img *ngIf="currentUser && currentUser.photoURL" width="30px" height="30px" src="{{currentUser.photoURL}}" alt="User Image"> 
+            </div>
+            <mat-menu #settingsMenu="matMenu"> 
+                <button (click)="searchDatabase()" mat-menu-item> </button>
+            </mat-menu> 
+
+
+
+        </div>
+        <div class="nav-container mobile">
+          <div class="logo">
+              <a routerLink="/" routerLinkActive="active">
+                <span>Product</span>
+                <span>Map</span>
+              </a>
+            </div>
+        </div>
+      </mat-toolbar>
+  </mat-drawer-content>
+
+</mat-drawer-container>
+<mat-divider></mat-divider>
