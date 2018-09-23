@@ -46,7 +46,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent,  resolve: { data: ''}},
-  { path: 'create_demand', component: CreateDemandComponent},
+  { path: 'create-demand', component: CreateDemandComponent},
   { path: 'privacy-terms', component: PrivacyTermsComponent},
   { path: 'profile', component: ProfileComponent}
 ];

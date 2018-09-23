@@ -52,14 +52,14 @@ export class LandingPageComponent implements OnInit {
   }
 
   goToMapView () {
-    this.router.navigate(['/home'], {skipLocationChange: false});
+    this.router.navigate(['/home'], {skipLocationChange: true});
   }
 
   searchDatabase() {
     // if(this.categories) {
       // console.log('these are the categories', this.categories);
     // } else {
-      this.router.navigate(['/create_demand', {skipLocationChange: false}])
+      this.router.navigate(['create-demand', {skipLocationChange: true}])
     // }
   }
 }
