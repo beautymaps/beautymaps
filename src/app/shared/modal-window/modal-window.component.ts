@@ -11,6 +11,7 @@ import { DialogData } from '../../class/dialog-data';
 export class ModalWindowComponent implements OnInit {
   @Input()
   color: '#fff';
+  @Input() selectedTab;
   
   constructor(
     public dialogRef: MatDialogRef<ModalWindowComponent>,
@@ -18,6 +19,8 @@ export class ModalWindowComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   ngOnInit() {
+    console.log('this is the data from dialog', this.data) 
+    this.selectedTab = this.data.selectedTab;
   }
 
   externalClick(): void {

@@ -25,10 +25,10 @@ export class HeaderComponent implements OnInit {
    })
   }
 
-  startSignIn() {
+  startSignIn(tabType) {
     const loginRef = this.dialog.open(ModalWindowComponent, {
       width:'400px',
-      data: {heading: 'hey girl this worked', subheading: 'i know girl lets work '}
+      data: {selectedTab: tabType, heading: 'hey girl this worked', subheading: 'i know girl lets work '},
     })
     loginRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);

@@ -1,16 +1,5 @@
 <div>
-    <mat-tab-group>
-        <mat-tab label="Sign Up">
-          <div class="button-container" (click)="goToSignin()">
-              <div class="logo"><img height="50px" src="../../../../assets/img/facebook.jpg" alt=""></div>
-              <div class="button facebook-button"><span>Sign up with Facebook</span></div>
-          </div>
-          <div class="button-container" (click)="goToSignin()">
-            <mat-icon class="logo">mail</mat-icon>
-            <div class="button">Sign up with email</div>
-          </div>
-          <p class="small-text">By signing up I agree to the <a (click)="goToTerms()">Terms of Service</a> and <a (click)="goToTerms()">Privacy Policy</a></p>
-        </mat-tab>
+    <mat-tab-group [selectedIndex]="selectedTab">
         <mat-tab label="Login">
             <div class="button-container" (click)="login()">
                 <div class="logo"><img height="50px" src="../../../../assets/img/facebook.jpg" alt=""></div>
@@ -27,5 +16,16 @@
               <span>LOGIN</span>
             </div>
         </mat-tab>
+        <mat-tab label="Sign Up">
+            <div class="button-container" (click)="goToSignin()">
+                <div class="logo"><img height="50px" src="../../../../assets/img/facebook.jpg" alt=""></div>
+                <div class="button facebook-button"><span>Sign up with Facebook</span></div>
+            </div>
+            <div class="button-container" (click)="goToSignin()">
+              <mat-icon class="logo">mail</mat-icon>
+              <div class="button">Sign up with email</div>
+            </div>
+            <p class="small-text">By signing up I agree to the <a (click)="goToTerms()">Terms of Service</a> and <a (click)="goToTerms()">Privacy Policy</a></p>
+          </mat-tab>
       </mat-tab-group>
 </div>
