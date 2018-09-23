@@ -11,7 +11,7 @@ import { DialogData } from '../../class/dialog-data';
 export class ModalWindowComponent implements OnInit {
   @Input()
   color: '#fff';
-  @Input() selectedTab;
+  selectedTab: boolean;
   
   constructor(
     public dialogRef: MatDialogRef<ModalWindowComponent>,
