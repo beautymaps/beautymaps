@@ -35,6 +35,7 @@ import { AuthService } from './services/auth/auth.service';
 import { CreateDemandComponent } from './create-demand/create-demand.component';
 import { ModalWindowComponent } from './shared/modal-window/modal-window.component';
 import { PrivacyTermsComponent } from './privacy-terms/privacy-terms.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent,  resolve: { data: ''}},
   { path: 'create_demand', component: CreateDemandComponent},
-  { path: 'privacy-terms', component: PrivacyTermsComponent}
+  { path: 'privacy-terms', component: PrivacyTermsComponent},
+  { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({
@@ -66,6 +68,7 @@ const appRoutes: Routes = [
     CreateDemandComponent,
     ModalWindowComponent,
     PrivacyTermsComponent,
+    ProfileComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),
