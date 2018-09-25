@@ -86,13 +86,18 @@
               <img width="30px" height="30px" src="../../../assets/img/profileicon.png" alt="">
               <img *ngIf="currentUser && currentUser.photoURL" width="30px" height="30px" src="{{currentUser.photoURL}}" alt="User Image"> 
             </div>
-            <mat-menu #settingsMenu="matMenu"> 
-                <button (click)="searchDatabase()" mat-menu-item> </button>
-            </mat-menu> 
-
-
-
-        </div>
+          </div>
+          <mat-menu class="settings-menu"  #settingsMenu="matMenu"> 
+              <button mat-menu-item routerLink="/profile">Profile</button>
+              <button mat-menu-item>Your Products</button>
+              <button mat-menu-item>Your Orders</button>
+              <button mat-menu-item>Favorites</button>
+              <button mat-menu-item>Set Up Your Business</button>
+              <button mat-menu-item>How It Works</button>
+              <button mat-menu-item>Search</button>
+              <button mat-menu-item>About</button>
+              <button mat-menu-item (click)="logOut()">Logout</button>
+          </mat-menu> 
         <div class="nav-container mobile">
           <mat-icon (click)="drawer.toggle()">menu</mat-icon>            
           <div class="logo">
