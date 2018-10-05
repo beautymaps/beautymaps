@@ -1,0 +1,44 @@
+.main-container{
+    padding: 15px;
+    display: flex;
+}
+
+#profile, #products {
+    margin: 15px;
+}
+#profile{
+    border: 2px solid #AAAAAA;
+    width: 400px;
+    min-height: 500px; 
+    height: 100%;
+    .profile-pic {
+        width: 300px;
+        height: 200px;
+        background: url("/assets/img/store-cover.jpg") no-repeat -145px -171px
+    }
+}
+
+#products  {
+    width: 100%;
+}
+
+.add-tile {
+    width: 158px;
+    height: 158px;
+    border: 2px solid #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    mat-icon {
+        background-color: #ff3588;
+        border-radius: 50%;
+        color: #fff;
+        width:50px;
+        height: 50px;
+        font-size: 40px;
+        text-align: center;
+        line-height: 1.2;
+
+    }
+}

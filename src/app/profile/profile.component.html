@@ -1,1 +1,26 @@
 <app-header></app-header>
+<div class="main-container">
+  <div id="profile">
+    <div class="profile-pic">
+      <div><mat-icon>edit</mat-icon></div>
+      <div class="username">C Infinity</div>
+      <div>Reviews</div>
+      <div>
+        <app-action-button ctaText="Preview Public Mode" size="'lg'"></app-action-button>
+      </div>
+    </div>
+
+  </div>
+  <div  id="products">
+      <mat-tab-group [selectedIndex]="selectedTab">
+          <mat-tab label="Active Products">
+            <div class="add-tile">
+              <mat-icon>add</mat-icon>
+            </div>
+          </mat-tab>
+          <mat-tab label="Out of stock">
+              
+            </mat-tab>
+        </mat-tab-group>
+  </div>
+</div>
