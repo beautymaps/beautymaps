@@ -36,6 +36,7 @@ import { CreateDemandComponent } from './create-demand/create-demand.component';
 import { ModalWindowComponent } from './shared/modal-window/modal-window.component';
 import { PrivacyTermsComponent } from './privacy-terms/privacy-terms.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 
 
@@ -69,6 +70,7 @@ const appRoutes: Routes = [
     ModalWindowComponent,
     PrivacyTermsComponent,
     ProfileComponent,
+    AddProductComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),

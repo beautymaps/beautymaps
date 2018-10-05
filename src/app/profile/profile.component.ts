@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
+  productListView = true;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  addProduct () {
+    this.productListView = false;
+  }
 }

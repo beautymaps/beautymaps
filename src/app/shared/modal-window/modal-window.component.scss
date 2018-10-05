@@ -17,6 +17,7 @@
 
 mat-icon.logo {
     background-color: #ff3588;
+    color: #fff;
 }
 mat-icon {
     width: 50px;
@@ -46,6 +47,7 @@ mat-icon {
 .divider-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
 }
 input {
     background: #fff;

@@ -1,26 +1,39 @@
 <app-header></app-header>
 <div class="main-container">
-  <div id="profile">
+  <mat-card id="profile">
     <div class="profile-pic">
-      <div><mat-icon>edit</mat-icon></div>
+      <!-- <img mat-card-image src="../../../../assets/img/store-cover.jpg" alt="Photo of a Shiba Inu"> -->
+    </div>
+    <mat-card-content>
+      <div class="pen"><mat-icon>edit</mat-icon></div>
       <div class="username">C Infinity</div>
       <div>Reviews</div>
       <div>
         <app-action-button ctaText="Preview Public Mode" size="'lg'"></app-action-button>
-      </div>
-    </div>
+      </div>    
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
 
-  </div>
   <div  id="products">
-      <mat-tab-group [selectedIndex]="selectedTab">
-          <mat-tab label="Active Products">
-            <div class="add-tile">
-              <mat-icon>add</mat-icon>
-            </div>
+      <mat-tab-group [selectedIndex]="selectedTab" *ngIf="productListView">
+        <mat-tab label="Active Products">
+          <div md-button class="add-tile" (click)="addProduct()">
+            <mat-icon>add</mat-icon>
+          </div>
+        </mat-tab>
+        <mat-tab label="Out of stock">
+            
           </mat-tab>
-          <mat-tab label="Out of stock">
-              
-            </mat-tab>
-        </mat-tab-group>
+      </mat-tab-group>
+      <app-add-product *ngIf="!productListView"></app-add-product>
   </div>
 </div>
