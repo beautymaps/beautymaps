@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule, MatFormFieldModule,
-  MatDialog, MatDialogModule, MatTabsModule, MatDividerModule } from '@angular/material';
+  MatDialog, MatDialogModule, MatTabsModule, MatDividerModule, MatSelectModule } from '@angular/material';
  
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav'
@@ -99,7 +99,8 @@ const appRoutes: Routes = [
     AngularFireModule,
     AngularFireDatabaseModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSelectModule 
   ],
   providers: [AuthGuard, AuthService, MatDialog],
   bootstrap: [AppComponent],

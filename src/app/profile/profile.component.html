@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="main-container">
-  <mat-card id="profile">
+  <mat-card id="profile" [ngClass]="{'profile-display': !productListView}">
     <div class="profile-pic">
       <!-- <img mat-card-image src="../../../../assets/img/store-cover.jpg" alt="Photo of a Shiba Inu"> -->
     </div>
@@ -12,9 +12,8 @@
         <app-action-button ctaText="Preview Public Mode" size="'lg'"></app-action-button>
       </div>    
       <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
+        1600 Pennsylvannia Ave, 
+        Washington DC, District of Columbia
       </p>
     </mat-card-content>
     <mat-card-actions>
@@ -26,7 +25,7 @@
   <div  id="products">
       <mat-tab-group [selectedIndex]="selectedTab" *ngIf="productListView">
         <mat-tab label="Active Products">
-          <div md-button class="add-tile" (click)="addProduct()">
+          <div mat-button class="add-tile" (click)="addProduct()">
             <mat-icon>add</mat-icon>
           </div>
         </mat-tab>
@@ -34,6 +33,6 @@
             
           </mat-tab>
       </mat-tab-group>
-      <app-add-product *ngIf="!productListView"></app-add-product>
+      <app-add-product (doneAddingProduct)="doneAdding($event)" *ngIf="!productListView"></app-add-product>
   </div>
 </div>

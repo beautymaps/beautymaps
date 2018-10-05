@@ -1,3 +1,43 @@
-<p>
-  add-product works!
-</p>
+<div class="add-product-container">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Add Product</mat-card-title>
+      </mat-card-header>
+      <div class="add-img">
+        <!-- <img mat-card-image src="../../assets/img/imgicon.png" alt="Pink hair"> -->
+      </div>
+      <mat-card-content class="input-form-container">
+        <mat-form-field>
+          <mat-label>Product Name</mat-label>
+          <input matInput placeholder="Voluminous Shampoo with Avocado">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Choose Brand</mat-label>
+            <mat-select placeholder="--Select--">
+              <mat-option *ngFor="let brand of brandList" [value]="brand">
+                {{brand}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+        <mat-form-field>
+          <textarea matInput placeholder="Product Details"></textarea>
+        </mat-form-field>
+        <div class="keyword-container">
+          <mat-form-field >
+            <mat-label>Add product tags</mat-label>
+            <input matInput placeholder="Keywords">            
+          </mat-form-field>
+          <button mat-button><mat-icon>add</mat-icon>Add</button>
+        </div>
+      
+      </mat-card-content>
+      <mat-card-actions >
+        <div class="action-set">
+          <button class="cancel" (click)="cancel()" mat-button>Cancel</button>
+          <button class="done" (click)="done()" mat-button>Done</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+</div>
