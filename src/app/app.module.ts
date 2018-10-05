@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule, MatFormFieldModule,
-  MatDialog, MatDialogModule, MatTabsModule, MatDividerModule } from '@angular/material';
+  MatDialog, MatDialogModule, MatTabsModule, MatDividerModule, MatSelectModule } from '@angular/material';
  
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav'
@@ -36,6 +36,7 @@ import { CreateDemandComponent } from './create-demand/create-demand.component';
 import { ModalWindowComponent } from './shared/modal-window/modal-window.component';
 import { PrivacyTermsComponent } from './privacy-terms/privacy-terms.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 
 
@@ -69,6 +70,7 @@ const appRoutes: Routes = [
     ModalWindowComponent,
     PrivacyTermsComponent,
     ProfileComponent,
+    AddProductComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),
@@ -97,7 +99,8 @@ const appRoutes: Routes = [
     AngularFireModule,
     AngularFireDatabaseModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSelectModule 
   ],
   providers: [AuthGuard, AuthService, MatDialog],
   bootstrap: [AppComponent],

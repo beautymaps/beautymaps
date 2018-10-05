@@ -1,0 +1,43 @@
+.add-img {
+    width: 100%;
+    height: 300px;
+    background: url('/assets/img/imgicon.png') center no-repeat;
+    background-size: 200px;
+}
+
+.input-form-container {
+    display: flex;
+    flex-direction: column;
+    textarea {
+        height: 100px;
+    }
+    mat-form-field {
+        color: #fff;
+    }
+    .keyword-container {
+        display: flex;
+        justify-content: space-between;
+        mat-form-field {
+            width: 100%;
+        }
+       
+    }
+    .button-container {
+        width: 80px;
+        height: 35px;
+    }  
+}
+
+.action-set {
+    display: flex;
+    justify-content: space-around;
+    .done {
+        background-color: #ff3588;
+        color: #ffffff;
+    }
+    .cancel {
+        background: rgba(255, 255, 255, 0.00);
+        color: #ff3588;
+        border: 1px solid #ff3588;
+    }
+}

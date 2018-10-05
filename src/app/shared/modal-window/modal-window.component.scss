@@ -5,7 +5,7 @@
 }
 .button {
     color: white;
-    background-color: #FD5300;
+    background-color: #ff3588;
     display: flex;
     height: 50px;
     align-content: center;
@@ -16,7 +16,8 @@
 }
 
 mat-icon.logo {
-    background-color: #FD5300;
+    background-color: #ff3588;
+    color: #fff;
 }
 mat-icon {
     width: 50px;
@@ -46,6 +47,7 @@ mat-icon {
 .divider-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
 }
 input {
     background: #fff;
