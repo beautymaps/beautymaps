@@ -1,38 +1,42 @@
 <div class="add-product-container">
-    <mat-card class="example-card">
+    <mat-card >
       <mat-card-header>
-        <div mat-card-avatar></div>
         <mat-card-title>Add Product</mat-card-title>
       </mat-card-header>
       <div class="add-img">
         <!-- <img mat-card-image src="../../assets/img/imgicon.png" alt="Pink hair"> -->
       </div>
+
       <mat-card-content class="input-form-container">
-        <mat-form-field>
+
+        <div class="form-field-container">
           <mat-label>Product Name</mat-label>
-          <input matInput placeholder="Voluminous Shampoo with Avocado">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Choose Brand</mat-label>
-            <mat-select placeholder="--Select--">
-              <mat-option *ngFor="let brand of brandList" [value]="brand">
-                {{brand}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-      
-        <mat-form-field>
-          <textarea matInput placeholder="Product Details"></textarea>
-        </mat-form-field>
-        <div class="keyword-container">
-          <mat-form-field >
-            <mat-label>Add product tags</mat-label>
-            <input matInput placeholder="Keywords">            
-          </mat-form-field>
-          <button mat-button><mat-icon>add</mat-icon>Add</button>
+          <input matInput placeholder="Voluminous Shampoo with Avocado" type="text" [(ngModel)]="newProduct.name">
+        </div>
+        <div class="form-field-container">
+          <mat-label>Choose Brand</mat-label>
+          <mat-select placeholder="--Select--" [(ngModel)]="newProduct.brand">
+            <mat-option *ngFor="let brand of brandList" [value]="brand" >
+              {{brand}}
+            </mat-option>
+          </mat-select>
+        </div>
+        <div class="keyword-container form-field-container">
+          <div>
+            <mat-label>Tags</mat-label>
+            <input matInput [(ngModel)]="newProduct.keywords" placeholder="Keywords(ie: 4c, lace, easy diy)">  
+          </div>          
+          <div>
+              <mat-label>Price ($):</mat-label><input [(ngModel)]="newProduct.price" type="text">
+          </div>
+        </div>
+        <div class="form-field-container details">
+          <mat-label>Product Details</mat-label>
+          <textarea matInput type="text" [(ngModel)]="newProduct.description" placeholder="Tell us everything you know about the product"></textarea>
         </div>
       
       </mat-card-content>
+
       <mat-card-actions >
         <div class="action-set">
           <button class="cancel" (click)="cancel()" mat-button>Cancel</button>

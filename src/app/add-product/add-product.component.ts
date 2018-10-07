@@ -1,11 +1,19 @@
 import { Component, OnInit, Inject, Input, EventEmitter, Output} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DialogData } from '../class/dialog-data';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Product } from '../class/product';
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 
-// export interface Food {
-//   value: string;
-//   viewValue: string;
-// }
+
+
+class newProduct {
+  name?: string;
+  price?:string;
+  brand?: string;
+  description?:string;
+  keywords?: string;
+}
 
 @Component({
   selector: 'app-add-product',
@@ -14,6 +22,9 @@ import { DialogData } from '../class/dialog-data';
 })
 export class AddProductComponent implements OnInit {
   @Output() doneAddingProduct = new EventEmitter();
+  productList : any;
+  newProduct: Product;
+
   categories = [
     "Wigs", "Natural Hair", "Protective Styling"
   ];
@@ -23,16 +34,23 @@ export class AddProductComponent implements OnInit {
   ]
   constructor(
     private router: Router,
-  ) { }
-
-  ngOnInit() {
-  }
+    private afs: AngularFirestore, private db: AngularFireDatabase) {
+      this.newProduct = {};
+    }
+    
+    ngOnInit() {
+      this.productList = this.db.list('/products');
+      const product = this.db.list<Product>('/products')
+      console.log('this is the produc :', product);
+    }
 
   cancel() {
     this.doneAddingProduct.emit({update: false})
   }
 
   done() {
+    console.log('thisis the new product : ', this.newProduct);
+    this.productList.push(this.newProduct)
     this.doneAddingProduct.emit({update: false})
   }
 
