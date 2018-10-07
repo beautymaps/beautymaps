@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Product } from '../class/product';
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 
 
 @Component({
@@ -8,19 +12,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  product = {
-    image: '../../../assets/img/imgicon.png',
-    name: "Voluminous Shampoo", 
-    brand: "Creme of Nature",
-    description: "This shampoo will give your hair so much volume and drama you won\'t even believe it.",
-    keywords: "Natural Hair, Wash Day"
-  }
+  productList$: AngularFireList<any[]>
+  products: Observable<any[]>
   productListView = true;
-  products = []
 
-  constructor() { }
+  constructor(private afs: AngularFirestore, private db: AngularFireDatabase) { 
+    // this.productList = this.af.list<Product>('/products');
+    this.products = this.db.list('/products').valueChanges();
+    console.log('this the products :', this.products);
+  }
 
   ngOnInit() {
+    // this.productList$ = this.af.list('/products');
+    // this.products = this.productList.valueChanges();
   }
 
   addProduct () {
@@ -34,7 +38,7 @@ export class ProfileComponent implements OnInit {
 
     } else {
       this.productListView = !this.productListView;
-      this.products.push(this.product);
+      // this.products.push(this.product);
       console.log('what happens to the products list:', this.products);
     }
   }

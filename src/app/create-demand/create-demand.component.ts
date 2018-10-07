@@ -5,15 +5,15 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
-// class Product {
-//   name?: string;
-//   category?:string; 
-//   subcategory?:string;
-//   brand?: {
-//     name?:string;
-//   }
-//   description?:string;
-// }
+class Product {
+  name?: string;
+  category?:string; 
+  subcategory?:string;
+  brand?: {
+    name?:string;
+  }
+  description?:string;
+}
 
 @Component({
   selector: 'app-create-demand',

@@ -24,9 +24,16 @@
 
   <div  id="products">
       <mat-tab-group [selectedIndex]="selectedTab" *ngIf="productListView">
-        <mat-tab label="Active Products">
+        <mat-tab label="Active Products" class="active-products-container">
           <div mat-button class="add-tile" (click)="addProduct()">
             <mat-icon>add</mat-icon>
+          </div>
+
+          <div class="product-tile add-tile" *ngFor="let product of products | async">
+            <div >
+              {{product.name}}
+              {{product.description}}
+            </div>
           </div>
         </mat-tab>
         <mat-tab label="Out of stock">
