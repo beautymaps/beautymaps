@@ -4,4 +4,5 @@ export class Product {
     brand?: string;
     description?:string;
     keywords?: string;
+    image?: string; 
 }
