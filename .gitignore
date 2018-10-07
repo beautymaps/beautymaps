@@ -33,7 +33,7 @@
 npm-debug.log
 testem.log
 /typings
-src/app/bmconfig/bmconfig.module.ts
+src/app/bmconfig/*
 
 # e2e
 /e2e/*.js
