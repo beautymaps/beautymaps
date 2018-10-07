@@ -24,6 +24,8 @@ export class AddProductComponent implements OnInit {
   @Output() doneAddingProduct = new EventEmitter();
   productList : any;
   newProduct: Product;
+  fileToUpload: File;
+  imageUrl: string = null; 
 
   categories = [
     "Wigs", "Natural Hair", "Protective Styling"
@@ -52,6 +54,18 @@ export class AddProductComponent implements OnInit {
     console.log('thisis the new product : ', this.newProduct);
     this.productList.push(this.newProduct)
     this.doneAddingProduct.emit({update: false})
+  }
+
+  onFileSelected(file: FileList) {
+    this.fileToUpload = file.item(0);
+    console.log('this event ', this.fileToUpload);
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+      console.log(this.imageUrl);
+      this.newProduct.image = this.imageUrl;
+    }
+    reader.readAsDataURL(this.fileToUpload);
   }
 
 }

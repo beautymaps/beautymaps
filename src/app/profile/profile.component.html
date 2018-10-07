@@ -32,14 +32,14 @@
 
             <mat-card class="product-tile" *ngFor="let product of products | async">
                 <div class="profile-pic">
-                  <!-- <img mat-card-image src="../../../../assets/img/store-cover.jpg" alt="Photo of a Shiba Inu"> -->
+                  <img mat-card-image *ngIf="product.image" [src]="product.image" alt="Photo of a Shiba Inu">
                 </div>
                 <mat-card-content>
                     {{product.name}}
                     {{product.brand}}
                     <!-- {{product.}} -->
                     {{product.description}}   
-                    {{product | json}}
+                    <!-- {{product | json}} -->
                 </mat-card-content>
                 <mat-card-actions>
                   <button mat-button>${{product.price}}</button>

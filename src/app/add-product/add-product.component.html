@@ -4,7 +4,8 @@
         <mat-card-title>Add Product</mat-card-title>
       </mat-card-header>
       <div class="add-img">
-        <!-- <img mat-card-image src="../../assets/img/imgicon.png" alt="Pink hair"> -->
+        <input type="file" accept="image/*" (change)="onFileSelected($event.target.files)">
+        <img mat-card-image width="250px" height="250px"  *ngIf="imageUrl" [src]="imageUrl" alt="Pink hair">
       </div>
 
       <mat-card-content class="input-form-container">
