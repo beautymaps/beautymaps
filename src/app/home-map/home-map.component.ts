@@ -2,6 +2,11 @@ import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
+import { Product } from '../class/product';
+
 
 
 declare var google;
@@ -23,27 +28,33 @@ export class HomeMapComponent implements OnInit {
     {
       lat: 51.673858,
       lng: 7.815982,
-      label: 'A',
+      label: '6',
       draggable: true
     },
     {
       lat: 51.373858,
       lng: 7.215982,
-      label: 'B',
+      label: '4',
       draggable: false
     },
     {
       lat: 51.723858,
       lng: 7.895982,
-      label: 'C',
+      label: '6',
       draggable: true
     }
   ]
   
+  products: Observable<any[]>;
+
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
-  ) {}
+    private ngZone: NgZone, 
+    private db: AngularFireDatabase
+  ) {
+    this.products = this.db.list('/products').valueChanges();
+    console.log('this is the product :', this.products)
+  }
 
   public latitude: number;
   public longitude: number;
