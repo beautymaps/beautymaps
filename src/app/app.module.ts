@@ -16,7 +16,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import * as firebase from 'firebase/app';
 export const firebaseConfig = environment.firebase;
-import { bmconstants } from './bmconfig/bmconfig.module';
+import { bm_constants } from './bmconfig/bmconfig.module';
 import { AppComponent } from './app.component';
 import { SupplyanddemandComponent } from './supplyanddemand/supplyanddemand.component';
 import { HomeMapComponent } from './home-map/home-map.component';
@@ -79,7 +79,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: bmconstants.gmaps_api_key,
+      apiKey: bm_constants.gmaps_api_key,
       libraries: ["places"]
     }),
     AngularFireModule.initializeApp(firebaseConfig),
