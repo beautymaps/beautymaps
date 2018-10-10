@@ -5,4 +5,6 @@ export class Product {
     description?:string;
     keywords?: string;
     image?: string; 
+    long?:number;
+    lat?: number;
 }

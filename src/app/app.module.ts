@@ -32,6 +32,7 @@ import { UserComponent } from "./user/user.component";
 
 import { AuthGuardService as AuthGuard } from './services/auth/auth-guard.service';
 import { AuthService } from './services/auth/auth.service';
+import { LocationService} from './services/location.service';
 import { CreateDemandComponent } from './create-demand/create-demand.component';
 import { ModalWindowComponent } from './shared/modal-window/modal-window.component';
 import { PrivacyTermsComponent } from './privacy-terms/privacy-terms.component';
@@ -102,7 +103,7 @@ const appRoutes: Routes = [
     MatDividerModule,
     MatSelectModule 
   ],
-  providers: [AuthGuard, AuthService, MatDialog],
+  providers: [AuthGuard, AuthService, MatDialog, LocationService],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalWindowComponent,

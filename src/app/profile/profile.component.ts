@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map'
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Product } from '../class/product';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import { LocationService } from '../services/location.service';
 
 
 @Component({
@@ -12,11 +13,10 @@ import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  productList$: AngularFireList<any[]>
   products: Observable<any[]>
   productListView = true;
 
-  constructor(private afs: AngularFirestore, private db: AngularFireDatabase) { 
+  constructor(private afs: AngularFirestore, private db: AngularFireDatabase, private locationService: LocationService) { 
     // this.productList = this.af.list<Product>('/products');
     this.products = this.db.list('/products').valueChanges();
     console.log('this the products :', this.products);
