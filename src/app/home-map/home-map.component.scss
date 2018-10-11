@@ -1,3 +1,39 @@
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 agm-map {
-    height: 300px;
+    height: 600px;
   }
+
+app-header {
+  // position: absolute;
+  top: 0;
+  margin-bottom: 100px;
+}
+.main-container {
+  display: flex;
+  max-height: 95vh;
+  overflow-y: hidden;
+}
+#product-list-container {
+  min-width: 300px;
+  width: 900px;
+  height: 600px;
+  .product-tile {
+    display: flex;
+    .product-img img {
+      width: 250px;
+      height: 250px;
+    }
+  }
+  .active-products-container {
+    height: 90vh;
+    overflow-y: scroll;
+  }
+
+}
+
+#map-container {
+  width: 100%
+}
