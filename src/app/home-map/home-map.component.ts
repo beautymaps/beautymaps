@@ -54,6 +54,9 @@ export class HomeMapComponent implements OnInit {
   ) {
     this.products = this.db.list('/products').valueChanges();
     console.log('this is the product :', this.products)
+    this.products.subscribe((pos) => {
+      console.log('a new product was added', pos);
+    })
   }
 
   public latitude: number;

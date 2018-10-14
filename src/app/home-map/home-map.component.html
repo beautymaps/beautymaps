@@ -1,17 +1,33 @@
-<app-header> </app-header>
-<p>
-  home-map works!
-</p>
-<h1>Styles near you</h1>
-<div class="container">
-  <h1>Map View</h1>
-  <div class="form-group">
-    <input placeholder="search for location" width="150px" height="50px" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+  <app-header> </app-header>
+  <div class="main-container">
+    <div id="product-list-container">
+        <div class="active-products-container">  
+          <mat-card class="product-tile" *ngFor="let product of products | async">
+              <div class="product-img">
+                <img mat-card-image *ngIf="product.image" [src]="product.image" alt="Photo of a Shiba Inu">
+              </div>
+              <mat-card-content>
+                  {{product.name}}
+                  {{product.brand}}
+                  {{product.description}}   
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button>${{product.price}}</button>
+              </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <div id="map-container">
+      <div class="container">
+        <div class="form-group">
+          <input placeholder="search for location" width="150px" height="50px" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+        </div>
+        <agm-map *ngIf="done" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+          <agm-marker  *ngFor="let m of products | async; let i = index" [latitude]="m.lat" [longitude]="m.long"  
+          [markerDraggable]="null"
+          (dragEnd)="null"></agm-marker>
+          {{product | json}}
+        </agm-map>
+      </div>
+    </div>
   </div>
-  <agm-map *ngIf="done" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-    <agm-marker  *ngFor="let m of products | async; let i = index" [latitude]="m.lat" [longitude]="m.long"  
-    [markerDraggable]="null"
-    (dragEnd)="null"></agm-marker>
-    {{product | json}}
-  </agm-map>
-</div>
