@@ -12,7 +12,7 @@
       <div class="right-nav menu" (click)="drawer.toggle()">
         <img  width="35px" height="35px" src="../../../assets/img/profileicon.png" alt="">
         <img *ngIf="currentUser && currentUser.photoURL" width="35px" height="35px" src="{{currentUser.photoURL}}" alt="User Image"> 
-        <p>Welcome, Carine</p>    
+        <p>Welcome</p>    
       </div>
       <button mat-menu-item routerLink="/home">Map</button>              
       <mat-divider></mat-divider>
@@ -54,7 +54,7 @@
         <div class="nav-container main">
             <div class="right-nav logo">
               <a routerLink="/" routerLinkActive="active">
-                <span>Product</span>
+                <span>Beauty</span>
                 <span>Map</span>
               </a>
             </div>
@@ -68,7 +68,7 @@
           <mat-icon (click)="drawer.toggle()">menu</mat-icon>
           <div class="logo">
               <a routerLink="/" routerLinkActive="active">
-                <span>Product</span>
+                <span>Beauty</span>
                 <span>Map</span>
               </a>
             </div>
@@ -79,12 +79,12 @@
         <div class="nav-container main authorized">
             <div class="right-nav logo">
               <a routerLink="/" routerLinkActive="active">
-                <span>Product</span>
+                <span>Beauty</span>
                 <span>Map</span>
               </a>
             </div>
             <div [matMenuTriggerFor]="settingsMenu" class="left-nav">
-              Welcome, Carine      
+              Welcome      
               <img width="30px" height="30px" src="../../../assets/img/profileicon.png" alt="">
               <img *ngIf="currentUser && currentUser.photoURL" width="30px" height="30px" src="{{currentUser.photoURL}}" alt="User Image"> 
             </div>
@@ -105,7 +105,7 @@
           <mat-icon (click)="drawer.toggle()">menu</mat-icon>            
           <div class="logo">
               <a routerLink="/" routerLinkActive="active">
-                <span>Product</span>
+                <span>Beauty</span>
                 <span>Map</span>
               </a>
             </div>
