@@ -35,10 +35,12 @@
       <mat-menu #menu="matMenu"> 
           <button (click)="searchDatabase()" mat-menu-item *ngFor="let category of categories | async">  {{category.name | json}}</button>
       </mat-menu> 
+      
     </div>
-
+    
   </div>
 </section>
+<app-home-map></app-home-map>
 <aside>
     <h3>The #1 platform for local store owners</h3>
     <p>Manage your business, accept payments and grow your clientele using ProductMap software</p>
