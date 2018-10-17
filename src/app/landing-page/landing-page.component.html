@@ -1,4 +1,4 @@
-<app-header class="header"></app-header>
+<app-header></app-header>
 <section id="home">
   <div class="content-container">
     <div class="text-container">
@@ -20,21 +20,21 @@
           <input type="text" placeholder="products, brand, trends">
           <input placeholder="Current Location">
         </button> -->
-        <app-action-button ctaText="Search" size="'lg'" (click)="goToMapView()"></app-action-button>
+        <app-action-button ctaText="Search" (click)="goToMapView()"></app-action-button>
         <!-- <mat-menu #search="matMenu"> 
             <button (click)="searchDatabase()" mat-menu-item *ngFor="let category of categories | async">  {{category.name | json}}</button>
         </mat-menu>  -->
     </div>
 
     <div class="main-content mobile">
-      <button [matMenuTriggerFor]="menu">
+      <!-- <button [matMenuTriggerFor]="menu">
         <input type="text" name="" id="" placeholder="products, brand, trends" >
-      </button>
-      <app-action-button (click)="searchDatabase()" ctaText="Search" size="'md'">
+      </button> -->
+      <app-action-button (click)="goToMapView()" ctaText="Search" size="'md'">
       </app-action-button>
-      <mat-menu #menu="matMenu"> 
+      <!-- <mat-menu #menu="matMenu"> 
           <button (click)="searchDatabase()" mat-menu-item *ngFor="let category of categories | async">  {{category.name | json}}</button>
-      </mat-menu> 
+      </mat-menu>  -->
       
     </div>
     

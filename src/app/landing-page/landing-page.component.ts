@@ -57,7 +57,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   goToMapView () {
-    this.router.navigate(['/home'], {skipLocationChange: true});
+    this.router.navigate(['/home']);
   }
 
   searchDatabase() {

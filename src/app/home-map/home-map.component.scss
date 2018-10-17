@@ -15,7 +15,10 @@ app-header {
   display: flex;
   max-height: 95vh;
   overflow-y: hidden;
+  position: relative;
+  margin-top: 54px;
 }
+
 #product-list-container {
   min-width: 300px;
   width: 900px;
