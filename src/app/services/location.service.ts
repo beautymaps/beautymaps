@@ -12,7 +12,6 @@ location:any = {
   
   getCurrentLocation(callback) {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log('this sit eh location :', position);
       this.location.lat = position.coords.latitude;
       this.location.long = position.coords.longitude;
       return callback(this.location);
