@@ -38,6 +38,7 @@ import { ModalWindowComponent } from './shared/modal-window/modal-window.compone
 import { PrivacyTermsComponent } from './privacy-terms/privacy-terms.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { SearchModalComponent } from './shared/search-modal/search-modal.component';
 
 
 
@@ -72,6 +73,7 @@ const appRoutes: Routes = [
     PrivacyTermsComponent,
     ProfileComponent,
     AddProductComponent,
+    SearchModalComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),
@@ -107,6 +109,7 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent],
   entryComponents: [
     ModalWindowComponent,
+    SearchModalComponent
   ]
 })
 

@@ -6,7 +6,8 @@ import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { Product } from '../class/product';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { SearchModalComponent } from '../shared/search-modal/search-modal.component';
 
 
 declare var google;
@@ -50,7 +51,8 @@ export class HomeMapComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, 
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private dialog: MatDialog
   ) {
     this.products = this.db.list('/products').valueChanges();
     console.log('this is the product :', this.products)
@@ -75,6 +77,7 @@ export class HomeMapComponent implements OnInit {
     this.latitude = 39.8282;
     this.longitude = -98.5795;
 
+    
     //create search FormControl
     this.searchControl = new FormControl();
 
@@ -86,6 +89,7 @@ export class HomeMapComponent implements OnInit {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
       });
+      this.openSearch();
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
@@ -105,6 +109,16 @@ export class HomeMapComponent implements OnInit {
     });
   }
      
+  openSearch() {
+    const loginRef = this.dialog.open(SearchModalComponent, {
+      width:'400px',
+      data: {heading: 'hey girl this worked', subheading: 'i know girl lets work '},
+    })
+    loginRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);     
+    });
+  }
+
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
