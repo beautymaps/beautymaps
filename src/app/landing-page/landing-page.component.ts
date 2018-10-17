@@ -4,6 +4,7 @@ import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { LocationService } from  '../services/location.service';
 
 class Category {
   name?: string;
@@ -37,7 +38,7 @@ export class LandingPageComponent implements OnInit {
   categoryDoc: AngularFirestoreDocument<Category>;
   category: Observable<Category>;
 
-  constructor(private afs: AngularFirestore, private router: Router) {
+  constructor(private afs: AngularFirestore, private router: Router, private locationService: LocationService) {
     this.categoryList = this.afs.collection('categories');
     this.categories = this.categoryList.valueChanges();
     console.log('this is the categories in constructor :', this.categoryList);
@@ -49,6 +50,10 @@ export class LandingPageComponent implements OnInit {
     console.log('this is the categories :', this.categoryList);
     this.categoryDoc = this.afs.doc('categories/PMhBPkMtT3H0LEYBT44K');
     this.category = this.categoryDoc.valueChanges();
+    this.locationService.getCurrentLocation(function(pos) {
+      console.log('we now have the users current position ', pos);
+    })
+    
   }
 
   goToMapView () {

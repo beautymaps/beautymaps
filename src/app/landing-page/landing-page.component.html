@@ -1,9 +1,9 @@
-<app-header></app-header>
+<app-header class="header"></app-header>
 <section id="home">
   <div class="content-container">
     <div class="text-container">
         <h2 class="heading">
-            Find products
+            Find the latest beauty products
         </h2>
         <p class="sub-heading">in your neighborhood, when you need them</p>
         <!-- <div *ngFor="let category of categories | async">
@@ -16,14 +16,14 @@
     </div>
   
     <div class="main-content full">
-        <button [matMenuTriggerFor]="search">
+        <!-- <button [matMenuTriggerFor]="search">
           <input type="text" placeholder="products, brand, trends">
           <input placeholder="Current Location">
-        </button>
-        <app-action-button ctaText="Search" size="'lg'" (click)="searchDatabase()"></app-action-button>
-        <mat-menu #search="matMenu"> 
+        </button> -->
+        <app-action-button ctaText="Search" size="'lg'" (click)="goToMapView()"></app-action-button>
+        <!-- <mat-menu #search="matMenu"> 
             <button (click)="searchDatabase()" mat-menu-item *ngFor="let category of categories | async">  {{category.name | json}}</button>
-        </mat-menu> 
+        </mat-menu>  -->
     </div>
 
     <div class="main-content mobile">
@@ -40,7 +40,7 @@
     
   </div>
 </section>
-<app-home-map></app-home-map>
+<!-- 
 <aside>
     <h3>The #1 platform for local store owners</h3>
     <p>Manage your business, accept payments and grow your clientele using ProductMap software</p>
@@ -58,5 +58,5 @@
       <mat-grid-tile class="block-two">SUPPLIERS</mat-grid-tile>
       <mat-grid-tile class="block-three">TRENDS</mat-grid-tile>
     </mat-grid-list>
-</section>
-<app-footer></app-footer>
+</section> -->
+<app-footer class="footer"></app-footer>
