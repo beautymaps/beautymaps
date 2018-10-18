@@ -51,9 +51,7 @@ export class AddProductComponent implements OnInit {
       });
       this.productList = this.db.list('/products');
       const product = this.db.list<Product>('/products');
-      console.log('this is the:', this.location);      
-      console.log('this is the produc :', this.location);
-  
+      console.log('this is the:', this.location);        
     }
 
   cancel() {

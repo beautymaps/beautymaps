@@ -1,6 +1,6 @@
 <mat-drawer-container class="header">
   <mat-drawer #drawer class="main-drawer">
-    <div class="list-item action-button" *ngIf="authorizedUser">
+    <div class="list-item action-button" *ngIf="!authorizedUser">
       <div>
           <app-action-button ctaText="Login" size="'lg'" (click)="startSignIn(0)"></app-action-button>          
       </div>
@@ -8,7 +8,7 @@
           <app-action-button ctaText="SignUp" size="'lg'" (click)="startSignIn(1)"></app-action-button>          
       </div>
     </div>
-    <div *ngIf="!authorizedUser">
+    <div *ngIf="authorizedUser">
       <div class="right-nav menu" (click)="drawer.toggle()">
         <img  width="35px" height="35px" src="../../../assets/img/profileicon.png" alt="">
         <img *ngIf="currentUser && currentUser.photoURL" width="35px" height="35px" src="{{currentUser.photoURL}}" alt="User Image"> 
@@ -50,7 +50,7 @@
     </div>
   </mat-drawer>
   <mat-drawer-content>
-      <mat-toolbar *ngIf="authorizedUser">
+      <mat-toolbar *ngIf="!authorizedUser">
         <div class="nav-container main">
             <div class="right-nav logo">
               <a routerLink="/" routerLinkActive="active">
@@ -75,7 +75,7 @@
         </div>
       </mat-toolbar>
 
-      <mat-toolbar *ngIf="!authorizedUser">
+      <mat-toolbar *ngIf="authorizedUser">
         <div class="nav-container main authorized">
             <div class="right-nav logo">
               <a routerLink="/" routerLinkActive="active">

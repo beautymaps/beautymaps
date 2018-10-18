@@ -1,7 +1,7 @@
 <div>
     <mat-tab-group [selectedIndex]="selectedTab">
         <mat-tab label="Login">
-            <div class="button-container" (click)="login()">
+            <div class="button-container" (click)="signIn()">
                 <div class="logo"><img height="50px" src="../../../../assets/img/facebook.jpg" alt=""></div>
                 <div class="button facebook-button"><span>Login up with Facebook</span></div>
             </div>
@@ -12,16 +12,16 @@
               <input type="text" placeholder="username">
               <input type="text" placeholder="password">
             </div>
-            <div class="cta-button button" (click)="login()">
+            <div class="cta-button button" (click)="signIn()">
               <span>LOGIN</span>
             </div>
         </mat-tab>
         <mat-tab label="Sign Up">
-            <div class="button-container" (click)="goToSignin()">
+            <div class="button-container" (click)="signIn()">
                 <div class="logo"><img height="50px" src="../../../../assets/img/facebook.jpg" alt=""></div>
                 <div class="button facebook-button"><span>Sign up with Facebook</span></div>
             </div>
-            <div class="button-container" (click)="goToSignin()">
+            <div class="button-container" (click)="signIn()">
               <mat-icon class="logo">mail</mat-icon>
               <div class="button">Sign up with email</div>
             </div>
