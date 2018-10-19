@@ -89,7 +89,7 @@ export class HomeMapComponent implements OnInit {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
       });
-      this.openSearch();
+      // this.openSearch();
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
