@@ -49,6 +49,8 @@ export class AddProductComponent implements OnInit {
         console.log('this is the location function  : ',pos )
         this.location = pos;
       });
+      this.location = this.locationService.location;
+      console.log('this is the location attribute', this.location);
       this.productList = this.db.list('/products');
       const product = this.db.list<Product>('/products');
       console.log('this is the:', this.location);        
