@@ -6,10 +6,10 @@ const path = require('path');
 
 // Connect
 const connection = (closure) => {
-    return MongoClient.connect('mongodb://localhost:27017/bmaps', (err, db) => {
+    return MongoClient.connect('mongodb://localhost:27017/bmaps', { useNewUrlParser: true }, (err, db) => {
         if (err) return console.log(err);
 
-        closure(db);
+        closure(db.db('users'));
     });
 };
 
@@ -33,16 +33,15 @@ let response = {
 // Get users
     router.get('/users', (req, res) => {
         connection((db) => {
-            db.collection('users')
-                .find()
-                .toArray()
-                .then((users) => {
-                    response.data = users;
-                    res.json(response);
-                })
-                .catch((err) => {
-                    sendError(err, res);
-                });
+            db.collection('users').findOne({
+                EmployeeName: "NewEmployee"
+            }, (err, result) => {
+                if(err) {
+                    res.send({err})
+                } else {
+                    res.send(result);
+                }
+            })
         });
     });
 

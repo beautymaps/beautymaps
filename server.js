@@ -10,8 +10,8 @@ var cors = require('cors')
 
 app.use(cors());
 // Parsers
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json({limit: '50m'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 // Angular DIST output folder
 app.use(express.static('./dist'));
@@ -20,7 +20,7 @@ app.use(express.static('./dist'));
 app.use('/api', api);
 
 // Send all other requests to the Angular app
-app.get('*', (req, res) => {
+app.get('*', (req, res) => {b
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
