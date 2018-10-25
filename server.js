@@ -5,17 +5,19 @@ const http = require('http');
 const app = express();
 
 // API file for interacting with MongoDB
-// const api = require('./server/routes/api');
+const api = require('./server/routes/api');
+var cors = require('cors')
 
+app.use(cors());
 // Parsers
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: true}));
 
 // Angular DIST output folder
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static('./dist'));
 
 // API location
-// app.use('/api', api);
+app.use('/api', api);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
@@ -23,7 +25,7 @@ app.get('*', (req, res) => {
 });
 
 //Set Port
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '8080';
 app.set('port', port);
 
 const server = http.createServer(app);

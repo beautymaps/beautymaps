@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
+const path = require('path');
 
 // Connect
 const connection = (closure) => {
-    return MongoClient.connect('mongodb://localhost:27017/mean', (err, db) => {
+    return MongoClient.connect('mongodb://localhost:27017/bmaps', (err, db) => {
         if (err) return console.log(err);
 
         closure(db);
@@ -26,20 +27,23 @@ let response = {
     message: null
 };
 
-// Get users
-router.get('/users', (req, res) => {
-    connection((db) => {
-        db.collection('users')
-            .find()
-            .toArray()
-            .then((users) => {
-                response.data = users;
-                res.json(response);
-            })
-            .catch((err) => {
-                sendError(err, res);
-            });
+    router.get('/', (req, res)=> {
+        res.send({carine: 'hey'})
     });
-});
+// Get users
+    router.get('/users', (req, res) => {
+        connection((db) => {
+            db.collection('users')
+                .find()
+                .toArray()
+                .then((users) => {
+                    response.data = users;
+                    res.json(response);
+                })
+                .catch((err) => {
+                    sendError(err, res);
+                });
+        });
+    });
 
 module.exports = router;
