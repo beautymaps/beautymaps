@@ -78,7 +78,7 @@ const appRoutes: Routes = [
     SearchModalComponent,
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {useHash: false}),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

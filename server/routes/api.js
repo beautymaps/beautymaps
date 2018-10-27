@@ -45,7 +45,8 @@ db.once('open', function callback() {
       };
       
           router.get('/', (req, res)=> {
-              res.send({carine: 'hey'})
+            // res.sendFile(path.join(__dirname, '../../dist/index.html'));
+            res.send({carine: 'her man'})
           });
       // Get users
           router.get('/users', (req, res) => {
@@ -64,7 +65,7 @@ db.once('open', function callback() {
                 if (err) return handleError(err);
 
                 Product.find({ name: 'carine' }, (err, product)=> {
-                    console.log('this is the found product', product);
+                    console.log('we found products', product)
                     res.json(product);
                 })
             })
