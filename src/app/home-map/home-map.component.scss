@@ -18,6 +18,12 @@ app-header {
   position: relative;
   margin-top: 54px;
 }
+.main-container.overlay {
+  z-index: 23;
+  background: rgba(0, 0, 0, 0.06);
+  position: absolute;
+  height:95vh;
+}
 
 #product-list-container {
   min-width: 300px;

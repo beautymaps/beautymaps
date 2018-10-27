@@ -33,12 +33,14 @@ import { UserComponent } from "./user/user.component";
 import { AuthGuardService as AuthGuard } from './services/auth/auth-guard.service';
 import { AuthService } from './services/auth/auth.service';
 import { LocationService} from './services/location.service';
+import { DataService } from './services/data.service';
 import { CreateDemandComponent } from './create-demand/create-demand.component';
 import { ModalWindowComponent } from './shared/modal-window/modal-window.component';
 import { PrivacyTermsComponent } from './privacy-terms/privacy-terms.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { SearchModalComponent } from './shared/search-modal/search-modal.component';
+import { HttpModule } from '@angular/http'
 
 
 
@@ -76,10 +78,11 @@ const appRoutes: Routes = [
     SearchModalComponent,
   ],
   imports: [
-    RouterModule.forRoot(appRoutes, {useHash: true}),
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
     AgmCoreModule.forRoot({
       apiKey: bm_constants.gmaps_api_key,
       libraries: ["places"]
@@ -105,7 +108,7 @@ const appRoutes: Routes = [
     MatDividerModule,
     MatSelectModule 
   ],
-  providers: [AuthGuard, AuthService, MatDialog, LocationService],
+  providers: [AuthGuard, AuthService, MatDialog, LocationService, DataService],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalWindowComponent,
