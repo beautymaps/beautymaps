@@ -10,15 +10,14 @@ export class DataService {
   
     constructor(private _http: Http) {
 
-      console.log('this is what you get from get user :', );
      }
 
   
     
-    // getUsers() {
-    //   return this._http.get("http://localhost:8080/api/users")
-    //     .map(result => this.result = result.json().data);
-    // }
+    getUsers() {
+      return this._http.get("/api/users")
+        .map(result => result.json());
+    }
 
 
 }
