@@ -49,7 +49,7 @@ db.once('open', function callback() {
             res.send({carine: 'her man'})
           });
       // Get users
-          router.get('/users', (req, res) => {
+          router.get('/addProduct', (req, res) => {
             let newProduct = new Product ({
                 name: 'carine',
                 price:'43',
@@ -69,22 +69,9 @@ db.once('open', function callback() {
                     res.json(product);
                 })
             })
-            // then((product) => {
-            //     console.log('this is the found product', product);
-            //     res.json(product);
-            // })
           });
 
 
 })
-// Connect
-// const connection = (closure) => {
-//     return MongoClient.connect('mongodb://localhost:27017/bmaps', { useNewUrlParser: true }, (err, db) => {
-//         if (err) return console.log(err);
-
-//         closure(db.db('users'));
-//     });
-// };
-
 
 module.exports = router;
