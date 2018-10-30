@@ -5,7 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Product } from '../class/product';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { LocationService } from '../services/location.service';
-
+import { DataService } from '../services/data.service';
 
 
 class newProduct {
@@ -30,6 +30,7 @@ export class AddProductComponent implements OnInit {
   fileToUpload: File;
   imageUrl: string = null; 
   location; 
+  data;
 
   categories = [
     "Wigs", "Natural Hair", "Protective Styling"
@@ -40,7 +41,11 @@ export class AddProductComponent implements OnInit {
   ]
   constructor(
     private router: Router,
-    private afs: AngularFirestore, private db: AngularFireDatabase, private locationService: LocationService) {
+    private afs: AngularFirestore, 
+    private db: AngularFireDatabase, 
+    private locationService: LocationService,
+    private dataService: DataService
+  ) {
       this.newProduct = {};
     }
     
@@ -50,9 +55,9 @@ export class AddProductComponent implements OnInit {
         this.location = pos;
       });
       this.location = this.locationService.location;
-      console.log('this is the location attribute', this.location);
-      this.productList = this.db.list('/products');
-      const product = this.db.list<Product>('/products');
+      // console.log('this is the location attribute', this.location);
+      // this.productList = this.db.list('/products');
+      // const product = this.db.list<Product>('/products');
       console.log('this is the:', this.location);        
     }
 
@@ -61,11 +66,11 @@ export class AddProductComponent implements OnInit {
   }
 
   done() {
-    console.log('thisis the new product : ', this.location);
     if(this.location && this.location.long & this.location.lat) {
       this.newProduct.long = this.location.long;
       this.newProduct.lat = this.location.lat;
-      this.productList.push(this.newProduct);
+      // this.productList.push(this.newProduct);
+      this.data = this.dataService.addProduct(this.newProduct);
       this.doneAddingProduct.emit({update: false});
       this.router.navigate(['home']);
     } 

@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map'
 import { Product } from '../class/product';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { SearchModalComponent } from '../shared/search-modal/search-modal.component';
-
+import { DataService } from '../services/data.service';
 
 declare var google;
 interface marker {
@@ -52,9 +52,11 @@ export class HomeMapComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, 
     private db: AngularFireDatabase,
-    private dialog: MatDialog
+    private dialog: MatDialog, 
+    private dataService: DataService
   ) {
-    this.products = this.db.list('/products').valueChanges();
+    // this.products = this.db.list('/products').valueChanges();
+    this.products = this.dataService.getAllProducts()
     console.log('this is the product :', this.products)
     this.products.subscribe((pos) => {
       console.log('a new product was added', pos);
