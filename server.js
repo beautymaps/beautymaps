@@ -10,7 +10,7 @@ var cors = require('cors')
 
 app.use(cors());
 // Parsers
-app.use(bodyParser.json({limit: '50m'}));
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 // Angular DIST output folder

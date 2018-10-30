@@ -12,11 +12,16 @@ export class DataService {
 
      }
 
-  
-    
-    getUsers() {
-      return this._http.get("/api/users")
+    getAllProducts() {
+      return this._http.get("/api/get-all-products")
         .map(result => result.json());
+    }
+    
+    addProduct(productObj) {
+      console.log('this add product function is run', productObj);
+      return this._http.post("/api/add-product", productObj).subscribe((prod) => {
+        console.log(prod)
+      })
     }
 
 

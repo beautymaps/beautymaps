@@ -5,7 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Product } from '../class/product';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { LocationService } from '../services/location.service';
-
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,10 +16,16 @@ export class ProfileComponent implements OnInit {
   products: Observable<any[]>
   productListView = true;
 
-  constructor(private afs: AngularFirestore, private db: AngularFireDatabase, private locationService: LocationService) { 
+  constructor(private afs: AngularFirestore, 
+    private db: AngularFireDatabase, 
+    private locationService: LocationService,
+    private dataService: DataService
+  ) { 
     // this.productList = this.af.list<Product>('/products');
-    this.products = this.db.list('/products').valueChanges();
-    console.log('this the products :', this.products);
+    // this.products = this.db.list('/products').valueChanges();
+    this.products = this.dataService.getAllProducts()
+    
+    // console.log('this the products :', this.products);
   }
 
   ngOnInit() {
@@ -39,7 +45,7 @@ export class ProfileComponent implements OnInit {
     } else {
       this.productListView = !this.productListView;
       // this.products.push(this.product);
-      console.log('what happens to the products list:', this.products);
+      // console.log('what happens to the products list:', this.products);
     }
   }
 }

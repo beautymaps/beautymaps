@@ -56,9 +56,9 @@ export class LandingPageComponent implements OnInit {
       console.log('we now have the users current position ', pos);
     })
 
-    this.dataService.getUsers().subscribe((products) => {
-      console.log('these are the products', products);
-    })
+    // this.dataService.getUsers().subscribe((products) => {
+    //   console.log('these are the products', products);
+    // })
     
     
   }
