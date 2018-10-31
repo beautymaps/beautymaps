@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "gulp create-config && ng build --aot -prod",
+    "postinstall": "gulp create-config && ng build --aot -prod && node server",
     "start": "ng build && node server"
   },
   "private": true,
