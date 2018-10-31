@@ -11,6 +11,7 @@
     "postinstall": "gulp create-config && ng build --aot -prod",
     "start": "ng build && node server"
   },
+  "main": "server.js",
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.3",
@@ -64,5 +65,9 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.9.1"
+  },
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
   }
 }
