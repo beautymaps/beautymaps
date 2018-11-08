@@ -27,7 +27,8 @@ db.once('open', function callback() {
         image: String, 
         long: Number,
         lat: Number,
-        date: String
+        date: String,
+        uid: String
     });
 
     let userSchema = mongoose.Schema({
@@ -73,19 +74,22 @@ db.once('open', function callback() {
 // Addproduct
 
     router.post('/add-product', (req, res) => {
-        let newProduct = new Product (req.body)
-
-        newProduct.save((err) =>{
-            if (err) return handleError(err);
-
-            Product.find({ name: req.body.name })
-                .sort('date')
-                .exec((err, product)=> {
-                    // console.log('we found products', product)
-                    res.json(product);
-                })
+        console.log('is there a new product req', req.body)
+        Product.find({ uid: req.body.uid },(err, product)=> {
+            let newProduct = new Product (req.body)
+            newProduct.save((err) =>{
+                if (err) return handleError(err);
+    
+            })
         })
     });
+
+    router.get('/user-product/:id', (req,res) => {
+        Product.find({uid: req.params.id}, (err, products) => {
+            if(err) res.json(err);
+            res.json(products);
+        })
+    })
 
     router.post('/login-user', (req, res) => {
         console.log('this is req.body', req.body);

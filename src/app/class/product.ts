@@ -8,4 +8,5 @@ export class Product {
     long?:number;
     lat?: number;
     date?: String;
+    uid?: String;
 }
