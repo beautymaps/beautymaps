@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth/auth.service'
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
   events: string[] = [];
   opened: boolean;
 
-  constructor(private authService: AuthService, public dialog: MatDialog, private router: Router) { }
+  constructor(private authService: AuthService, public dialog: MatDialog, private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
    this.authService.authState.subscribe((auth) => {
