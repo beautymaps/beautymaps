@@ -38,26 +38,30 @@ export class ProfileComponent implements OnInit {
   }
   
   ngOnInit() {
-    // this.router.params.subscribe((params: Params) => {
-    //   console.log('this is the params', params)
-    //     this.dataService.getUser(params.id)
-    //       .subscribe((user) => {
-    //         this.profile = user;
-    //       })
-    //     })
-        this.profile = this.dataService.profileLookup; 
+    this.router.params.subscribe((params: Params) => {
+      console.log('this is the params', params)
+        this.dataService.getUser(params.id)
+          .subscribe((user) => {
+            if(this.dataService.profileLookup) {
+              this.profile = this.dataService.profileLookup; 
+            } else {
+              this.profile = user;
+            }
+            console.log('what is the user in params', user);
+            this.auth.authState.subscribe((auth) => {
+              this.profileUser = auth.providerData[0]
+              console.log('this is the user', this.profileUser, this.profile);
+              if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
+              this.authorizedUser = auth ? true : false;
+            });
+          })
+        })
         if(this.profile) {
           this.products = this.dataService.getUserProducts(this.profile.uid)
           this.products.subscribe((prod) => {
             console.log('we found this users products,', prod);
           })
         }
-        this.auth.authState.subscribe((auth) => {
-          this.profileUser = auth.providerData[0]
-          console.log('this is the user', this.profileUser, this.profile);
-          if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
-          this.authorizedUser = auth ? true : false;
-        });
         
     // this.productList$ = this.af.list('/products');
     // this.products = this.productList.valueChanges();
