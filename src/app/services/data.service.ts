@@ -16,6 +16,11 @@ export class DataService {
       return this._http.get("/api/get-all-products")
         .map(result => result.json());
     }
+
+    getAllUsers() {
+      return this._http.get("/api/get-all-users")
+        .map(result => result.json());
+    }
     
     addProduct(productObj) {
       console.log('this add product function is run', productObj);

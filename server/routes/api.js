@@ -71,6 +71,14 @@ db.once('open', function callback() {
             res.json(products);
         })
     });
+
+    router.get('/get-all-users', (req, res) => {
+        User.find({}, (err, users) => {
+            if(err) res.json(err)
+            // console.log('here is a list of all the products', products)
+            res.json(users);
+        })
+    });
 // Addproduct
 
     router.post('/add-product', (req, res) => {

@@ -46,8 +46,8 @@ export class HomeMapComponent implements OnInit {
     }
   ]
   
+  users: Observable<any[]>;
   products: Observable<any[]>;
-
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, 
@@ -56,11 +56,16 @@ export class HomeMapComponent implements OnInit {
     private dataService: DataService
   ) {
     // this.products = this.db.list('/products').valueChanges();
+    this.users = this.dataService.getAllUsers()
+    console.log('this is the product :', this.users)
+    this.users.subscribe((user) => {
+      return user;
+    })
     this.products = this.dataService.getAllProducts()
-    console.log('this is the product :', this.products)
-    this.products.subscribe((pos) => {
-      console.log('a new product was added', pos);
-      return pos
+    
+    this.products.subscribe((product) => {
+      console.log('a new product was added', product);
+      return product;
     })
   }
 
