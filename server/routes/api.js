@@ -5,6 +5,7 @@ const ObjectID = require('mongodb').ObjectID;
 const path = require('path');
 const mongoose = require('mongoose');
 const config = require('../../config.js');
+const jwt = require('jsonwebtoken');
 
 let uri = config.MONGO_URI || 'mongodb://localhost:27017/bmaps';
 
@@ -26,10 +27,22 @@ db.once('open', function callback() {
         image: String, 
         long: Number,
         lat: Number,
+        date: String,
+        uid: String
     });
+
+    let userSchema = mongoose.Schema({
+        uid: String,
+        displayName: String,
+        photoURL: String,
+        email: String,
+        phoneNumber: Number,
+        providerId: String
+    })
     
     // Store song documents in a collection called "songs"
     let Product = mongoose.model('products', productSchema);
+    let User = mongoose.model('users', userSchema);
     // Error handling
     const sendError = (err, res) => {
         response.status = 501;
@@ -54,25 +67,73 @@ db.once('open', function callback() {
     router.get('/get-all-products', (req, res) => {
         Product.find({}, (err, products) => {
             if(err) res.json(err)
-            console.log('here is a list of all the products', products)
+            // console.log('here is a list of all the products', products)
             res.json(products);
+        })
+    });
+
+    router.get('/get-all-users', (req, res) => {
+        User.find({}, (err, users) => {
+            if(err) res.json(err)
+            // console.log('here is a list of all the products', products)
+            res.json(users);
         })
     });
 // Addproduct
 
     router.post('/add-product', (req, res) => {
-        // console.log('this is the req body for adding new products', req);
-        let newProduct = new Product (req.body)
-
-        newProduct.save((err) =>{
-            if (err) return handleError(err);
-
-            Product.find({ name: req.body.name }, (err, product)=> {
-                console.log('we found products', product)
-                res.json(product);
+        console.log('is there a new product req', req.body)
+        Product.find({ uid: req.body.uid },(err, product)=> {
+            let newProduct = new Product (req.body)
+            newProduct.save((err) =>{
+                if (err) return handleError(err);
+    
             })
         })
     });
+
+    router.get('/user-product/:id', (req,res) => {
+        Product.find({uid: req.params.id}, (err, products) => {
+            if(err) res.json(err);
+            res.json(products);
+        })
+    })
+
+    router.get('/user/:id', (req,res) => {
+        User.findOne({uid: req.params.id}, (err, user) => {
+            if(err) res.json(err);
+            res.json(user);
+        })
+    })
+
+
+    router.post('/login-user', (req, res) => {
+        console.log('this is req.body', req.body);
+        User.findOne({uid: req.body.uid}, (err, registeredUser) => {
+            console.log('this is find',err, registeredUser);
+            let userData = req.body;
+            let payload;
+            if(err) console.log('there was an err', err)
+            if(!registeredUser) {
+                let user = new User(userData);
+                user.save((err, newUser) => {
+                    if(err) {
+                        res.send('error saving new user');
+                    } else {
+                        payload = {subject: newUser.uid}
+                        let token = jwt.sign(payload, 'secretKey')
+                        console.log('we have a new user')
+                        res.status(200).send({token:token, user:newUser});
+                    }
+                })
+            } else {
+                payload = {subject: registeredUser.uid}
+                let token = jwt.sign(payload, 'secretKey') 
+                console.log('we found a registered user')               
+                res.status(200).send(registeredUser);
+            }
+        })
+    })
 })
 
 module.exports = router;

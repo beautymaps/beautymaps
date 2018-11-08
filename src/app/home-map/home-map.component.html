@@ -1,21 +1,23 @@
+<div class="page-wrapper">
   <app-header> </app-header>
-  <!-- <div class="main-container overlay"></div> -->
+    <!-- <div class="main-container overlay"></div> -->
   <div class="main-container">
     <div id="product-list-container">
         <div class="active-products-container">  
-          <mat-card class="product-tile" *ngFor="let product of products | async">
+          <div class="product-tile" *ngFor="let user of users | async">
               <div class="product-img">
-                <img mat-card-image *ngIf="product.image" [src]="product.image" alt="Photo of a Shiba Inu">
+                <img mat-card-image *ngIf="user.photoURL" [src]="user.photoURL" alt="Photo of a Shiba Inu">
+                <img mat-card-image *ngIf="!user.photoURL" src="../../assets/img/imgicon.png" alt="NO user Image">                
               </div>
-              <mat-card-content>
-                  {{product.name}}
-                  {{product.brand}}
-                  {{product.description}}   
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button>${{product.price}}</button>
-              </mat-card-actions>
-            </mat-card>
+              <div>
+                  <!-- {{user.name}}
+                  {{user.brand}}
+                  {{user.description}}    -->
+              </div>
+              <div>
+                <button mat-button (click)="viewProducts(user)">View Products</button>
+              </div>
+            </div>
         </div>
     </div>
     <div id="map-container">
@@ -27,8 +29,10 @@
           <agm-marker  *ngFor="let m of products | async; let i = index" [latitude]="m.lat" [longitude]="m.long"  
           [markerDraggable]="null"
           (dragEnd)="null"></agm-marker>
-          {{product | json}}
+          {{products | json}}
         </agm-map>
       </div>
     </div>
+  </div>
+
   </div>

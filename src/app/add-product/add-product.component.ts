@@ -6,6 +6,7 @@ import { Product } from '../class/product';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { LocationService } from '../services/location.service';
 import { DataService } from '../services/data.service';
+import { AuthService } from '../services/auth/auth.service';
 
 
 class newProduct {
@@ -16,6 +17,8 @@ class newProduct {
   keywords?: string;
   long?: number;
   lat?: number;
+  date?: String;
+  uid: String;
 }
 
 @Component({
@@ -31,6 +34,7 @@ export class AddProductComponent implements OnInit {
   imageUrl: string = null; 
   location; 
   data;
+  profileUser
 
   categories = [
     "Wigs", "Natural Hair", "Protective Styling"
@@ -44,7 +48,8 @@ export class AddProductComponent implements OnInit {
     private afs: AngularFirestore, 
     private db: AngularFireDatabase, 
     private locationService: LocationService,
-    private dataService: DataService
+    private dataService: DataService, 
+    private auth: AuthService
   ) {
       this.newProduct = {};
     }
@@ -58,6 +63,7 @@ export class AddProductComponent implements OnInit {
       // console.log('this is the location attribute', this.location);
       // this.productList = this.db.list('/products');
       // const product = this.db.list<Product>('/products');
+      this.profileUser = this.auth.getCurrentUser();      
       console.log('this is the:', this.location);        
     }
 
@@ -67,12 +73,13 @@ export class AddProductComponent implements OnInit {
 
   done() {
     if(this.location && this.location.long & this.location.lat) {
+      this.newProduct.uid = this.profileUser.uid
       this.newProduct.long = this.location.long;
       this.newProduct.lat = this.location.lat;
+      this.newProduct.date = new Date().toISOString();
       // this.productList.push(this.newProduct);
       this.data = this.dataService.addProduct(this.newProduct);
       this.doneAddingProduct.emit({update: false});
-      this.router.navigate(['home']);
     } 
     
   }

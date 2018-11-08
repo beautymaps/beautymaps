@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service'
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ export class HeaderComponent implements OnInit {
   events: string[] = [];
   opened: boolean;
 
-  constructor(private authService: AuthService, public dialog: MatDialog) { }
+  constructor(private authService: AuthService, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
    this.authService.authState.subscribe((auth) => {
@@ -52,19 +53,9 @@ export class HeaderComponent implements OnInit {
     this.authorizedUser = false;
     console.log('this is a logged out user', this.authService.getCurrentUser())
   }
+
+  goToProfile() {
+    console.log('can we get the id', this.currentUser)
+    this.router.navigate(['profile/'+this.currentUser.uid])
+  }
 }
-
-// @Component({
-//   selector: 'dialog-overview-example-dialog',
-// })
-// export class DialogOverviewExampleDialog {
-
-//   constructor(
-//     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-//   ) {}
-
-//   externalClick(): void {
-//     this.dialogRef.close();
-//   }
-
-// }

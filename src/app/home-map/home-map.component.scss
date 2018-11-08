@@ -6,11 +6,6 @@ agm-map {
     height: 600px;
   }
 
-app-header {
-  // position: absolute;
-  top: 0;
-  margin-bottom: 100px;
-}
 .main-container {
   display: flex;
   max-height: 95vh;
@@ -29,18 +24,30 @@ app-header {
   min-width: 300px;
   width: 900px;
   height: 600px;
+  padding: 20px;
   .product-tile {
     display: flex;
+    margin-bottom: 15px;
+    background-color: #fff;
+
     .product-img img {
-      width: 250px;
-      height: 250px;
+      width: 100%;
+      height: 100%;
     }
+    .product-img {
+      width: 200px;
+      height: 200px;
+    }
+
   }
   .active-products-container {
     height: 90vh;
     overflow-y: scroll;
   }
+  .mat-card-img {
+    margin: 0;
 
+  }
 }
 
 #map-container {
@@ -53,11 +60,12 @@ app-header {
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: 0;
   }
   #product-list-container {
     width: 100%;
     height: 136px;
-    position: absolute;
+    position: fixed;
     overflow-x: scroll;
     overflow-y: hidden;
     z-index: 2;
@@ -65,11 +73,22 @@ app-header {
     .active-products-container {
       height: 90vh;
       display: flex;
+      justify-content: space-between;
+    }
+    .mat-card-img {
+      margin: 0;
     }
     .product-tile {
+      margin: 0 10px 10px 10px;
+      height: 100px;    
+      .product-img {
+        width: 100px;
+        height: 100px;
+      }
+
       .product-img img {
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
       }
     }
   }

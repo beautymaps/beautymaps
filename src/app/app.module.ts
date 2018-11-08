@@ -32,6 +32,7 @@ import { UserComponent } from "./user/user.component";
 
 import { AuthGuardService as AuthGuard } from './services/auth/auth-guard.service';
 import { AuthService } from './services/auth/auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { LocationService} from './services/location.service';
 import { DataService } from './services/data.service';
 import { CreateDemandComponent } from './create-demand/create-demand.component';
@@ -53,7 +54,7 @@ const appRoutes: Routes = [
   { path: 'user', component: UserComponent,  resolve: { data: ''}},
   { path: 'create-demand', component: CreateDemandComponent},
   { path: 'privacy-terms', component: PrivacyTermsComponent},
-  { path: 'profile', component: ProfileComponent}
+  { path: 'profile/:id', component: ProfileComponent}
 ];
 
 @NgModule({
@@ -108,7 +109,7 @@ const appRoutes: Routes = [
     MatDividerModule,
     MatSelectModule 
   ],
-  providers: [AuthGuard, AuthService, MatDialog, LocationService, DataService],
+  providers: [AuthGuard, AuthService, MatDialog, LocationService, DataService, JwtHelperService],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalWindowComponent,

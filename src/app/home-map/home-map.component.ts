@@ -9,6 +9,8 @@ import { Product } from '../class/product';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { SearchModalComponent } from '../shared/search-modal/search-modal.component';
 import { DataService } from '../services/data.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 
 declare var google;
 interface marker {
@@ -46,20 +48,27 @@ export class HomeMapComponent implements OnInit {
     }
   ]
   
+  users: Observable<any[]>;
   products: Observable<any[]>;
-
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, 
     private db: AngularFireDatabase,
     private dialog: MatDialog, 
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) {
     // this.products = this.db.list('/products').valueChanges();
+    this.users = this.dataService.getAllUsers()
+    console.log('this is the product :', this.users)
+    this.users.subscribe((user) => {
+      return user;
+    })
     this.products = this.dataService.getAllProducts()
-    console.log('this is the product :', this.products)
-    this.products.subscribe((pos) => {
-      console.log('a new product was added', pos);
+    
+    this.products.subscribe((product) => {
+      console.log('a new product was added', product);
+      return product;
     })
   }
 
@@ -109,6 +118,11 @@ export class HomeMapComponent implements OnInit {
         });
       });
     });
+  }
+
+  viewProducts(user) {
+    this.dataService.profileLookup = user;
+    this.router.navigate(['/profile/'+user.uid])
   }
      
   openSearch() {
