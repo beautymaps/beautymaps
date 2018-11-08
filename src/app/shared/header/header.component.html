@@ -16,7 +16,7 @@
       </div>
       <button mat-menu-item routerLink="/home">Map</button>              
       <mat-divider></mat-divider>
-      <div class="list-item" routerLink="/profile">Profile</div>
+      <div class="list-item" (click)="goToProfile()">Profile</div>
       <mat-divider></mat-divider>
       <div class="list-item">Your Products</div>  
       <mat-divider></mat-divider>
@@ -91,7 +91,7 @@
           </div>
           <mat-menu class="settings-menu"  #settingsMenu="matMenu"> 
             <button mat-menu-item routerLink="/home">Map</button>              
-              <button mat-menu-item routerLink="/profile">Profile</button>
+              <button mat-menu-item (click)="goToProfile()">Profile</button>
               <button mat-menu-item>Your Products</button>
               <button mat-menu-item>Your Orders</button>
               <button mat-menu-item>Favorites</button>

@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   products: Observable<any[]>
   productListView = true;
   user: any;
+  authorizedUser: any;
 
   constructor(private afs: AngularFirestore, 
     private db: AngularFireDatabase, 
@@ -32,8 +33,12 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.auth.getCurrentUser();
-    console.log('this is the user', this.user);
+    this.auth.authState
+      .subscribe((auth) => {
+        this.authorizedUser = auth ? true : false;
+        this.user = this.auth.getCurrentUser();
+        console.log('this is the user', this.user);
+      })
     // this.productList$ = this.af.list('/products');
     // this.products = this.productList.valueChanges();
   }

@@ -39,7 +39,7 @@ export class ModalWindowComponent implements OnInit {
     this.authService.authState.subscribe((auth) => {
       this.authorizedUser = auth ? true : false;
       if(this.authorizedUser && auth.providerData) this.setCurrentUser(auth);
-     })
+    })
   }
 
   externalClick(): void {

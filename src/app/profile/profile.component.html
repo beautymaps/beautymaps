@@ -2,7 +2,7 @@
 <div class="main-container">
   <mat-card id="profile" [ngClass]="{'profile-display': !productListView}">
     <div class="profile-pic">
-      <!-- <img mat-card-image src="../../../../assets/img/store-cover.jpg" alt="Photo of a Shiba Inu"> -->
+      <img *ngIf="user" src="user.photoUrl" alt="">
     </div>
     <mat-card-content>
       <div class="pen"><mat-icon>edit</mat-icon></div>

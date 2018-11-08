@@ -54,7 +54,7 @@ const appRoutes: Routes = [
   { path: 'user', component: UserComponent,  resolve: { data: ''}},
   { path: 'create-demand', component: CreateDemandComponent},
   { path: 'privacy-terms', component: PrivacyTermsComponent},
-  { path: 'profile', component: ProfileComponent}
+  { path: 'profile/:id', component: ProfileComponent}
 ];
 
 @NgModule({

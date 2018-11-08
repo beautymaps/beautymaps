@@ -13,19 +13,16 @@ import * as firebase from 'firebase/app';
 export class AuthService {
   currentUser: any;
   authState: any;
-  authorizedUser
+  authorizedUser: any;
   constructor(public afAuth: AngularFireAuth, private af: FirebaseApp, private _http: Http) {
     af.auth().onAuthStateChanged((auth)=>{
       console.log('this the current auth state', auth)
-      this.currentUser = auth.providerData[0];
+      this.currentUser = auth ? auth.providerData[0] : null;
     })
 
    
     this.authState = afAuth.authState
-      .subscribe((auth) => {
-        this.authorizedUser = auth ? true : false;
-        if(this.authorizedUser && auth.providerData) return auth;
-      })
+  
     
     // this.authState.subscribe((auth) => {
     //   this.authState = auth;
