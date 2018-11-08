@@ -9,6 +9,8 @@ import { Product } from '../class/product';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { SearchModalComponent } from '../shared/search-modal/search-modal.component';
 import { DataService } from '../services/data.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 
 declare var google;
 interface marker {
@@ -53,7 +55,8 @@ export class HomeMapComponent implements OnInit {
     private ngZone: NgZone, 
     private db: AngularFireDatabase,
     private dialog: MatDialog, 
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) {
     // this.products = this.db.list('/products').valueChanges();
     this.users = this.dataService.getAllUsers()
@@ -115,6 +118,11 @@ export class HomeMapComponent implements OnInit {
         });
       });
     });
+  }
+
+  viewProducts(user) {
+    this.dataService.profileLookup = user;
+    this.router.navigate(['/profile/'+user.uid])
   }
      
   openSearch() {

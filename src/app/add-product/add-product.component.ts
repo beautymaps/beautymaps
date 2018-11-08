@@ -80,7 +80,6 @@ export class AddProductComponent implements OnInit {
       // this.productList.push(this.newProduct);
       this.data = this.dataService.addProduct(this.newProduct);
       this.doneAddingProduct.emit({update: false});
-      this.router.navigate(['home']);
     } 
     
   }

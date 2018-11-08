@@ -2,14 +2,14 @@
 <div class="main-container">
   <mat-card id="profile" [ngClass]="{'profile-display': !productListView}">
     <div class="profile-pic">
-      <img *ngIf="profileUser" src="{{profileUser.photoURL}}" alt="">
+      <img *ngIf="profile" src="{{profile.photoURL}}" alt="">
     </div>
     <mat-card-content>
       <!-- <div class="pen"><mat-icon>edit</mat-icon></div> -->
-      <div *ngIf="profileUser" class="username">{{profileUser.displayName}}</div>
+      <div *ngIf="profile" class="username">{{profile.displayName}}</div>
       <!-- <div>Reviews</div> -->
       <div>
-        <app-action-button class="profile-button" ctaText="Preview Public Mode" size="'lg'"></app-action-button>
+        <app-action-button *ngIf="canEdit" class="profile-button" ctaText="Preview Public Mode" size="'lg'"></app-action-button>
       </div>    
       <!-- <p>
         1600 Pennsylvannia Ave, 

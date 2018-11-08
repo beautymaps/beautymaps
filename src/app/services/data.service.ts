@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 export class DataService {
 
   result:any;
+  profileLookup;
   
     constructor(private _http: Http) {
 
@@ -20,6 +21,11 @@ export class DataService {
     getAllUsers() {
       return this._http.get("/api/get-all-users")
         .map(result => result.json());
+    }
+
+    getUser(id) {
+      return this._http.get('/api/user/'+id)
+      .map(result => result.json());
     }
     
     addProduct(productObj) {

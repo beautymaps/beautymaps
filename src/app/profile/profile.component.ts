@@ -19,14 +19,17 @@ export class ProfileComponent implements OnInit {
   products: Observable<any[]>
   productListView = true;
   profileUser: any;
+  profile: any;
   authorizedUser: any;
+  canEdit = false;
 
   constructor(private afs: AngularFirestore, 
     private db: AngularFireDatabase, 
     private locationService: LocationService,
     private dataService: DataService,
     private auth: AuthService,
-    private route: Router
+    private route: Router,
+    private router: ActivatedRoute
   ) { 
     // this.productList = this.af.list<Product>('/products');
     // this.products = this.db.list('/products').valueChanges();
@@ -35,25 +38,32 @@ export class ProfileComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.auth.authState
-    .subscribe((auth) => {
-      this.authorizedUser = auth ? true : false;
-      this.profileUser = this.auth.getCurrentUser();
-      this.products = this.dataService.getUserProducts(this.profileUser.uid)
-        this.products.subscribe((prod) => {
-          console.log('we found this users products,', prod);
-        })
-        console.log('this is the user', this.profileUser);
-      });
-    
-
-
-    
+    // this.router.params.subscribe((params: Params) => {
+    //   console.log('this is the params', params)
+    //     this.dataService.getUser(params.id)
+    //       .subscribe((user) => {
+    //         this.profile = user;
+    //       })
+    //     })
+        this.profile = this.dataService.profileLookup; 
+        if(this.profile) {
+          this.products = this.dataService.getUserProducts(this.profile.uid)
+          this.products.subscribe((prod) => {
+            console.log('we found this users products,', prod);
+          })
+        }
+        this.auth.authState.subscribe((auth) => {
+          this.profileUser = auth.providerData[0]
+          console.log('this is the user', this.profileUser, this.profile);
+          if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
+          this.authorizedUser = auth ? true : false;
+        });
+        
     // this.productList$ = this.af.list('/products');
     // this.products = this.productList.valueChanges();
   }
 
-  ng
+  
   addProduct () {
     this.productListView = false;
   }

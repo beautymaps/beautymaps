@@ -99,6 +99,14 @@ db.once('open', function callback() {
         })
     })
 
+    router.get('/user/:id', (req,res) => {
+        User.findOne({uid: req.params.id}, (err, user) => {
+            if(err) res.json(err);
+            res.json(user);
+        })
+    })
+
+
     router.post('/login-user', (req, res) => {
         console.log('this is req.body', req.body);
         User.findOne({uid: req.body.uid}, (err, registeredUser) => {
