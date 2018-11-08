@@ -16,6 +16,7 @@ class newProduct {
   keywords?: string;
   long?: number;
   lat?: number;
+  date?: String;
 }
 
 @Component({
@@ -69,6 +70,7 @@ export class AddProductComponent implements OnInit {
     if(this.location && this.location.long & this.location.lat) {
       this.newProduct.long = this.location.long;
       this.newProduct.lat = this.location.lat;
+      this.newProduct.date = new Date().toISOString();
       // this.productList.push(this.newProduct);
       this.data = this.dataService.addProduct(this.newProduct);
       this.doneAddingProduct.emit({update: false});

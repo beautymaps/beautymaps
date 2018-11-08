@@ -7,4 +7,5 @@ export class Product {
     image?: string; 
     long?:number;
     lat?: number;
+    date?: String;
 }

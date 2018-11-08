@@ -6,6 +6,7 @@ import { Product } from '../class/product';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { LocationService } from '../services/location.service';
 import { DataService } from '../services/data.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,11 +16,13 @@ import { DataService } from '../services/data.service';
 export class ProfileComponent implements OnInit {
   products: Observable<any[]>
   productListView = true;
+  user: any;
 
   constructor(private afs: AngularFirestore, 
     private db: AngularFireDatabase, 
     private locationService: LocationService,
-    private dataService: DataService
+    private dataService: DataService,
+    private auth: AuthService
   ) { 
     // this.productList = this.af.list<Product>('/products');
     // this.products = this.db.list('/products').valueChanges();
@@ -29,6 +32,8 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.auth.getCurrentUser();
+    console.log('this is the user', this.user);
     // this.productList$ = this.af.list('/products');
     // this.products = this.productList.valueChanges();
   }

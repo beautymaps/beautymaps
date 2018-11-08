@@ -1,21 +1,23 @@
+<div class="page-wrapper">
   <app-header> </app-header>
-  <!-- <div class="main-container overlay"></div> -->
+    <!-- <div class="main-container overlay"></div> -->
   <div class="main-container">
     <div id="product-list-container">
         <div class="active-products-container">  
-          <mat-card class="product-tile" *ngFor="let product of products | async">
+          <div class="product-tile" *ngFor="let product of products | async">
               <div class="product-img">
                 <img mat-card-image *ngIf="product.image" [src]="product.image" alt="Photo of a Shiba Inu">
+                <img mat-card-image *ngIf="!product.image" src="../../assets/img/imgicon.png" alt="NO Product Image">                
               </div>
-              <mat-card-content>
+              <div>
                   {{product.name}}
                   {{product.brand}}
                   {{product.description}}   
-              </mat-card-content>
-              <mat-card-actions>
+              </div>
+              <div>
                 <button mat-button>${{product.price}}</button>
-              </mat-card-actions>
-            </mat-card>
+              </div>
+            </div>
         </div>
     </div>
     <div id="map-container">
@@ -31,4 +33,6 @@
         </agm-map>
       </div>
     </div>
+  </div>
+
   </div>

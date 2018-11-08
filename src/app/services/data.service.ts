@@ -19,9 +19,7 @@ export class DataService {
     
     addProduct(productObj) {
       console.log('this add product function is run', productObj);
-      return this._http.post("/api/add-product", productObj).subscribe((prod) => {
-        console.log(prod)
-      })
+      return this._http.post("/api/add-product", productObj)
     }
 
 

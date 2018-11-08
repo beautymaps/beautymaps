@@ -60,6 +60,7 @@ export class HomeMapComponent implements OnInit {
     console.log('this is the product :', this.products)
     this.products.subscribe((pos) => {
       console.log('a new product was added', pos);
+      return pos
     })
   }
 

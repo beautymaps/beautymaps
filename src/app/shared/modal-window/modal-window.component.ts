@@ -26,10 +26,10 @@ export class ModalWindowComponent implements OnInit {
     private authService: AuthService,
     private db: AngularFireDatabase,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-      this.userList = this.db.list('/authorizedUser');
-      this.userList.valueChanges().subscribe((users) => {
-        console.log('this the registered users', users);
-      })
+      // this.userList = this.db.list('/authorizedUser');
+      // this.userList.valueChanges().subscribe((users) => {
+      //   console.log('this the registered users', users);
+      // })
     }
 
   ngOnInit() {
@@ -58,6 +58,7 @@ export class ModalWindowComponent implements OnInit {
 
   login() {
     this.dialogRef.close({auth: true});
+    this.router.navigate(['profile'])
   }
 
   authorizeUser () {
@@ -65,10 +66,8 @@ export class ModalWindowComponent implements OnInit {
   }
   signIn() {
     try { 
-      let login = this.authService.doFacebookLogin()
-      login.then(function(res) {
-      })
-      this.dialogRef.close({auth:true})
+      let login = this.authService.doFacebookLogin();
+      this.dialogRef.close({auth: true});
     } catch (NullValueException){
       console.log('sorry we couldnt log you in')
     }
@@ -82,7 +81,7 @@ export class ModalWindowComponent implements OnInit {
     this.user.email = user.email;
     this.user.phoneNumber = user.phoneNumber;
     this.user.provider = user.providerId;
-    this.userList.push(this.user);
+  
     console.log('we are ready to set the current user', this.currentUser)
   }
 }
