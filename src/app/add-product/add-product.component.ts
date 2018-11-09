@@ -35,7 +35,8 @@ export class AddProductComponent implements OnInit {
   imageUrl: string = null; 
   location; 
   data;
-  profileUser
+  profileUser;
+  canSend = true;
 
   categories = [
     "Wigs", "Natural Hair", "Protective Styling"
@@ -59,8 +60,12 @@ export class AddProductComponent implements OnInit {
       this.locationService.getCurrentLocation((pos) => {
         console.log('this is the location function  : ',pos )
         this.location = pos;
+        this.canSend;
       });
+  
       this.location = this.locationService.location;
+     
+      
       // console.log('this is the location attribute', this.location);
       // this.productList = this.db.list('/products');
       // const product = this.db.list<Product>('/products');
@@ -79,8 +84,15 @@ export class AddProductComponent implements OnInit {
       this.newProduct.lat = this.location.lat;
       this.newProduct.date = new Date().toISOString();
       // this.productList.push(this.newProduct);
-      this.data = this.dataService.addProduct(this.newProduct);
-      this.doneAddingProduct.emit({update: false});
+      this.canSend = false;
+      this.data = this.dataService.addProduct(this.newProduct)
+        .subscribe((prod) => {
+          console.log('this is the prod we found', prod);
+          this.canSend = true;
+          this.doneAddingProduct.emit({update: false});
+        }, (err) => {
+          console.log('there was an error');
+        })
     } 
     
   }

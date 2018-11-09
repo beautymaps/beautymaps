@@ -41,7 +41,7 @@
       <mat-card-actions >
         <div class="action-set">
           <button class="cancel" (click)="cancel()" mat-button>Cancel</button>
-          <button class="done" (click)="done()" mat-button>Done</button>
+          <button *ngIf="canSend" class="done" (click)="done()" mat-button>Done</button>
         </div>
       </mat-card-actions>
     </mat-card>
