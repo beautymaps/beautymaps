@@ -69,7 +69,7 @@ db.once('open', function callback() {
             if(err) res.json(err)
             console.log('here is a list of all the products', products)
             res.setHeader('Content-Type', 'application/json')
-            res.json(products);
+            res.status(200).send(products);
         })
     });
 
@@ -78,7 +78,7 @@ db.once('open', function callback() {
             if(err) res.json(err)
             console.log('here is a list of all the users', users)
             res.setHeader('Content-Type', 'application/json')
-            res.json(users);
+            res.status(200).send(users);
         })
     });
 // Addproduct
@@ -103,7 +103,7 @@ db.once('open', function callback() {
             if(err) res.json(err);
             console.log('did we find any products ', products)
             res.setHeader('Content-Type', 'application/json')
-            res.json(products);
+            res.status(200).send(products);
         })
     })
 
@@ -111,7 +111,7 @@ db.once('open', function callback() {
         User.findOne({uid: req.params.id}, (err, user) => {
             if(err) res.json(err);
             res.setHeader('Content-Type', 'application/json')
-            res.json(user);
+            res.status(200).send(user);
         })
     })
 
