@@ -87,8 +87,13 @@ db.once('open', function callback() {
         console.log('is there a new product req', req.body)
         Product.find({ uid: req.body.uid },(err, product)=> {
             let newProduct = new Product (req.body)
-            newProduct.save((err) =>{
-                if (err) res.send('error products');
+            newProduct.save((err, prod) =>{
+                if (err) {
+                    res.send('error products');
+                } else {
+                    res.setHeader('Content-Type', 'application/json')
+                    res.status(200).send(prod);
+                }
             })
         })
     });
