@@ -67,7 +67,8 @@ db.once('open', function callback() {
     router.get('/get-all-products', (req, res) => {
         Product.find({}, (err, products) => {
             if(err) res.json(err)
-            // console.log('here is a list of all the products', products)
+            console.log('here is a list of all the products', products)
+            res.setHeader('Content-Type', 'application/json')
             res.json(products);
         })
     });
@@ -75,7 +76,8 @@ db.once('open', function callback() {
     router.get('/get-all-users', (req, res) => {
         User.find({}, (err, users) => {
             if(err) res.json(err)
-            // console.log('here is a list of all the products', products)
+            console.log('here is a list of all the users', users)
+            res.setHeader('Content-Type', 'application/json')
             res.json(users);
         })
     });
@@ -95,6 +97,8 @@ db.once('open', function callback() {
     router.get('/user-product/:id', (req,res) => {
         Product.find({uid: req.params.id}, (err, products) => {
             if(err) res.json(err);
+            console.log('did we find any products ', products)
+            res.setHeader('Content-Type', 'application/json')
             res.json(products);
         })
     })
@@ -102,6 +106,7 @@ db.once('open', function callback() {
     router.get('/user/:id', (req,res) => {
         User.findOne({uid: req.params.id}, (err, user) => {
             if(err) res.json(err);
+            res.setHeader('Content-Type', 'application/json')
             res.json(user);
         })
     })
@@ -121,15 +126,17 @@ db.once('open', function callback() {
                         res.send('error saving new user');
                     } else {
                         payload = {subject: newUser.uid}
-                        let token = jwt.sign(payload, 'secretKey')
+                        // let token = jwt.sign(payload, 'secretKey')
                         console.log('we have a new user')
-                        res.status(200).send({token:token, user:newUser});
+                        res.setHeader('Content-Type', 'application/json')
+                        res.status(200).send(newUser);
                     }
                 })
             } else {
-                payload = {subject: registeredUser.uid}
-                let token = jwt.sign(payload, 'secretKey') 
-                console.log('we found a registered user')               
+                // payload = {subject: registeredUser.uid}
+                // let token = jwt.sign(payload, 'secretKey') 
+                console.log('we found a registered user') 
+                res.setHeader('Content-Type', 'application/json')              
                 res.status(200).send(registeredUser);
             }
         })

@@ -48,8 +48,10 @@ export class HomeMapComponent implements OnInit {
     }
   ]
   
-  users: Observable<any[]>;
-  products: Observable<any[]>;
+  users;
+  products;
+  userList;
+  productList;
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, 
@@ -59,17 +61,18 @@ export class HomeMapComponent implements OnInit {
     private router: Router
   ) {
     // this.products = this.db.list('/products').valueChanges();
-    this.users = this.dataService.getAllUsers()
-    console.log('this is the product :', this.users)
-    this.users.subscribe((user) => {
+    this.userList = this.dataService.getAllUsers()
+    this.userList.subscribe((user) => {
+      console.log('this is the user :', user)
+      this.users = user;
       return user;
-    })
-    this.products = this.dataService.getAllProducts()
-    
-    this.products.subscribe((product) => {
+    }, (err) => {})
+    this.productList = this.dataService.getAllProducts()
+      .subscribe((product) => {
       console.log('a new product was added', product);
+      this.products = product;
       return product;
-    })
+    },  (err) => {})
   }
 
   public latitude: number;

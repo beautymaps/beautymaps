@@ -4,7 +4,7 @@
   <div class="main-container">
     <div id="product-list-container">
         <div class="active-products-container">  
-          <div class="product-tile" *ngFor="let user of users | async">
+          <div class="product-tile" *ngFor="let user of users">
               <div class="product-img">
                 <img mat-card-image *ngIf="user.photoURL" [src]="user.photoURL" alt="Photo of a Shiba Inu">
                 <img mat-card-image *ngIf="!user.photoURL" src="../../assets/img/imgicon.png" alt="NO user Image">                
@@ -25,11 +25,11 @@
         <div class="form-group">
           <input placeholder="search for location" width="150px" height="50px" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
         </div>
-        <agm-map *ngIf="done" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-          <agm-marker  *ngFor="let m of products | async; let i = index" [latitude]="m.lat" [longitude]="m.long"  
+        <agm-map *ngIf="done && productList" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+          <agm-marker  *ngFor="let m of products; let i = index" [latitude]="m.lat" [longitude]="m.long"  
           [markerDraggable]="null"
           (dragEnd)="null"></agm-marker>
-          {{products | json}}
+          {{products}}
         </agm-map>
       </div>
     </div>

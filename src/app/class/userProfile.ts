@@ -1,10 +1,10 @@
 export class UserProfile {
-    uid:string;
-    username:string;
-    profileImage?: string;
-    email?:string;
+    uid?: String;
+    displayName?: String;
+    photoURL?: String;
+    email?: String;
+    phoneNumber?: Number;
+    providerId?: String;
     long?:string;
     lat?:string;
-    phoneNumber?:any;
-    provider:any;
 }

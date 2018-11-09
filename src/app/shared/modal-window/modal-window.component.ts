@@ -75,12 +75,13 @@ export class ModalWindowComponent implements OnInit {
 
   setCurrentUser(user) {
     this.currentUser = user.providerData[0];
-    this.user.uid = user.uid;
-    this.user.username = user.displayName;
-    this.user.profileImage = user.photoURL;
-    this.user.email = user.email;
-    this.user.phoneNumber = user.phoneNumber;
-    this.user.provider = user.providerId;
+    this.user = this.currentUser;
+    // this.user.uid = user.uid;
+    // this.user.displayName = user.displayName;
+    // this.user.photoURL = user.photoURL;
+    // this.user.email = user.email;
+    // this.user.phoneNumber = user.phoneNumber;
+    // this.user.providerId = user.providerId;
   
     console.log('we are ready to set the current user', this.currentUser)
   }
