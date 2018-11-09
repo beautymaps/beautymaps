@@ -25,12 +25,12 @@
   <div  id="products">
       <mat-tab-group [selectedIndex]="selectedTab" *ngIf="productListView">
         <mat-tab label="Active Products">
-          <mat-card class="add-tile" (click)="addProduct()">
+          <mat-card *ngIf="canEdit" class="add-tile" (click)="addProduct()">
             <mat-icon>add</mat-icon>
           </mat-card>
           <div class="active-products-container">
 
-            <mat-card class="product-tile" *ngFor="let product of products | async">
+            <mat-card class="product-tile" *ngFor="let product of products">
                 <div class="profile-pic">
                   <img mat-card-image *ngIf="product.image" src="{{product.image}}" alt="Photo of a Shiba Inu">
                 </div>

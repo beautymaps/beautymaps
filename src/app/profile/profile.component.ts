@@ -16,7 +16,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  products: Observable<any[]>
+  products;
+  productList;
   productListView = true;
   profileUser: any;
   profile: any;
@@ -31,56 +32,59 @@ export class ProfileComponent implements OnInit {
     private route: Router,
     private router: ActivatedRoute
   ) { 
-    // this.productList = this.af.list<Product>('/products');
-    // this.products = this.db.list('/products').valueChanges();
-    
-    // console.log('this the products :', this.products);
   }
   
   ngOnInit() {
+    
+
     this.router.params.subscribe((params: Params) => {
       console.log('this is the params', params)
-        this.dataService.getUser(params.id)
+      this.profile = this.dataService.getUser(params.id)
           .subscribe((user) => {
+            console.log('who is the user', user);
             if(this.dataService.profileLookup) {
               this.profile = this.dataService.profileLookup; 
             } else {
               this.profile = user;
             }
             console.log('what is the user in params', user);
+            
             this.auth.authState.subscribe((auth) => {
               this.profileUser = auth.providerData[0]
               console.log('this is the user', this.profileUser, this.profile);
               if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
               this.authorizedUser = auth ? true : false;
             });
-          })
-        })
-        if(this.profile) {
-          this.products = this.dataService.getUserProducts(this.profile.uid)
-          this.products.subscribe((prod) => {
-            console.log('we found this users products,', prod);
-          })
-        }
-        
-    // this.productList$ = this.af.list('/products');
-    // this.products = this.productList.valueChanges();
+            console.log('does this.profile exist', this.profile);
+            if(this.profile) {
+              this.getProducts(this.profile)
+            }
+          },(err) => {
+            console.log('the err for finding user', err);
+          });
+      })
+   
   }
 
+  getProducts(profile) {
+    this.productList = this.dataService.getUserProducts(this.profile.uid)
+    this.productList.subscribe((prod) => {
+      console.log('we found this users products,', prod);
+      this.products = prod;
+    },  (err) => {})
+  }
   
   addProduct () {
     this.productListView = false;
   }
 
   doneAdding (ev) {
-    console.log('what is the eve', ev)
+    console.log('what is the profile', this.profile)
     if(ev.update) {
       this.productListView = !this.productListView;
-
     } else {
       this.productListView = !this.productListView;
-      // this.products.push(this.product);
-      // console.log('what happens to the products list:', this.products);
     }
+    this.getProducts(this.profile);
   }
 }

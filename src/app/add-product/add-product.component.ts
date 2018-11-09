@@ -10,15 +10,16 @@ import { AuthService } from '../services/auth/auth.service';
 
 
 class newProduct {
-  name?: string;
-  price?:string;
-  brand?: string;
-  description?:string;
-  keywords?: string;
-  long?: number;
-  lat?: number;
+  name?: String;
+  price?:String;
+  brand?: String;
+  description?:String;
+  keywords?: String;
+  image?: String; 
+  long?: Number;
+  lat?: Number;
   date?: String;
-  uid: String;
+  uid?: String;
 }
 
 @Component({
