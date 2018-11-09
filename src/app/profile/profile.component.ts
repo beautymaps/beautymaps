@@ -84,7 +84,7 @@ export class ProfileComponent implements OnInit {
       this.productListView = !this.productListView;
     } else {
       this.productListView = !this.productListView;
+      this.getProducts(this.profile);
     }
-    this.getProducts(this.profile);
   }
 }

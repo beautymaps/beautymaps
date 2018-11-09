@@ -42,12 +42,10 @@ export class DataService {
     addProduct(productObj) {
       console.log('this add product function is run', productObj);
       return this._http.post("/api/add-product", productObj)
-      .subscribe((prod) => {
-        console.log('this is the prod we found', prod);
-      }, (err) => {
-        console.log('there was an error');
+      .map(result => {
+        console.log('this is the result', result.json())
+        return result.json();
       })
-    
     }
 
     getUserProducts(id) {
