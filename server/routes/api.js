@@ -88,8 +88,7 @@ db.once('open', function callback() {
         Product.find({ uid: req.body.uid },(err, product)=> {
             let newProduct = new Product (req.body)
             newProduct.save((err) =>{
-                if (err) return handleError(err);
-    
+                if (err) res.send('error products');
             })
         })
     });
