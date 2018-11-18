@@ -63,13 +63,22 @@ mat-card-header {
         font-size: 16px;
     }
     .form-field-container {
+        display: flex;
         margin: 10px 0;
+        mat-label {
+            width: 30%;
+        }
         input, textarea {
             border: 1px solid #dfdfdf;
+            border-right: 0px;
+            border-left: 0px;
+            border-top: 0px;
             height: 44px;
+            width: 70%;
             font-size: 16px;
             padding: 0px 10px;
             cursor: pointer;
+            overflow-x: scroll;
         }
         mat-label {
             font-size: 16px;

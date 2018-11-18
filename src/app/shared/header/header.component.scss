@@ -6,6 +6,7 @@ mat-drawer-content.mat-drawer-content {
     position: fixed;
     width: 100%;
     height: 54px;
+    z-index: 2147483647;
 }
 mat-toolbar {
     justify-content: center;

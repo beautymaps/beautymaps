@@ -7,6 +7,7 @@ import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { LocationService } from '../services/location.service';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth/auth.service';
+import { UserProfile } from '../class/userProfile';
 
 
 class newProduct {
@@ -51,7 +52,8 @@ export class AddProductComponent implements OnInit {
     private db: AngularFireDatabase, 
     private locationService: LocationService,
     private dataService: DataService, 
-    private auth: AuthService
+    private auth: AuthService,
+    private userProfile: UserProfile
   ) {
       this.newProduct = {};
     }

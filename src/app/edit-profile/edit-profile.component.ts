@@ -5,25 +5,12 @@ import 'rxjs/add/operator/map';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Product } from '../class/product';
+import { UserProfile } from '../class/userProfile';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { LocationService } from '../services/location.service';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth/auth.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
-class newProduct {
-  name?: String;
-  price?:String;
-  brand?: String;
-  description?:String;
-  keywords?: String;
-  image?: String; 
-  long?: Number;
-  lat?: Number;
-  date?: String;
-  uid?: String;
-}
 
 @Component({
   selector: 'app-edit-profile',
@@ -31,9 +18,8 @@ class newProduct {
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-  profileUser: any;
+  
   profile: any;
-  newProduct: Product;
   authorizedUser: any;
   canEdit = false;
   fileToUpload: File;
@@ -54,8 +40,9 @@ export class EditProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
+    private updatedProfileUser: UserProfile,
+    private profileUser: UserProfile
   ) { 
-    this.newProduct = {};
   }
   
   @ViewChild("search")
@@ -80,9 +67,9 @@ export class EditProfileComponent implements OnInit {
               if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
               this.authorizedUser = auth ? true : false;
             });
-            console.log('does this.profile exist', this.profile);
-            if(this.profile) {
-              // this.getProducts(this.profile)
+            console.log('does this.profile exist', this.profileUser);
+            if(this.profileUser) {
+              this.profileUser.photoURL = this.imageUrl;
             }
           },(err) => {
             console.log('the err for finding user', err);
@@ -126,7 +113,7 @@ export class EditProfileComponent implements OnInit {
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
       console.log(this.imageUrl);
-      this.newProduct.image = this.imageUrl;
+      this.updatedProfileUser.photoURL = this.imageUrl;
     }
     reader.readAsDataURL(this.fileToUpload);
   }
