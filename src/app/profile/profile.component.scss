@@ -24,13 +24,24 @@
     .info-container {
         margin: 0px 20px;
     }
+    .pen {
+        text-align: right;
+    }
+    .review-icon {
+        display: flex;
+        align-items: center;
+        mat-icon {
+            line-height: 1.4;
+        }
+        p {
+            margin: 0 20px;
+        }
+    }
 }
 
-.profile-button {
-    .button-container {
-        margin: auto;
-        width: 225px;
-    }
+.profile-button .button-container {
+    margin: auto;
+    width: 300px !important;
 } 
 #products  {
     width: 100%;
@@ -92,6 +103,9 @@
     }
     .profile-display {
         display: none;
+        p {
+            margin-right: 20px;
+        }
     }
 
     

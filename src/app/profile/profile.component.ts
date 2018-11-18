@@ -23,6 +23,8 @@ export class ProfileComponent implements OnInit {
   profile: any;
   authorizedUser: any;
   canEdit = false;
+  publicView = false;
+  stars = new Array(5);
 
   constructor(private afs: AngularFirestore, 
     private db: AngularFireDatabase, 
@@ -35,8 +37,6 @@ export class ProfileComponent implements OnInit {
   }
   
   ngOnInit() {
-    
-
     this.router.params.subscribe((params: Params) => {
       console.log('this is the params', params)
       this.profile = this.dataService.getUser(params.id)
@@ -66,6 +66,9 @@ export class ProfileComponent implements OnInit {
    
   }
 
+  toggleProfileView() {
+    this.publicView = !this.publicView;
+  }
   getProducts(profile) {
     this.productList = this.dataService.getUserProducts(this.profile.uid)
     this.productList.subscribe((prod) => {
