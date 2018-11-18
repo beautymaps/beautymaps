@@ -43,6 +43,7 @@ export class EditProfileComponent implements OnInit {
   canSend = true;
   public searchControl: FormControl;
   public zoom: number;
+  coordinates:any;
 
   constructor(private afs: AngularFirestore, 
     private db: AngularFireDatabase, 
@@ -101,7 +102,8 @@ export class EditProfileComponent implements OnInit {
           this.ngZone.run(() => {
             //get the place result
             let place = autocomplete.getPlace();
-            console.log('this is is the place object', place);
+            this.coordinates = place.geometry.location;
+            console.log('this is is the place object', this.coordinates.lat());
             //verify result
             if (place.geometry === undefined || place.geometry === null) {
               return;
