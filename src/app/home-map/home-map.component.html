@@ -25,11 +25,16 @@
         <div class="form-group">
           <input placeholder="search for location" width="150px" height="50px" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
         </div>
-        <agm-map *ngIf="done && productList" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-          <agm-marker  *ngFor="let m of products; let i = index" [latitude]="m.lat" [longitude]="m.long"  
-          [markerDraggable]="null"
-          (dragEnd)="null"></agm-marker>
-          {{products}}
+        <div *ngFor="let m of users">
+            {{m.lat}}, {{m.long}}
+          </div>
+        <agm-map *ngIf="userList" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+          <div *ngFor="let m of users; let i = index">
+            {{m.lat}}, {{m.long}}
+            <agm-marker [latitude]="m.lat" [longitude]="m.long"  
+            [markerDraggable]="null"
+            (dragEnd)="null"></agm-marker>
+          </div>
         </agm-map>
       </div>
     </div>
