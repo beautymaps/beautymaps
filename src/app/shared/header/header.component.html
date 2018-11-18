@@ -18,18 +18,18 @@
       <mat-divider></mat-divider>
       <div class="list-item" (click)="goToProfile()">Profile</div>
       <mat-divider></mat-divider>
-      <div class="list-item">Your Products</div>  
+      <!-- <div class="list-item">Your Products</div>  
       <mat-divider></mat-divider>
       <div class="list-item">Your Orders</div>     
       <mat-divider></mat-divider>
-      <div class="list-item">Favoritess</div>  
+      <div class="list-item">Favoritess</div>   -->
     </div>
     <mat-divider></mat-divider>
     <div class="list-item">
       Home
     </div>
     <mat-divider></mat-divider>
-    <div class="list-item">
+    <!-- <div class="list-item">
       Set up your business
     </div>
     <mat-divider></mat-divider>
@@ -43,7 +43,7 @@
     <mat-divider></mat-divider>
     <div class="list-item">
       About
-    </div>
+    </div> -->
     <mat-divider></mat-divider>
     <div class="list-item" (click)="logOut()" *ngIf="authorizedUser">
       Logout
@@ -91,14 +91,14 @@
           </div>
           <mat-menu class="settings-menu"  #settingsMenu="matMenu"> 
             <button mat-menu-item routerLink="/home">Map</button>              
-              <button mat-menu-item (click)="goToProfile()">Profile</button>
-              <button mat-menu-item>Your Products</button>
+              <button mat-menu-item (click)="goToProfile(drawer)">Profile</button>
+              <!-- <button mat-menu-item>Your Products</button>
               <button mat-menu-item>Your Orders</button>
               <button mat-menu-item>Favorites</button>
               <button mat-menu-item>Set Up Your Business</button>
               <button mat-menu-item>How It Works</button>
               <button mat-menu-item>Search</button>
-              <button mat-menu-item>About</button>
+              <button mat-menu-item>About</button> -->
               <button mat-menu-item (click)="logOut()">Logout</button>
           </mat-menu> 
         <div class="nav-container mobile">

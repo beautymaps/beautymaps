@@ -1,26 +1,26 @@
 <app-header></app-header>
 <div class="main-container">
-  <mat-card id="profile" [ngClass]="{'profile-display': !productListView}">
+  <div id="profile" [ngClass]="{'profile-display': !productListView}">
     <div class="profile-pic">
       <img *ngIf="profile" src="{{profile.photoURL}}" alt="">
     </div>
-    <mat-card-content>
-      <!-- <div class="pen"><mat-icon>edit</mat-icon></div> -->
+    <div class="info-container">
+      <div class="pen"><mat-icon>edit</mat-icon></div>
       <div *ngIf="profile" class="username">{{profile.displayName}}</div>
-      <!-- <div>Reviews</div> -->
+      <div class="review-icon"><mat-icon>star_border</mat-icon>Reviews</div>
+      <p>
+        1600 Pennsylvannia Ave, 
+        Washington DC, District of Columbia
+      </p>
       <div>
         <app-action-button *ngIf="canEdit" class="profile-button" ctaText="Preview Public Mode" size="'lg'"></app-action-button>
       </div>    
-      <!-- <p>
-        1600 Pennsylvannia Ave, 
-        Washington DC, District of Columbia
-      </p> -->
-    </mat-card-content>
-    <!-- <mat-card-actions>
+    </div>
+    <mat-card-actions>
       <button mat-button>LIKE</button>
       <button mat-button>SHARE</button>
-    </mat-card-actions> -->
-  </mat-card>
+    </mat-card-actions>
+  </div>
 
   <div  id="products">
       <mat-tab-group [selectedIndex]="selectedTab" *ngIf="productListView">

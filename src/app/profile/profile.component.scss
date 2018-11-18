@@ -1,21 +1,28 @@
 .main-container{
     padding: 15px;
-    display: flex;
+    // display: flex;
 }
 
 #profile, #products {
     margin: 15px;
+    position: relative; 
+    top: 45px;
 }
 #profile{
-    max-width: 450px;
-    min-height: 300px; 
+    display:flex;
+    max-width: 980px;
+    min-height: 200px; 
     height: 100%;
-    .profile-pic, img {
-        width: 300px;
-        height: 200px;
+    .profile-pic img {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
         margin-bottom:20px;
         background: url('/assets/img/imgicon.png') center;
         background-size: cover;
+    }
+    .info-container {
+        margin: 0px 20px;
     }
 }
 
@@ -75,10 +82,24 @@
         flex-direction: column;
         align-items: center;
     }
+    #profile {
+        display: flex;
+        flex-direction: column;
+        max-width: 450px;
+        .info-container {
+            margin: 0px;
+        }
+    }
     .profile-display {
         display: none;
     }
 
+    
+    .profile-pic  {
+        display: flex;
+        width: 100%;
+        justify-content: center; 
+    }
     .product-tile {
         max-width: 300px;
         width: 300px;
