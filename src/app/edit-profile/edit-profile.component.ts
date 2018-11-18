@@ -9,22 +9,35 @@ import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth/auth.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+class newProduct {
+  name?: String;
+  price?:String;
+  brand?: String;
+  description?:String;
+  keywords?: String;
+  image?: String; 
+  long?: Number;
+  lat?: Number;
+  date?: String;
+  uid?: String;
+}
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
-  products;
-  productList;
-  productListView = true;
+export class EditProfileComponent implements OnInit {
   profileUser: any;
   profile: any;
+  newProduct: Product;
   authorizedUser: any;
   canEdit = false;
-  publicView = false;
-  stars = new Array(5);
+  fileToUpload: File;
+  imageUrl: string = null; 
+  location; 
+  data;
+  canSend = true;
 
   constructor(private afs: AngularFirestore, 
     private db: AngularFireDatabase, 
@@ -34,6 +47,7 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) { 
+    this.newProduct = {};
   }
   
   ngOnInit() {
@@ -57,7 +71,7 @@ export class ProfileComponent implements OnInit {
             });
             console.log('does this.profile exist', this.profile);
             if(this.profile) {
-              this.getProducts(this.profile)
+              // this.getProducts(this.profile)
             }
           },(err) => {
             console.log('the err for finding user', err);
@@ -66,32 +80,21 @@ export class ProfileComponent implements OnInit {
    
   }
 
-  toggleProfileView() {
-    this.publicView = !this.publicView;
-  }
-
-  goToEditProfile() {
-    this.router.navigate(['/profile/'+this.profileUser.uid+'/edit-profile' ])
-  }
-  getProducts(profile) {
-    this.productList = this.dataService.getUserProducts(this.profile.uid)
-    this.productList.subscribe((prod) => {
-      console.log('we found this users products,', prod);
-      this.products = prod;
-    },  (err) => {})
+  onFileSelected(file: FileList) {
+    this.fileToUpload = file.item(0);
+    console.log('this event ', this.fileToUpload);
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+      console.log(this.imageUrl);
+      this.newProduct.image = this.imageUrl;
+    }
+    reader.readAsDataURL(this.fileToUpload);
   }
   
-  addProduct () {
-    this.productListView = false;
+  goToProfile() {
+    this.router.navigate(['/profile/'+this.profileUser.uid ])
   }
 
-  doneAdding (ev) {
-    console.log('what is the profile', this.profile)
-    if(ev.update) {
-      this.productListView = !this.productListView;
-    } else {
-      this.productListView = !this.productListView;
-      this.getProducts(this.profile);
-    }
-  }
+ 
 }

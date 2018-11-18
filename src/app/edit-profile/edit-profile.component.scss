@@ -6,19 +6,36 @@ mat-card-header {
     }
 }
 
+.add-product-container {
+    display: flex;
+    justify-content: center;
+    mat-card {
+        margin-top: 60px;
+        width: 85vw;
+        max-width: 600px;
+        margin: 60px;
+    }
+}
+
 
 .add-img {
     width: 100%;
-    height: 200px;
+    height: 150px;
     background: url('/assets/img/imgicon.png') center no-repeat;
-    background-size: 200px;
+    background-size: 150px 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .input-overlay-container {
+        position: absolute;
+        z-index: 3;
+        width: 150px;
+        height: 150px;
+    }
     input {
-        width: 200px;
-        height: 160px;
+        width: 150px;
+        height: 150px;
         position: relative;
         opacity: 0;
         z-index: 4;
@@ -27,9 +44,13 @@ mat-card-header {
         background-color: #0000007d;
         color: #ffffff;
         position: relative;
-        bottom: 65px;
-        width: 200px;
+        bottom: 100px;
+        width: 150px;
         text-align: center;
+    }
+    img {
+        width: 150px;
+        height: 150px;
     }
 }
 

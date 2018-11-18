@@ -41,20 +41,22 @@ import { PrivacyTermsComponent } from './privacy-terms/privacy-terms.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { SearchModalComponent } from './shared/search-modal/search-modal.component';
-import { HttpModule } from '@angular/http'
+import { HttpModule } from '@angular/http';
+import { EditProfileComponent } from './edit-profile/edit-profile.component'
 
 
 
 const appRoutes: Routes = [
-  {path: 'search', component: LandingPageComponent},
-  {path: 'home', component: HomeMapComponent},
+  {path: 'search', component: LandingPageComponent} ,
+  {path: 'home', component: HomeMapComponent },
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
-  { path: 'user', component: UserComponent,  resolve: { data: ''}},
-  { path: 'create-demand', component: CreateDemandComponent},
-  { path: 'privacy-terms', component: PrivacyTermsComponent},
-  { path: 'profile/:id', component: ProfileComponent}
+  { path: 'user', component: UserComponent,  resolve: { data: ''}} ,
+  { path: 'create-demand', component: CreateDemandComponent },
+  { path: 'privacy-terms', component: PrivacyTermsComponent },
+  { path: 'profile/:id', component: ProfileComponent },
+  { path: 'profile/:id/edit-profile', component: EditProfileComponent }
 ];
 
 @NgModule({
@@ -77,6 +79,7 @@ const appRoutes: Routes = [
     ProfileComponent,
     AddProductComponent,
     SearchModalComponent,
+    EditProfileComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: false}),
