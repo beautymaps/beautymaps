@@ -1,6 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import 'rxjs/add/operator/map';
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Product } from '../class/product';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
@@ -38,6 +41,8 @@ export class EditProfileComponent implements OnInit {
   location; 
   data;
   canSend = true;
+  public searchControl: FormControl;
+  public zoom: number;
 
   constructor(private afs: AngularFirestore, 
     private db: AngularFireDatabase, 
@@ -45,11 +50,16 @@ export class EditProfileComponent implements OnInit {
     private dataService: DataService,
     private auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
   ) { 
     this.newProduct = {};
   }
   
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
+
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       console.log('this is the params', params)
@@ -77,6 +87,33 @@ export class EditProfileComponent implements OnInit {
             console.log('the err for finding user', err);
           });
       })
+
+      //create search FormControl
+      this.searchControl = new FormControl();
+
+      this.mapsAPILoader.load().then(() => {
+        console.log('this is this search Element Ref', this.searchElementRef.nativeElement)
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+          types: ["address"]
+        });
+        // this.openSearch();
+        autocomplete.addListener("place_changed", () => {
+          this.ngZone.run(() => {
+            //get the place result
+            let place = autocomplete.getPlace();
+            console.log('this is is the place object', place);
+            //verify result
+            if (place.geometry === undefined || place.geometry === null) {
+              return;
+            }
+  
+            // //set latitude, longitude and zoom
+            // this.latitude = place.geometry.location.lat();
+            // this.longitude = place.geometry.location.lng();
+            // this.zoom = 12;
+          });
+        });
+      });
    
   }
 
