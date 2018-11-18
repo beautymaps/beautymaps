@@ -8,7 +8,12 @@ mat-drawer-content.mat-drawer-content {
     height: 54px;
     z-index: 2147483647;
 }
-
+.settings-menu {
+    mat-menu {
+        position: relative;
+        top: 57px;
+    }
+}
 mat-toolbar {
     justify-content: center;
     background: #fff;
