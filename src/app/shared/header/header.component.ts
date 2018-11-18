@@ -33,7 +33,6 @@ export class HeaderComponent implements OnInit {
       data: {selectedTab: tabType, heading: 'hey girl this worked', subheading: 'i know girl lets work '},
     })
     loginRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       this.authorizedUser = result;      
     });
   }
@@ -41,22 +40,19 @@ export class HeaderComponent implements OnInit {
     try { 
       let login = this.authService.doFacebookLogin()
     } catch (NullValueException){
-      console.log('sorry we couldnt log you in')
     }
   }
   setCurrentUser(user) {
     this.currentUser = user.providerData[0];
-    console.log('we are ready to set the current user', this.currentUser)
   }
 
   logOut() {
     this.authService.logOut();
     this.authorizedUser = false;
-    console.log('this is a logged out user', this.authService.getCurrentUser())
+    this.router.navigate(['home'])
   }
 
   goToProfile() {
-    console.log('can we get the id', this.currentUser)
     this.router.navigate(['profile/'+this.currentUser.uid])
   }
 }

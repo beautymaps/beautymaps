@@ -43,17 +43,14 @@ export class LandingPageComponent implements OnInit {
   constructor(private afs: AngularFirestore, private router: Router, private locationService: LocationService, private dataService: DataService) {
     this.categoryList = this.afs.collection('categories');
     this.categories = this.categoryList.valueChanges();
-    console.log('this is the categories in constructor :', this.categoryList);
     }
     
   ngOnInit() {
     this.categoryList = this.afs.collection<Category>('/categories');
     this.categories = this.categoryList.valueChanges();
-    console.log('this is the categories :', this.categoryList);
     this.categoryDoc = this.afs.doc('categories/PMhBPkMtT3H0LEYBT44K');
     this.category = this.categoryDoc.valueChanges();
     this.locationService.getCurrentLocation(function(pos) {
-      console.log('we now have the users current position ', pos);
     })
 
     // this.dataService.getUsers().subscribe((products) => {

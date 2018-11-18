@@ -33,7 +33,6 @@ export class ModalWindowComponent implements OnInit {
     }
 
   ngOnInit() {
-    console.log('this is the data from dialog', this.data) 
     this.selectedTab = this.data.selectedTab;
 
     this.authService.authState.subscribe((auth) => {
@@ -83,6 +82,5 @@ export class ModalWindowComponent implements OnInit {
     // this.user.phoneNumber = user.phoneNumber;
     // this.user.providerId = user.providerId;
   
-    console.log('we are ready to set the current user', this.currentUser)
   }
 }

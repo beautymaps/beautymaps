@@ -11,16 +11,28 @@
             <p>Add Photo</p>
           </div> 
         </div>
+        <img *ngIf="profile && profile.photoURL && !imageUrl" [src]="profile.photoURL" alt="Pink hair">
         <img *ngIf="imageUrl" [src]="imageUrl" alt="Pink hair">
       </div>
 
       <mat-card-content class="input-form-container">
-
+        
         <div class="form-field-container">
-          <mat-label>Display Name</mat-label>
-          <input matInput placeholder="Voluminous Shampoo with Avocado" type="text" [(ngModel)]="newProduct.name">
+          <mat-label>Display Name:</mat-label>
+          <input matInput placeholder="New Display Name" type="text" [(ngModel)]="profile.displayName">
         </div>
         <div class="form-field-container">
+          <mat-label>Address:</mat-label>
+          <input placeholder="search for location" width="150px" height="50px" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [(ngModel)]="profile.address" [formControl]="searchControl">
+        </div>
+        <!-- <agm-map [scrollwheel]="false" [zoom]="zoom">
+          <agm-marker  
+          [markerDraggable]="null"
+          (dragEnd)="null"></agm-marker>
+        </agm-map> -->
+
+
+        <!-- <div class="form-field-container">
           <mat-label>Choose Brand</mat-label>
           <mat-select placeholder="--Select--" [(ngModel)]="newProduct.brand">
             <mat-option *ngFor="let brand of brandList" [value]="brand" >
@@ -41,12 +53,12 @@
           <mat-label>Product Details</mat-label>
           <textarea matInput type="text" [(ngModel)]="newProduct.description" placeholder="Tell us everything you know about the product"></textarea>
         </div>
-      
+       -->
       </mat-card-content>
 
       <mat-card-actions >
         <div class="action-set">
-          <button class="cancel" (click)="cancel()" mat-button>Cancel</button>
+          <button class="cancel" (click)="goToProfile()" mat-button>Cancel</button>
           <button *ngIf="canSend" class="done" (click)="done()" mat-button>Done</button>
         </div>
       </mat-card-actions>

@@ -63,13 +63,11 @@ export class HomeMapComponent implements OnInit {
     // this.products = this.db.list('/products').valueChanges();
     this.userList = this.dataService.getAllUsers()
     this.userList.subscribe((user) => {
-      console.log('this is the user :', user)
       this.users = user;
       return user;
     }, (err) => {})
     this.productList = this.dataService.getAllProducts()
       .subscribe((product) => {
-      console.log('a new product was added', product);
       this.products = product;
       return product;
     },  (err) => {})
@@ -167,9 +165,7 @@ export class HomeMapComponent implements OnInit {
 
   private setDefaultStorePosition () {
     this.defaultStoreLat = this.latitude ? this.latitude + 0.5 : null ;
-    console.log('this si the default store lat', this.defaultStoreLat);
 
-    console.log('this is the mapp list', this.markers);
     this.defaultStoreLong = this.longitude ? this.longitude + 0.4 : null;
     return {lat: this.defaultStoreLat, lng: this.defaultStoreLong, label: 'D', draggable: true };
   };

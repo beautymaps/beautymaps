@@ -7,6 +7,7 @@ import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { LocationService } from '../services/location.service';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth/auth.service';
+import { UserProfile } from '../class/userProfile';
 
 
 class newProduct {
@@ -51,14 +52,14 @@ export class AddProductComponent implements OnInit {
     private db: AngularFireDatabase, 
     private locationService: LocationService,
     private dataService: DataService, 
-    private auth: AuthService
+    private auth: AuthService,
+    private userProfile: UserProfile
   ) {
       this.newProduct = {};
     }
     
     ngOnInit() {
       this.locationService.getCurrentLocation((pos) => {
-        console.log('this is the location function  : ',pos )
         this.location = pos;
         this.canSend;
       });
@@ -69,8 +70,7 @@ export class AddProductComponent implements OnInit {
       // console.log('this is the location attribute', this.location);
       // this.productList = this.db.list('/products');
       // const product = this.db.list<Product>('/products');
-      this.profileUser = this.auth.getCurrentUser();      
-      console.log('this is the:', this.location);        
+      this.profileUser = this.auth.getCurrentUser();             
     }
 
   cancel() {
@@ -87,7 +87,6 @@ export class AddProductComponent implements OnInit {
       this.canSend = false;
       this.data = this.dataService.addProduct(this.newProduct)
         .subscribe((prod) => {
-          console.log('this is the prod we found', prod);
           this.canSend = true;
           this.doneAddingProduct.emit({update: false});
         }, (err) => {
@@ -99,11 +98,9 @@ export class AddProductComponent implements OnInit {
 
   onFileSelected(file: FileList) {
     this.fileToUpload = file.item(0);
-    console.log('this event ', this.fileToUpload);
     var reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
-      console.log(this.imageUrl);
       this.newProduct.image = this.imageUrl;
     }
     reader.readAsDataURL(this.fileToUpload);

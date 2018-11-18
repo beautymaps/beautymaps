@@ -44,7 +44,7 @@ import { SearchModalComponent } from './shared/search-modal/search-modal.compone
 import { HttpModule } from '@angular/http';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
 
-
+import { UserProfile } from './class/userProfile';
 
 const appRoutes: Routes = [
   {path: 'search', component: LandingPageComponent} ,
@@ -112,7 +112,7 @@ const appRoutes: Routes = [
     MatDividerModule,
     MatSelectModule 
   ],
-  providers: [AuthGuard, AuthService, MatDialog, LocationService, DataService, JwtHelperService],
+  providers: [AuthGuard, AuthService, MatDialog, LocationService, DataService, JwtHelperService, UserProfile],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalWindowComponent,
