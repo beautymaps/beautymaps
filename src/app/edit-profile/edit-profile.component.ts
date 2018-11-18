@@ -40,7 +40,7 @@ export class EditProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private updatedProfileUser: UserProfile,
+    public updatedProfileUser: UserProfile,
     private profileUser: UserProfile
   ) { 
   }
