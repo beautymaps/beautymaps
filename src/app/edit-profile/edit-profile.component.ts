@@ -63,14 +63,11 @@ export class EditProfileComponent implements OnInit {
             
             this.auth.authState.subscribe((auth) => {
               this.profileUser = auth.providerData[0]
-              console.log('this is the user', this.profileUser, this.profile);
+              console.log('this is the profile user', this.profileUser, this.profile._id);
               if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
               this.authorizedUser = auth ? true : false;
             });
             console.log('does this.profile exist', this.profileUser);
-            if(this.profileUser) {
-              this.profileUser.photoURL = this.imageUrl;
-            }
           },(err) => {
             console.log('the err for finding user', err);
           });
@@ -90,7 +87,10 @@ export class EditProfileComponent implements OnInit {
             //get the place result
             let place = autocomplete.getPlace();
             this.coordinates = place.geometry.location;
-            console.log('this is is the place object', this.coordinates.lat());
+            console.log('this is is the place object', place);
+            this.updatedProfileUser.long = this.coordinates.lng();
+            this.updatedProfileUser.lat = this.coordinates.lat();
+            this.updatedProfileUser.address = place.formatted_address;
             //verify result
             if (place.geometry === undefined || place.geometry === null) {
               return;
@@ -119,8 +119,23 @@ export class EditProfileComponent implements OnInit {
   }
   
   goToProfile() {
-    this.router.navigate(['/profile/'+this.profileUser.uid ])
+    this.router.navigate(['/profile/'+this.profile.uid ])
   }
 
+  done() {
+    // if(this.location && this.location.long & this.location.lat) {
+    this.canSend = false;
+    this.updatedProfileUser.displayName = this.profile.displayName;
+    this.data = this.dataService.updateUser(this.profile._id, this.updatedProfileUser)
+      .subscribe((updatedUser) => {
+        console.log('this is the prod we found', updatedUser);
+        this.canSend = true;
+        this.goToProfile();
+      }, (err) => {
+        console.log('there was an error');
+      })
+    // } 
+    
+  }
  
 }

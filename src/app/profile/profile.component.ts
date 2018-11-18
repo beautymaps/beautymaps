@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
             
             this.auth.authState.subscribe((auth) => {
               this.profileUser = auth.providerData[0]
-              console.log('this is the user', this.profileUser, this.profile);
+              console.log('this is the user', this.profileUser,  this.profile);
               if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
               this.authorizedUser = auth ? true : false;
             });

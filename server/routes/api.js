@@ -37,7 +37,10 @@ db.once('open', function callback() {
         photoURL: String,
         email: String,
         phoneNumber: Number,
-        providerId: String
+        providerId: String,
+        lat: String,
+        long: String,
+        address: String
     })
     
     // Store song documents in a collection called "songs"
@@ -111,6 +114,18 @@ db.once('open', function callback() {
         User.findOne({uid: req.params.id}, (err, user) => {
             if(err) res.json(err);
             res.setHeader('Content-Type', 'application/json')
+            res.status(200).send(user);
+        })
+    })
+
+    router.put('/user/:id', (req, res) => {
+        let userData = req.body;
+        console.log('what is the userData', req.body, req.params.id);
+
+        User.findOneAndUpdate({_id: req.params.id}, userData, (err, user) => { 
+            console.log('this is the update err ', err );
+            console.log('this iste the updated user', user);
+            res.setHeader('Content-Type', 'application/json')              
             res.status(200).send(user);
         })
     })

@@ -38,6 +38,14 @@ export class DataService {
         return result.json();
       });
     }
+
+    updateUser(id, updateObj) {
+      return this._http.put('/api/user/'+id, updateObj)
+      .map(result => {
+        console.log('this is the result from updating the user', result.json())
+        return result.json();
+      });
+    }
     
     addProduct(productObj) {
       console.log('this add product function is run', productObj);

@@ -17,9 +17,11 @@
           </div> 
           <p>Reviews</p>
         </div>
-        <p>
-          1600 Pennsylvannia Ave, 
-          Washington DC, District of Columbia
+        <p class="address-container" *ngIf="profile.address">
+            <mat-icon>location_on</mat-icon> {{profile.address}}
+        </p>
+        <p class="address-container" *ngIf="!profile.address">
+            <mat-icon>location_on</mat-icon> Worldwide
         </p>
         <div *ngIf="canEdit && !publicView">
           <app-action-button (click)="toggleProfileView()" *ngIf="canEdit" class="profile-button" ctaText="Preview Public Mode" size="'lg'"></app-action-button>
