@@ -5,7 +5,7 @@ export class UserProfile {
     email?: String;
     phoneNumber?: Number;
     providerId?: String;
-    lat: String;
-    long: String;
+    lat: Number;
+    long: Number;
     address: String;
 }

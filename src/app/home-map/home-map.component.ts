@@ -48,7 +48,7 @@ export class HomeMapComponent implements OnInit {
     }
   ]
   
-  users;
+  users =[];
   products;
   userList;
   productList;
@@ -61,16 +61,20 @@ export class HomeMapComponent implements OnInit {
     private router: Router
   ) {
     // this.products = this.db.list('/products').valueChanges();
-    this.userList = this.dataService.getAllUsers()
-    this.userList.subscribe((user) => {
-      this.users = user;
-      return user;
-    }, (err) => {})
+    console.log('this is the users', this.users);
+    this.done = true;
     this.productList = this.dataService.getAllProducts()
       .subscribe((product) => {
-      this.products = product;
-      return product;
+        this.products = product;
+        console.log('this is the product list', this.products)
+        return product;
     },  (err) => {})
+    this.userList = this.dataService.getAllUsers()
+      .subscribe((user) => {
+        this.users = user;
+        console.log('this is the user from subscribe', this.users);
+        return user;
+    }, (err) => {console.log('we got an error recieving all users', err)})
   }
 
   public latitude: number;
@@ -89,7 +93,6 @@ export class HomeMapComponent implements OnInit {
     this.latitude = 39.8282;
     this.longitude = -98.5795;
 
-    
     //create search FormControl
     this.searchControl = new FormControl();
 
@@ -135,7 +138,14 @@ export class HomeMapComponent implements OnInit {
       console.log('The dialog was closed', result);     
     });
   }
-
+  getLong(long) {
+    console.log('this is the long', long);
+    return long;
+  }
+  getLat(lat) {
+    console.log('this is the long', lat);
+    return lat;
+  }
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {

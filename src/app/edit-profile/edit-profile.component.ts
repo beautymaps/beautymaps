@@ -81,9 +81,10 @@ export class EditProfileComponent implements OnInit {
             //get the place result
             let place = autocomplete.getPlace();
             this.coordinates = place.geometry.location;
-            this.updatedProfileUser.long = this.coordinates.lng();
-            this.updatedProfileUser.lat = this.coordinates.lat();
+            this.updatedProfileUser.long = Number(this.coordinates.lng());
+            this.updatedProfileUser.lat = Number(this.coordinates.lat());
             this.updatedProfileUser.address = place.formatted_address;
+            console.log('is the address changing,', this.updatedProfileUser.address);
             //verify result
             if (place.geometry === undefined || place.geometry === null) {
               return;

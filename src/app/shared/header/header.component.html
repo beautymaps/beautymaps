@@ -64,14 +64,14 @@
             </div>
             <div class="left-nav">
               <span (click)="startSignIn()">Sign In</span>
-              <span>For Business</span>
-              <span>About</span>
+              <span (click)="goToMap()">Map View</span>
+              <span (click)="goToHome()">Home</span>
             </div>
         </div>
         <div class="nav-container mobile">
           <mat-icon (click)="drawer.toggle()">menu</mat-icon>
           <div class="logo">
-              <a routerLink="/" routerLinkActive="active">
+              <a (click)="goToHome()"routerLinkActive="active">
                 <span>Beauty</span>
                 <span>Map</span>
               </a>
@@ -82,7 +82,7 @@
       <mat-toolbar *ngIf="authorizedUser">
         <div class="nav-container main authorized">
             <div class="right-nav logo">
-              <a routerLink="/" routerLinkActive="active">
+              <a (click)="goToHome()" routerLinkActive="active">
                 <span>Beauty</span>
                 <span>Map</span>
               </a>
