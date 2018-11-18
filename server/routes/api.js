@@ -70,7 +70,6 @@ db.once('open', function callback() {
     router.get('/get-all-products', (req, res) => {
         Product.find({}, (err, products) => {
             if(err) res.json(err)
-            console.log('here is a list of all the products', products)
             res.setHeader('Content-Type', 'application/json')
             res.status(200).send(products);
         })
@@ -79,7 +78,6 @@ db.once('open', function callback() {
     router.get('/get-all-users', (req, res) => {
         User.find({}, (err, users) => {
             if(err) res.json(err)
-            console.log('here is a list of all the users', users)
             res.setHeader('Content-Type', 'application/json')
             res.status(200).send(users);
         })
@@ -87,7 +85,6 @@ db.once('open', function callback() {
 // Addproduct
 
     router.post('/add-product', (req, res) => {
-        console.log('is there a new product req', req.body)
         Product.find({ uid: req.body.uid },(err, product)=> {
             let newProduct = new Product (req.body)
             newProduct.save((err, prod) =>{
@@ -104,7 +101,6 @@ db.once('open', function callback() {
     router.get('/user-product/:id', (req,res) => {
         Product.find({uid: req.params.id}, (err, products) => {
             if(err) res.json(err);
-            console.log('did we find any products ', products)
             res.setHeader('Content-Type', 'application/json')
             res.status(200).send(products);
         })
@@ -120,11 +116,8 @@ db.once('open', function callback() {
 
     router.put('/user/:id', (req, res) => {
         let userData = req.body;
-        console.log('what is the userData', req.body, req.params.id);
 
         User.findOneAndUpdate({_id: req.params.id}, userData, (err, user) => { 
-            console.log('this is the update err ', err );
-            console.log('this iste the updated user', user);
             res.setHeader('Content-Type', 'application/json')              
             res.status(200).send(user);
         })
@@ -132,9 +125,7 @@ db.once('open', function callback() {
 
 
     router.post('/login-user', (req, res) => {
-        console.log('this is req.body', req.body);
         User.findOne({uid: req.body.uid}, (err, registeredUser) => {
-            console.log('this is find',err, registeredUser);
             let userData = req.body;
             let payload;
             if(err) console.log('there was an err', err)
@@ -146,7 +137,6 @@ db.once('open', function callback() {
                     } else {
                         payload = {subject: newUser.uid}
                         // let token = jwt.sign(payload, 'secretKey')
-                        console.log('we have a new user')
                         res.setHeader('Content-Type', 'application/json')
                         res.status(200).send(newUser);
                     }
@@ -154,7 +144,6 @@ db.once('open', function callback() {
             } else {
                 // payload = {subject: registeredUser.uid}
                 // let token = jwt.sign(payload, 'secretKey') 
-                console.log('we found a registered user') 
                 res.setHeader('Content-Type', 'application/json')              
                 res.status(200).send(registeredUser);
             }

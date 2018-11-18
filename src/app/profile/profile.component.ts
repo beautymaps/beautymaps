@@ -38,24 +38,19 @@ export class ProfileComponent implements OnInit {
   
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      console.log('this is the params', params)
       this.profile = this.dataService.getUser(params.id)
           .subscribe((user) => {
-            console.log('who is the user', user);
             if(this.dataService.profileLookup) {
               this.profile = this.dataService.profileLookup; 
             } else {
               this.profile = user;
             }
-            console.log('what is the user in params', user);
             
             this.auth.authState.subscribe((auth) => {
               this.profileUser = auth.providerData[0]
-              console.log('this is the user', this.profileUser,  this.profile);
               if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
               this.authorizedUser = auth ? true : false;
             });
-            console.log('does this.profile exist', this.profile);
             if(this.profile) {
               this.getProducts(this.profile)
             }
@@ -76,7 +71,6 @@ export class ProfileComponent implements OnInit {
   getProducts(profile) {
     this.productList = this.dataService.getUserProducts(this.profile.uid)
     this.productList.subscribe((prod) => {
-      console.log('we found this users products,', prod);
       this.products = prod;
     },  (err) => {})
   }
@@ -86,7 +80,6 @@ export class ProfileComponent implements OnInit {
   }
 
   doneAdding (ev) {
-    console.log('what is the profile', this.profile)
     if(ev.update) {
       this.productListView = !this.productListView;
     } else {
