@@ -52,6 +52,13 @@ aside {
     position: fixed;
     top: 0;
   }
+
+.main-content {
+    .button-container {
+        width: 117px;
+    }
+
+}
 .main-content.full {
     display: flex;
     justify-content: center;

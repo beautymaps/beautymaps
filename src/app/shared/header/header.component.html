@@ -1,10 +1,10 @@
 <mat-drawer-container class="header">
   <mat-drawer #drawer class="main-drawer">
     <div class="list-item action-button" *ngIf="!authorizedUser">
-      <div>
+      <div class="button-container">
           <app-action-button ctaText="Login" size="'lg'" (click)="startSignIn(0)"></app-action-button>          
       </div>
-      <div>
+      <div class="button-container">
           <app-action-button ctaText="SignUp" size="'lg'" (click)="startSignIn(1)"></app-action-button>          
       </div>
     </div>
@@ -14,7 +14,7 @@
         <img *ngIf="currentUser && currentUser.photoURL" width="35px" height="35px" src="{{currentUser.photoURL}}" alt="User Image"> 
         <p>Welcome</p>    
       </div>
-      <button mat-menu-item routerLink="/home">Map</button>              
+      <button mat-menu-item (click)="goToMap()">Map</button>              
       <mat-divider></mat-divider>
       <div class="list-item" (click)="goToProfile()">Profile</div>
       <mat-divider></mat-divider>
@@ -25,8 +25,12 @@
       <div class="list-item">Favoritess</div>   -->
     </div>
     <mat-divider></mat-divider>
-    <div class="list-item">
+    <div (click)="goToHome()" class="list-item">
       Home
+    </div>
+    <mat-divider></mat-divider>
+    <div (click)="goToMap()" class="list-item">
+        Map View
     </div>
     <mat-divider></mat-divider>
     <!-- <div class="list-item">
@@ -90,7 +94,7 @@
             </div>
           </div>
           <mat-menu class="settings-menu"  #settingsMenu="matMenu"> 
-            <button mat-menu-item routerLink="/home">Map</button>              
+            <button mat-menu-item (click)="goToMap()">Map</button>              
               <button mat-menu-item (click)="goToProfile(drawer)">Profile</button>
               <!-- <button mat-menu-item>Your Products</button>
               <button mat-menu-item>Your Orders</button>

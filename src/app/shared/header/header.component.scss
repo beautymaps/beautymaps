@@ -8,6 +8,7 @@ mat-drawer-content.mat-drawer-content {
     height: 54px;
     z-index: 2147483647;
 }
+
 mat-toolbar {
     justify-content: center;
     background: #fff;
@@ -120,6 +121,7 @@ mat-toolbar {
 .main-drawer {
     width: 300px;
     padding: 20px;
+    margin-top: 50px;
     background-color: #FFFFFF;
     .list-item {
         height: 50px;
@@ -131,7 +133,11 @@ mat-toolbar {
         display: flex;
         justify-content: space-between;
         margin-bottom: 20px;
+        .button-container {
+            width: 117px;
+        }
     }
+
 }
 // .sidenav-content {
 //     position: relative;
