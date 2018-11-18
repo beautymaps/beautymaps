@@ -25,7 +25,12 @@
         margin: 0px 20px;
     }
     .pen {
+        display: flex;
         text-align: right;
+        justify-content: flex-end;
+        p {
+            margin: 0 10px;
+        }
     }
     .review-icon {
         display: flex;
@@ -37,6 +42,9 @@
             margin: 0 20px;
         }
     }
+}
+.add-product-container {
+    margin-top: 50px;
 }
 
 .profile-button .button-container {

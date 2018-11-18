@@ -1,20 +1,23 @@
+<app-header></app-header>
 <div class="add-product-container">
-    <mat-card >
+    <mat-card>
       <mat-card-header>
-        <mat-card-title>Add Product</mat-card-title>
+        <mat-card-title>Edit Profile</mat-card-title>
       </mat-card-header>
       <div class="add-img">
-        <input type="file" accept="image/*" (change)="onFileSelected($event.target.files)">
-        <img mat-card-image width="250px" height="250px"  *ngIf="imageUrl" [src]="imageUrl" alt="Pink hair">
-        <div class="text-overlay">
-          <p>Add Photo</p>
-        </div> 
+        <div class="input-overlay-container">
+          <input type="file" accept="image/*" (change)="onFileSelected($event.target.files)">
+          <div class="text-overlay">
+            <p>Add Photo</p>
+          </div> 
+        </div>
+        <img *ngIf="imageUrl" [src]="imageUrl" alt="Pink hair">
       </div>
 
       <mat-card-content class="input-form-container">
 
         <div class="form-field-container">
-          <mat-label>Product Name</mat-label>
+          <mat-label>Display Name</mat-label>
           <input matInput placeholder="Voluminous Shampoo with Avocado" type="text" [(ngModel)]="newProduct.name">
         </div>
         <div class="form-field-container">

@@ -1,31 +1,39 @@
 <app-header></app-header>
 <div class="main-container">
-  <div id="profile" [ngClass]="{'profile-display': !productListView}">
-    <div class="profile-pic">
-      <img *ngIf="profile" src="{{profile.photoURL}}" alt="">
-    </div>
-    <div class="info-container">
-      <div class="pen" *ngIf="canEdit && !publicView"><mat-icon>edit</mat-icon></div>
-      <div *ngIf="profile" class="username">{{profile.displayName}}</div>
-      <div class="review-icon" *ngIf="canEdit && publicView">
-         <div *ngFor="let star of stars">
-            <mat-icon>star_border</mat-icon>
-         </div> 
-         <p>Reviews</p>
+  <div>
+    <div id="profile" *ngIf="productListView" [ngClass]="{'profile-display': !productListView}">
+      <div class="profile-pic">
+        <img *ngIf="profile" src="{{profile.photoURL}}" alt="">
       </div>
-      <p>
-        1600 Pennsylvannia Ave, 
-        Washington DC, District of Columbia
-      </p>
-      <div *ngIf="canEdit && !publicView">
-        <app-action-button (click)="toggleProfileView()" *ngIf="canEdit" class="profile-button" ctaText="Preview Public Mode" size="'lg'"></app-action-button>
-      </div> 
-      <div *ngIf="canEdit && publicView">
-        <app-action-button (click)="toggleProfileView()" *ngIf="canEdit" class="profile-button" ctaText="Edit Mode" size="'lg'"></app-action-button>
-      </div>  
-      <div *ngIf="!canEdit">
-        <app-action-button *ngIf="!canEdit" class="profile-button" ctaText="Contact Seller" size="'lg'"></app-action-button>
-      </div>    
+      <div class="info-container">
+        <div (click)="goToEditProfile()" class="pen" *ngIf="canEdit && !publicView">
+          <p>Edit Profile</p>
+          <mat-icon>edit</mat-icon>
+        </div>
+        <div *ngIf="profile" class="username">{{profile.displayName}}</div>
+        <div class="review-icon" *ngIf="canEdit && publicView">
+          <div *ngFor="let star of stars">
+              <mat-icon>star_border</mat-icon>
+          </div> 
+          <p>Reviews</p>
+        </div>
+        <p>
+          1600 Pennsylvannia Ave, 
+          Washington DC, District of Columbia
+        </p>
+        <div *ngIf="canEdit && !publicView">
+          <app-action-button (click)="toggleProfileView()" *ngIf="canEdit" class="profile-button" ctaText="Preview Public Mode" size="'lg'"></app-action-button>
+        </div> 
+        <div *ngIf="canEdit && publicView">
+          <app-action-button (click)="toggleProfileView()" *ngIf="canEdit" class="profile-button" ctaText="Edit Mode" size="'lg'"></app-action-button>
+        </div>  
+        <div *ngIf="!canEdit">
+          <app-action-button *ngIf="!canEdit" class="profile-button" ctaText="Contact Seller" size="'lg'"></app-action-button>
+        </div>    
+      </div>
+    </div>
+    <div class="add-product-container">
+      <app-add-product (doneAddingProduct)="doneAdding($event)" *ngIf="!productListView"></app-add-product>
     </div>
   </div>
 
@@ -56,6 +64,5 @@
             
           </mat-tab>
       </mat-tab-group>
-      <app-add-product (doneAddingProduct)="doneAdding($event)" *ngIf="!productListView"></app-add-product>
   </div>
 </div>
