@@ -38,8 +38,8 @@ db.once('open', function callback() {
         email: String,
         phoneNumber: Number,
         providerId: String,
-        lat: String,
-        long: String,
+        lat: Number,
+        long: Number,
         address: String
     })
     

@@ -23,7 +23,7 @@
         </div>
         <div class="form-field-container">
           <mat-label>Address:</mat-label>
-          <input placeholder="search for location" width="150px" height="50px" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [(ngModel)]="profile.address" [formControl]="searchControl">
+          <input placeholder="search for location" width="150px" height="50px" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [(ngModel)]="updatedProfileUser.address || profile.address" [formControl]="searchControl">
         </div>
         <!-- <agm-map [scrollwheel]="false" [zoom]="zoom">
           <agm-marker  
