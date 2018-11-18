@@ -20,7 +20,9 @@
           <input type="text" placeholder="products, brand, trends">
           <input placeholder="Current Location">
         </button> -->
-        <app-action-button ctaText="Search" (click)="goToMapView()"></app-action-button>
+        <div class="button-container">
+          <app-action-button ctaText="Search" (click)="goToMapView()"></app-action-button>
+        </div>
         <!-- <mat-menu #search="matMenu"> 
             <button (click)="searchDatabase()" mat-menu-item *ngFor="let category of categories | async">  {{category.name | json}}</button>
         </mat-menu>  -->
@@ -30,8 +32,9 @@
       <!-- <button [matMenuTriggerFor]="menu">
         <input type="text" name="" id="" placeholder="products, brand, trends" >
       </button> -->
-      <app-action-button (click)="goToMapView()" ctaText="Search" size="'md'">
-      </app-action-button>
+      <div class="button-container">
+        <app-action-button (click)="goToMapView()" ctaText="Search" size="'md'"></app-action-button>
+      </div>
       <!-- <mat-menu #menu="matMenu"> 
           <button (click)="searchDatabase()" mat-menu-item *ngFor="let category of categories | async">  {{category.name | json}}</button>
       </mat-menu>  -->

@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   currentUser: any;
   events: string[] = [];
   opened: boolean;
-
+  drawer;
   constructor(private authService: AuthService, public dialog: MatDialog, private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
@@ -49,10 +49,23 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.authService.logOut();
     this.authorizedUser = false;
-    this.router.navigate(['home'])
+    this.router.navigate(['home']);
+    console.log('this is the toggle', this.drawer)
+    this.ngOnInit();
   }
 
   goToProfile() {
-    this.router.navigate(['profile/'+this.currentUser.uid])
+    this.router.navigate(['profile/'+this.currentUser.uid]);
+    this.ngOnInit();
+  }
+
+  goToHome() {
+    this.router.navigate(['']);
+    this.ngOnInit();
+  }
+
+  goToMap() {
+    this.router.navigate(['home'])
+    this.ngOnInit();
   }
 }
