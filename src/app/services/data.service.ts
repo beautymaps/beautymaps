@@ -16,8 +16,6 @@ export class DataService {
     getAllProducts() {
       return this._http.get("/api/get-all-products")
         .map(result => {
-
-
           return result.json();
         });
     }

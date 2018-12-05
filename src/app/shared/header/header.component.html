@@ -88,7 +88,7 @@
               </a>
             </div>
             <div [matMenuTriggerFor]="settingsMenu" class="left-nav">
-              Welcome      
+              {{currentUser.displayName}}     
               <img *ngIf="!currentUser" width="30px" height="30px" src="../../../assets/img/profileicon.png" alt="">
               <img *ngIf="currentUser && currentUser.photoURL" width="30px" height="30px" src="{{currentUser.photoURL}}" alt="User Image"> 
             </div>

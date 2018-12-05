@@ -61,7 +61,7 @@ export class HomeMapComponent implements OnInit {
     private router: Router
   ) {
     // this.products = this.db.list('/products').valueChanges();
-    console.log('this is the users', this.users);
+    console.log('this is the user', this.users);
     this.done = true;
     this.productList = this.dataService.getAllProducts()
       .subscribe((product) => {

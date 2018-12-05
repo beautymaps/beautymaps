@@ -45,6 +45,7 @@ import { HttpModule } from '@angular/http';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
 
 import { UserProfile } from './class/userProfile';
+import { SubheaderComponent } from './shared/subheader/subheader.component';
 
 const appRoutes: Routes = [
   {path: 'search', component: LandingPageComponent} ,
@@ -80,6 +81,7 @@ const appRoutes: Routes = [
     AddProductComponent,
     SearchModalComponent,
     EditProfileComponent,
+    SubheaderComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: false}),
