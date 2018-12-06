@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) { 
+    this.profileUser = JSON.parse(localStorage.getItem('currentUser'));
   }
   
   ngOnInit() {
@@ -46,11 +47,8 @@ export class ProfileComponent implements OnInit {
               this.profile = user;
             }
             
-            this.auth.authState.subscribe((auth) => {
-              this.profileUser = auth.providerData[0]
-              if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
-              this.authorizedUser = auth ? true : false;
-            });
+            if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
+             
             if(this.profile) {
               this.getProducts(this.profile)
             }

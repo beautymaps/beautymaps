@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service'
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -12,19 +12,31 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Output() reload = new EventEmitter();
 
   authorizedUser: boolean;
   currentUser: any;
   events: string[] = [];
   opened: boolean;
   drawer;
-  constructor(private authService: AuthService, public dialog: MatDialog, private router: Router, private dataService: DataService) { }
+  authSubscription;
+  constructor(private authService: AuthService, public dialog: MatDialog, private router: Router, private dataService: DataService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
+   }
 
   ngOnInit() {
-   this.authService.authState.subscribe((auth) => {
+   this.authSubscription = this.authService.authState.subscribe((auth) => {
     this.authorizedUser = auth ? true : false;
-    if(this.authorizedUser && auth.providerData) this.setCurrentUser(auth);
+    console.log('this is the login subscription', auth);
+
+    // if(this.authorizedUser && auth.providerData) this.setCurrentUser();
    })
+  }
+
+  ngOnDestroy() {
+    if(this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 
   startSignIn(tabType) {
@@ -34,29 +46,39 @@ export class HeaderComponent implements OnInit {
     })
     loginRef.afterClosed().subscribe(result => {
       this.authorizedUser = result;      
+      this.currentUser = result.currentUser;
+      console.log('this is the url', this.router.url)
+      this.reload.emit();
     });
   }
-  signIn() {
-    try { 
-      let login = this.authService.doFacebookLogin()
-    } catch (NullValueException){
-    }
-  }
-  setCurrentUser(user) {
-    this.currentUser = user.providerData[0];
+
+  // signIn() {
+  //   try { 
+  //     let login = this.authService.doFacebookLogin()
+  //       login.then((res) => {
+  //         console.log('is this the login resolve', res)
+  //         this.setCurrentUser();
+  //       },(err) => {
+  //         console.log('there was an error on signin')
+  //       })
+  //   } catch (NullValueException){
+  //   }
+  // }
+
+  setCurrentUser() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('this is the currentUser', this.currentUser);
   }
 
   logOut() {
     this.authService.logOut();
     this.authorizedUser = false;
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.router.navigate(['home']);
-    console.log('this is the toggle', this.drawer)
-    this.ngOnInit();
   }
 
   goToProfile() {
     this.router.navigate(['profile/'+this.currentUser.uid]);
-    this.ngOnInit();
   }
 
   goToHome() {

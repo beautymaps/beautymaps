@@ -82,7 +82,7 @@ const appRoutes: Routes = [
     EditProfileComponent,
   ],
   imports: [
-    RouterModule.forRoot(appRoutes, {useHash: false}),
+    RouterModule.forRoot(appRoutes, {useHash: false, onSameUrlNavigation: "reload"}),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

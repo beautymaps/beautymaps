@@ -37,7 +37,7 @@ export class ModalWindowComponent implements OnInit {
 
     this.authService.authState.subscribe((auth) => {
       this.authorizedUser = auth ? true : false;
-      if(this.authorizedUser && auth.providerData) this.setCurrentUser(auth);
+      // if(this.authorizedUser && auth.providerData) this.setCurrentUser();
     })
   }
 
@@ -60,27 +60,20 @@ export class ModalWindowComponent implements OnInit {
     this.router.navigate(['profile'])
   }
 
-  authorizeUser () {
-    
-  }
   signIn() {
     try { 
-      let login = this.authService.doFacebookLogin();
-      this.dialogRef.close({auth: true});
+      let login = this.authService.doFacebookLogin()
+        .then((res) => {
+          console.log('is this the login resolve', res)
+          this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+          this.dialogRef.close({auth: true, currentUser: this.currentUser});
+        },(err) => {
+          console.log('there was an error on signin')
+        })
     } catch (NullValueException){
       console.log('sorry we couldnt log you in')
     }
   }
 
-  setCurrentUser(user) {
-    this.currentUser = user.providerData[0];
-    this.user = this.currentUser;
-    // this.user.uid = user.uid;
-    // this.user.displayName = user.displayName;
-    // this.user.photoURL = user.photoURL;
-    // this.user.email = user.email;
-    // this.user.phoneNumber = user.phoneNumber;
-    // this.user.providerId = user.providerId;
-  
-  }
+ 
 }

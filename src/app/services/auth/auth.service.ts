@@ -34,44 +34,56 @@ export class AuthService {
   }
 
   doFacebookLogin(){
+      return new Promise<any>((resolve, reject) => {
+        let provider = new firebase.auth.FacebookAuthProvider();
+        this.afAuth.auth
+        .signInWithPopup(provider)
+        .then(res => {
+          console.log('the res', res)
+          this.findUser(res.user.providerData[0])
+            .subscribe((user) => {
+              console.log('this subscribed user', user)
+              this.setUserSession(user);
+              resolve(res);
+            })
+        }, err => {
+          console.log(err);
+          reject(err);
+        })
+
+      })
+  }
+
+  doGoogleLogin(){
     return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.FacebookAuthProvider();
+      let provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
       this.afAuth.auth
       .signInWithPopup(provider)
       .then(res => {
-        console.log('the res', res)
-        this.findUser(res.user.providerData[0]);
         resolve(res);
-      }, err => {
-        console.log(err);
-        reject(err);
       })
-
     })
- }
+  }
 
- doGoogleLogin(){
-  return new Promise<any>((resolve, reject) => {
-    let provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope('profile');
-    provider.addScope('email');
-    this.afAuth.auth
-    .signInWithPopup(provider)
-    .then(res => {
-      resolve(res);
-    })
-  })
-}
+  findUser (userData) {
+    return this._http.post('/api/login-user', userData)
+      .map(result => {
+        return result.json();
+      })
+  }
 
-findUser (userData) {
-  return this._http.post('/api/login-user', userData)
-    .subscribe((user) => {
-      // console.log('this is the user we found', user);
-    })
-}
+  logOut() {
+    this.afAuth.auth.signOut();
+    this.deleteUserSession();
+  }
 
-logOut() {
-  this.afAuth.auth.signOut();
-}
+  setUserSession(user) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
 
+  deleteUserSession() {
+    localStorage.removeItem('currentUser');
+  }
 }
