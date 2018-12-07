@@ -45,9 +45,11 @@ import { HttpModule } from '@angular/http';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
 
 import { UserProfile } from './class/userProfile';
+import { SigninComponent } from './signin/signin.component';
 
 const appRoutes: Routes = [
   {path: 'search', component: LandingPageComponent} ,
+  {path: 'signin', component: SigninComponent},
   {path: 'home', component: HomeMapComponent },
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -80,6 +82,7 @@ const appRoutes: Routes = [
     AddProductComponent,
     SearchModalComponent,
     EditProfileComponent,
+    SigninComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: false, onSameUrlNavigation: "reload"}),
