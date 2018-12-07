@@ -5,17 +5,18 @@
     <div id="product-list-container">
         <div class="active-products-container">  
           <div class="product-tile" *ngFor="let user of users">
-              <div class="product-img">
-                <img mat-card-image *ngIf="user.photoURL" [src]="user.photoURL" alt="Photo of a Shiba Inu">
-                <img mat-card-image *ngIf="!user.photoURL" src="../../assets/img/imgicon.png" alt="NO user Image">                
-              </div>
-              <div>
-                  <!-- {{user.name}}
-                  {{user.brand}}
-                  {{user.description}}    -->
-              </div>
-              <div>
-                <button mat-button (click)="viewProducts(user)">View Products</button>
+              <div class="info-container" (click)="viewProducts(user)">
+                  <div class="product-img">
+                    <img mat-card-image *ngIf="user.photoURL" [src]="user.photoURL" alt="Photo of a Shiba Inu">
+                    <img mat-card-image *ngIf="!user.photoURL" src="../../assets/img/imgicon.png" alt="NO user Image">                
+                  </div>
+                  <div class="text-container">
+                      <p>{{user.displayName}}</p>
+                      <p><mat-icon>location_on</mat-icon>{{user.address}}</p>
+                      <div>
+                        <button mat-button (click)="viewProducts(user)">View Products</button>
+                      </div>
+                  </div>
               </div>
             </div>
         </div>
