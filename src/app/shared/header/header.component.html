@@ -2,10 +2,10 @@
   <mat-drawer #drawer class="main-drawer">
     <div class="list-item action-button" *ngIf="!currentUser">
       <div class="button-container">
-          <app-action-button ctaText="Login" size="'lg'" (click)="startSignIn(0)"></app-action-button>          
+          <app-action-button ctaText="Login" size="'lg'" (click)="goToSignin()"></app-action-button>          
       </div>
       <div class="button-container">
-          <app-action-button ctaText="SignUp" size="'lg'" (click)="startSignIn(1)"></app-action-button>          
+          <app-action-button ctaText="SignUp" size="'lg'" (click)="goToSignin()"></app-action-button>          
       </div>
     </div>
     <div *ngIf="currentUser">
@@ -63,7 +63,7 @@
               </a>
             </div>
             <div class="left-nav">
-              <span (click)="startSignIn()">Sign In</span>
+              <span (click)="goToSignin()">Sign In</span>
               <span (click)="goToMap()">Map View</span>
               <span (click)="goToHome()">Home</span>
             </div>

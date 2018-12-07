@@ -39,17 +39,18 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  startSignIn(tabType) {
-    const loginRef = this.dialog.open(ModalWindowComponent, {
-      width:'400px',
-      data: {selectedTab: tabType, heading: 'hey girl this worked', subheading: 'i know girl lets work '},
-    })
-    loginRef.afterClosed().subscribe(result => {
-      this.authorizedUser = result;      
-      this.currentUser = result.currentUser;
-      console.log('this is the url', this.router.url)
-      this.reload.emit();
-    });
+  goToSignin() {
+    this.router.navigate(['signin', {params: this.router.url}]);
+    // const loginRef = this.dialog.open(ModalWindowComponent, {
+    //   width:'400px',
+    //   data: {selectedTab: tabType, heading: 'hey girl this worked', subheading: 'i know girl lets work '},
+    // })
+    // loginRef.afterClosed().subscribe(result => {
+    //   this.authorizedUser = result;      
+    //   this.currentUser = result.currentUser;
+    //   console.log('this is the url', this.router.url)
+    //   this.reload.emit();
+    // });
   }
 
   // signIn() {
