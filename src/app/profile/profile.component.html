@@ -3,14 +3,14 @@
   <div>
     <div id="profile" *ngIf="productListView" [ngClass]="{'profile-display': !productListView}">
       <div class="profile-pic">
-        <img *ngIf="profile" src="{{profile.photoURL}}" alt="">
+        <img *ngIf="profile" src="{{profile.profileImage}}" alt="">
       </div>
       <div class="info-container">
         <div (click)="goToEditProfile()" class="pen" *ngIf="canEdit && !publicView">
           <p>Edit Profile</p>
           <mat-icon>edit</mat-icon>
         </div>
-        <div *ngIf="profile" class="username">{{profile.displayName}}</div>
+        <div *ngIf="profile" class="username">{{profile.storeName}}</div>
         <div class="review-icon" *ngIf="canEdit && publicView">
           <div *ngFor="let star of stars">
               <mat-icon>star_border</mat-icon>

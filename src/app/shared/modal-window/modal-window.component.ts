@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DialogData } from '../../class/dialog-data';
 import { AuthService } from '../../services/auth/auth.service'
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
-import { UserProfile } from '../../class/userProfile';
+import { UserProfile } from '../../class/user-profile';
 
 
 @Component({

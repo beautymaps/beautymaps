@@ -11,7 +11,7 @@
     <div *ngIf="currentUser">
       <div class="right-nav menu" (click)="drawer.toggle()">
         <img *ngIf="!currentUser" width="35px" height="35px" src="../../../assets/img/profileicon.png" alt="">
-        <img *ngIf="currentUser && currentUser.photoURL" width="35px" height="35px" src="{{currentUser.photoURL}}" alt="User Image"> 
+        <img *ngIf="currentUser && currentUser.profileImage" width="35px" height="35px" src="{{currentUser.profileImage}}" alt="User Image"> 
         <p>Welcome</p>    
       </div>
       <button mat-menu-item (click)="goToMap()">Map</button>              
@@ -88,9 +88,9 @@
               </a>
             </div>
             <div [matMenuTriggerFor]="settingsMenu" class="left-nav">
-                {{currentUser.displayName}}     
+                {{currentUser.userName}}     
               <img *ngIf="!currentUser" width="30px" height="30px" src="../../../assets/img/profileicon.png" alt="">
-              <img *ngIf="currentUser && currentUser.photoURL" width="30px" height="30px" src="{{currentUser.photoURL}}" alt="User Image"> 
+              <img *ngIf="currentUser && currentUser.profileImage" width="30px" height="30px" src="{{currentUser.profileImage}}" alt="User Image"> 
             </div>
           </div>
           <div class="settings-menu">

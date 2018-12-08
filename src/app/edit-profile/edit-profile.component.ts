@@ -5,12 +5,14 @@ import 'rxjs/add/operator/map';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { UserProfile } from '../class/userProfile';
+import { UserProfile } from '../class/user-profile';
+import{ StoreHours } from '../class/store-hours';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { LocationService } from '../services/location.service';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth/auth.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { timestamp } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-profile',
@@ -30,6 +32,16 @@ export class EditProfileComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number;
   coordinates:any;
+  timeList = [];
+  storeHours: StoreHours[] = [
+    {day: 'Monday', open:'', closed: ''},
+    {day: 'Tuesday', open:'', closed: ''},
+    {day: 'Wednesday', open:'', closed: ''},
+    {day: 'Thursday', open:'', closed: ''},
+    {day: 'Friday', open:'', closed: ''},
+    {day: 'Saturday', open:'', closed: ''},
+    {day: 'Sunday', open:'', closed: ''},
+  ];
 
   constructor(private afs: AngularFirestore, 
     private db: AngularFireDatabase, 
@@ -43,6 +55,7 @@ export class EditProfileComponent implements OnInit {
     public updatedProfileUser: UserProfile,
     private profileUser: UserProfile
   ) { 
+    this.timeList = this.createTimeList();
   }
   
   @ViewChild("search")
@@ -57,6 +70,8 @@ export class EditProfileComponent implements OnInit {
             } else {
               this.profile = user;
             }
+
+            console.log('this is the profile as we know it', this.profile);
             
             this.auth.authState.subscribe((auth) => {
               this.profileUser = auth.providerData[0]
@@ -100,12 +115,27 @@ export class EditProfileComponent implements OnInit {
    
   }
 
+  createTimeList() {
+    this.timeList;
+    for(let i=1; i < 12; i++) {
+      let time = i+' am';
+      this.timeList.push(time);
+    }
+    this.timeList.push('12pm');
+    for(let i=1; i < 12; i++) {
+      let time = i+' pm';
+      this.timeList.push(time);
+    }
+    this.timeList.push('12 am');
+    return this.timeList;
+  }
+
   onFileSelected(file: FileList) {
     this.fileToUpload = file.item(0);
     var reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
-      this.updatedProfileUser.photoURL = this.imageUrl;
+      this.updatedProfileUser.profileImage = this.imageUrl;
     }
     reader.readAsDataURL(this.fileToUpload);
   }
@@ -117,7 +147,21 @@ export class EditProfileComponent implements OnInit {
   done() {
     // if(this.location && this.location.long & this.location.lat) {
     this.canSend = false;
-    this.updatedProfileUser.displayName = this.profile.displayName;
+    this.updatedProfileUser.storeName = this.profile.storeName;
+    // this.updatedProfileUser.storeHours[0].monday[0] = this.profile.storeHours[0].monday[0];
+    // this.updatedProfileUser.storeHours[0].monday[1] = this.profile.storeHours[0].monday[1];
+    // this.updatedProfileUser.storeHours[1].tuesday[0] = this.profile.storeHours[1].tuesday[0];
+    // this.updatedProfileUser.storeHours[1].tuesday[1] = this.profile.storeHours[1].tuesday[1];
+    // this.updatedProfileUser.storeHours[2].wednesday[0] = this.profileUser.storeHours[2].wednesday[0];
+    // this.updatedProfileUser.storeHours[2].wednesday[1] = this.profileUser.storeHours[2].wednesday[1];
+    // this.updatedProfileUser.storeHours[3].thurdsay[0] = this.profileUser.storeHours[3].thurdsay[0];
+    // this.updatedProfileUser.storeHours[3].thurdsay[1] = this.profileUser.storeHours[3].thurdsay[1];
+    // this.updatedProfileUser.storeHours[4].friday[0] = this.profileUser.storeHours[4].friday[0];
+    // this.updatedProfileUser.storeHours[4].friday[1] = this.profileUser.storeHours[4].friday[1];
+    // this.updatedProfileUser.storeHours[5].saturday[0] = this.profileUser.storeHours[5].saturday[0];
+    // this.updatedProfileUser.storeHours[5].saturday[1] = this.profileUser.storeHours[5].saturday[1];
+    // this.updatedProfileUser.storeHours[6].sunday[0] = this.profileUser.storeHours[6].sunday[0];
+    // this.updatedProfileUser.storeHours[6].sunday[1] = this.profileUser.storeHours[6].sunday[1];
     this.data = this.dataService.updateUser(this.profile._id, this.updatedProfileUser)
       .subscribe((updatedUser) => {
         this.canSend = true;
