@@ -94,10 +94,10 @@ export class EditProfileComponent implements OnInit {
             //get the place result
             let place = autocomplete.getPlace();
             this.coordinates = place.geometry.location;
-            this.profile.long = Number(this.coordinates.lng());
-            this.profile.lat = Number(this.coordinates.lat());
-            this.profile.address = place.formatted_address;
-            console.log('is the address changing,', this.profile.address);
+            this.updatedProfileUser.long = Number(this.coordinates.lng());
+            this.updatedProfileUser.lat = Number(this.coordinates.lat());
+            this.updatedProfileUser.address = place.formatted_address;
+            console.log('is the address changing,', this.updatedProfileUser.address);
             //verify result
             if (place.geometry === undefined || place.geometry === null) {
               return;
@@ -133,7 +133,7 @@ export class EditProfileComponent implements OnInit {
     var reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
-      this.profile.profileImage = this.imageUrl;
+      this.updatedProfileUser.profileImage = this.imageUrl;
     }
     reader.readAsDataURL(this.fileToUpload);
   }
@@ -143,16 +143,22 @@ export class EditProfileComponent implements OnInit {
   }
 
   done() {
+    // if(this.location && this.location.long & this.location.lat) {
     this.canSend = false;
+    
     this.profile.storeHours.map((day, i) => {
+      // console.log('what is the profile day', day, i);
+    }) 
+
+    this.updatedProfileUser.storeHours.map((day, i) => {
       for (const j in day) {
         day[j] = this.storeHours[i][j];
       }
     }) 
-   
-    this.data = this.dataService.updateUser(this.profile._id, this.profile)
+    this.updatedProfileUser.userName = this.profile.userName;
+    this.updatedProfileUser.storeName = this.profile.storeName;
+    this.data = this.dataService.updateUser(this.profile._id, this.updatedProfileUser)
       .subscribe((updatedUser) => {
-        console.log('what isthe updated user', updatedUser)
         this.canSend = true;
         this.goToProfile();
       }, (err) => {
