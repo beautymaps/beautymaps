@@ -69,10 +69,8 @@ export class EditProfileComponent implements OnInit {
               this.profile = this.dataService.profileLookup; 
             } else {
               this.profile = user;
-            }
-
-            console.log('this is the profile as we know it', this.profile);
-            
+              this.storeHours = this.profile.storeHours;
+            }            
             this.auth.authState.subscribe((auth) => {
               this.profileUser = auth.providerData[0]
               if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
@@ -96,10 +94,10 @@ export class EditProfileComponent implements OnInit {
             //get the place result
             let place = autocomplete.getPlace();
             this.coordinates = place.geometry.location;
-            this.updatedProfileUser.long = Number(this.coordinates.lng());
-            this.updatedProfileUser.lat = Number(this.coordinates.lat());
-            this.updatedProfileUser.address = place.formatted_address;
-            console.log('is the address changing,', this.updatedProfileUser.address);
+            this.profile.long = Number(this.coordinates.lng());
+            this.profile.lat = Number(this.coordinates.lat());
+            this.profile.address = place.formatted_address;
+            console.log('is the address changing,', this.profile.address);
             //verify result
             if (place.geometry === undefined || place.geometry === null) {
               return;
@@ -135,7 +133,7 @@ export class EditProfileComponent implements OnInit {
     var reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
-      this.updatedProfileUser.profileImage = this.imageUrl;
+      this.profile.profileImage = this.imageUrl;
     }
     reader.readAsDataURL(this.fileToUpload);
   }
@@ -145,25 +143,16 @@ export class EditProfileComponent implements OnInit {
   }
 
   done() {
-    // if(this.location && this.location.long & this.location.lat) {
     this.canSend = false;
-    this.updatedProfileUser.storeName = this.profile.storeName;
-    // this.updatedProfileUser.storeHours[0].monday[0] = this.profile.storeHours[0].monday[0];
-    // this.updatedProfileUser.storeHours[0].monday[1] = this.profile.storeHours[0].monday[1];
-    // this.updatedProfileUser.storeHours[1].tuesday[0] = this.profile.storeHours[1].tuesday[0];
-    // this.updatedProfileUser.storeHours[1].tuesday[1] = this.profile.storeHours[1].tuesday[1];
-    // this.updatedProfileUser.storeHours[2].wednesday[0] = this.profileUser.storeHours[2].wednesday[0];
-    // this.updatedProfileUser.storeHours[2].wednesday[1] = this.profileUser.storeHours[2].wednesday[1];
-    // this.updatedProfileUser.storeHours[3].thurdsay[0] = this.profileUser.storeHours[3].thurdsay[0];
-    // this.updatedProfileUser.storeHours[3].thurdsay[1] = this.profileUser.storeHours[3].thurdsay[1];
-    // this.updatedProfileUser.storeHours[4].friday[0] = this.profileUser.storeHours[4].friday[0];
-    // this.updatedProfileUser.storeHours[4].friday[1] = this.profileUser.storeHours[4].friday[1];
-    // this.updatedProfileUser.storeHours[5].saturday[0] = this.profileUser.storeHours[5].saturday[0];
-    // this.updatedProfileUser.storeHours[5].saturday[1] = this.profileUser.storeHours[5].saturday[1];
-    // this.updatedProfileUser.storeHours[6].sunday[0] = this.profileUser.storeHours[6].sunday[0];
-    // this.updatedProfileUser.storeHours[6].sunday[1] = this.profileUser.storeHours[6].sunday[1];
-    this.data = this.dataService.updateUser(this.profile._id, this.updatedProfileUser)
+    this.profile.storeHours.map((day, i) => {
+      for (const j in day) {
+        day[j] = this.storeHours[i][j];
+      }
+    }) 
+   
+    this.data = this.dataService.updateUser(this.profile._id, this.profile)
       .subscribe((updatedUser) => {
+        console.log('what isthe updated user', updatedUser)
         this.canSend = true;
         this.goToProfile();
       }, (err) => {
