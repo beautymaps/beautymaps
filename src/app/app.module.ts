@@ -44,7 +44,7 @@ import { SearchModalComponent } from './shared/search-modal/search-modal.compone
 import { HttpModule } from '@angular/http';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
 
-import { UserProfile } from './class/userProfile';
+import { UserProfile } from './class/user-profile';
 import { SigninComponent } from './signin/signin.component';
 
 const appRoutes: Routes = [

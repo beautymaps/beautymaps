@@ -97,6 +97,29 @@
     flex-grow: 2;
 }
 
+.label-container {
+    display: flex;
+    justify-content: space-between;
+    label {
+        width: 100px;
+    }
+}
+.store-hours {
+    display: flex;
+    justify-content: space-between;
+    div {
+        width: 100px;
+    }
+}
+
+.store-hours-container {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    height: 239px;
+    justify-content: space-around;
+}
+
 @media only screen and (max-width: 649px){
     .main-container {
         padding: 15px;

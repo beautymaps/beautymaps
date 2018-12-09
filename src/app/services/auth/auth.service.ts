@@ -5,6 +5,7 @@ import { AngularFireAuth} from "angularfire2/auth";
 import { auth } from 'firebase';
 import { FirebaseApp } from "angularfire2";
 import * as firebase from 'firebase/app';
+import {UserProfile} from '../../class/user-profile';
 // import { JwtHelperService } from '@auth0/angular-jwt';
 
 
@@ -68,7 +69,17 @@ export class AuthService {
   }
 
   findUser (userData) {
-    return this._http.post('/api/login-user', userData)
+    let user = new UserProfile();
+    console.log('new user object', userData, user);
+    user.uid = userData.uid;
+    user.providerId = userData.providerId;
+    user.profileImage = userData.photoURL;
+    user.phoneNumber = userData.phoneNumber;
+    user.userName = userData.displayName;
+    user.email = userData.email;
+    console.log('this is the user after mapping it', user)
+    
+    return this._http.post('/api/login-user', user)
       .map(result => {
         return result.json();
       })

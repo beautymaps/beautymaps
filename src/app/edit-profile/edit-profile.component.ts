@@ -5,12 +5,14 @@ import 'rxjs/add/operator/map';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { UserProfile } from '../class/userProfile';
+import { UserProfile } from '../class/user-profile';
+import{ StoreHours } from '../class/store-hours';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { LocationService } from '../services/location.service';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth/auth.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { timestamp } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-profile',
@@ -30,6 +32,16 @@ export class EditProfileComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number;
   coordinates:any;
+  timeList = [];
+  storeHours: StoreHours[] = [
+    {day: 'Monday', open:'', closed: ''},
+    {day: 'Tuesday', open:'', closed: ''},
+    {day: 'Wednesday', open:'', closed: ''},
+    {day: 'Thursday', open:'', closed: ''},
+    {day: 'Friday', open:'', closed: ''},
+    {day: 'Saturday', open:'', closed: ''},
+    {day: 'Sunday', open:'', closed: ''},
+  ];
 
   constructor(private afs: AngularFirestore, 
     private db: AngularFireDatabase, 
@@ -43,6 +55,7 @@ export class EditProfileComponent implements OnInit {
     public updatedProfileUser: UserProfile,
     private profileUser: UserProfile
   ) { 
+    this.timeList = this.createTimeList();
   }
   
   @ViewChild("search")
@@ -56,8 +69,8 @@ export class EditProfileComponent implements OnInit {
               this.profile = this.dataService.profileLookup; 
             } else {
               this.profile = user;
-            }
-            
+              this.storeHours = this.profile.storeHours;
+            }            
             this.auth.authState.subscribe((auth) => {
               this.profileUser = auth.providerData[0]
               if(this.profileUser && this.profile && ( this.profileUser.uid === this.profile.uid)) this.canEdit = true;
@@ -81,10 +94,10 @@ export class EditProfileComponent implements OnInit {
             //get the place result
             let place = autocomplete.getPlace();
             this.coordinates = place.geometry.location;
-            this.updatedProfileUser.long = Number(this.coordinates.lng());
-            this.updatedProfileUser.lat = Number(this.coordinates.lat());
-            this.updatedProfileUser.address = place.formatted_address;
-            console.log('is the address changing,', this.updatedProfileUser.address);
+            this.profile.long = Number(this.coordinates.lng());
+            this.profile.lat = Number(this.coordinates.lat());
+            this.profile.address = place.formatted_address;
+            console.log('is the address changing,', this.profile.address);
             //verify result
             if (place.geometry === undefined || place.geometry === null) {
               return;
@@ -100,12 +113,27 @@ export class EditProfileComponent implements OnInit {
    
   }
 
+  createTimeList() {
+    this.timeList;
+    for(let i=1; i < 12; i++) {
+      let time = i+' am';
+      this.timeList.push(time);
+    }
+    this.timeList.push('12pm');
+    for(let i=1; i < 12; i++) {
+      let time = i+' pm';
+      this.timeList.push(time);
+    }
+    this.timeList.push('12 am');
+    return this.timeList;
+  }
+
   onFileSelected(file: FileList) {
     this.fileToUpload = file.item(0);
     var reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
-      this.updatedProfileUser.photoURL = this.imageUrl;
+      this.profile.profileImage = this.imageUrl;
     }
     reader.readAsDataURL(this.fileToUpload);
   }
@@ -115,11 +143,16 @@ export class EditProfileComponent implements OnInit {
   }
 
   done() {
-    // if(this.location && this.location.long & this.location.lat) {
     this.canSend = false;
-    this.updatedProfileUser.displayName = this.profile.displayName;
-    this.data = this.dataService.updateUser(this.profile._id, this.updatedProfileUser)
+    this.profile.storeHours.map((day, i) => {
+      for (const j in day) {
+        day[j] = this.storeHours[i][j];
+      }
+    }) 
+   
+    this.data = this.dataService.updateUser(this.profile._id, this.profile)
       .subscribe((updatedUser) => {
+        console.log('what isthe updated user', updatedUser)
         this.canSend = true;
         this.goToProfile();
       }, (err) => {

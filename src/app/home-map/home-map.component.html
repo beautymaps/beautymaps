@@ -7,11 +7,11 @@
           <div class="product-tile" *ngFor="let user of users">
               <div class="info-container" (click)="viewProducts(user)">
                   <div class="product-img">
-                    <img mat-card-image *ngIf="user.photoURL" [src]="user.photoURL" alt="Photo of a Shiba Inu">
-                    <img mat-card-image *ngIf="!user.photoURL" src="../../assets/img/imgicon.png" alt="NO user Image">                
+                    <img mat-card-image *ngIf="user.profileImage" [src]="user.profileImage" alt="Photo of a Shiba Inu">
+                    <img mat-card-image *ngIf="!user.profileImage" src="../../assets/img/imgicon.png" alt="NO user Image">                
                   </div>
                   <div class="text-container">
-                      <p>{{user.displayName}}</p>
+                      <p>{{user.storeName}}</p>
                       <p><mat-icon>location_on</mat-icon>{{user.address}}</p>
                       <div>
                         <button mat-button (click)="viewProducts(user)">View Products</button>

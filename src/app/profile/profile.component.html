@@ -2,36 +2,58 @@
 <div class="main-container">
   <div>
     <div id="profile" *ngIf="productListView" [ngClass]="{'profile-display': !productListView}">
-      <div class="profile-pic">
-        <img *ngIf="profile" src="{{profile.photoURL}}" alt="">
-      </div>
-      <div class="info-container">
-        <div (click)="goToEditProfile()" class="pen" *ngIf="canEdit && !publicView">
-          <p>Edit Profile</p>
-          <mat-icon>edit</mat-icon>
+      <div>
+        <div class="profile-pic">
+          <img *ngIf="profile" src="{{profile.profileImage}}" alt="">
         </div>
-        <div *ngIf="profile" class="username">{{profile.displayName}}</div>
-        <div class="review-icon" *ngIf="canEdit && publicView">
-          <div *ngFor="let star of stars">
-              <mat-icon>star_border</mat-icon>
+        <div class="info-container">
+          <div (click)="goToEditProfile()" class="pen" *ngIf="canEdit && !publicView">
+            <p>Edit Profile</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div *ngIf="profile" class="username">{{profile.storeName}}</div>
+          <div class="review-icon" *ngIf="canEdit && publicView">
+            <div *ngFor="let star of stars">
+                <mat-icon>star_border</mat-icon>
+            </div> 
+            <p>Reviews</p>
+          </div>
+          <p class="address-container" *ngIf="profile.address">
+              <mat-icon>location_on</mat-icon> {{profile.address}}
+          </p>
+          <p class="address-container" *ngIf="!profile.address">
+              <mat-icon>location_on</mat-icon> Worldwide
+          </p>
+          <div *ngIf="canEdit && !publicView">
+            <app-action-button (click)="toggleProfileView()" *ngIf="canEdit" class="profile-button" ctaText="Preview Public Mode" size="'lg'"></app-action-button>
           </div> 
-          <p>Reviews</p>
+          <div *ngIf="canEdit && publicView">
+            <app-action-button (click)="toggleProfileView()" *ngIf="canEdit" class="profile-button" ctaText="Edit Mode" size="'lg'"></app-action-button>
+          </div>  
+          <div *ngIf="!canEdit">
+            <app-action-button *ngIf="!canEdit" class="profile-button" ctaText="Contact Seller" size="'lg'"></app-action-button>
+          </div>    
         </div>
-        <p class="address-container" *ngIf="profile.address">
-            <mat-icon>location_on</mat-icon> {{profile.address}}
-        </p>
-        <p class="address-container" *ngIf="!profile.address">
-            <mat-icon>location_on</mat-icon> Worldwide
-        </p>
-        <div *ngIf="canEdit && !publicView">
-          <app-action-button (click)="toggleProfileView()" *ngIf="canEdit" class="profile-button" ctaText="Preview Public Mode" size="'lg'"></app-action-button>
-        </div> 
-        <div *ngIf="canEdit && publicView">
-          <app-action-button (click)="toggleProfileView()" *ngIf="canEdit" class="profile-button" ctaText="Edit Mode" size="'lg'"></app-action-button>
-        </div>  
-        <div *ngIf="!canEdit">
-          <app-action-button *ngIf="!canEdit" class="profile-button" ctaText="Contact Seller" size="'lg'"></app-action-button>
-        </div>    
+      </div>
+      <div class="store-hours-container">
+        <div class="label-container">
+          <label for="">Store Hours</label>
+          <label for="">Open</label>
+          <label for="">Closed</label>
+        </div>
+        <div >
+          <div *ngFor="let day of profile.storeHours" class="store-hours">
+            <div>
+              {{day.day}}
+            </div>
+            <div>
+              {{day.open}} 
+            </div>
+            <div>
+              {{day.closed}}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="add-product-container">

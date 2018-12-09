@@ -7,7 +7,7 @@ import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { LocationService } from '../services/location.service';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth/auth.service';
-import { UserProfile } from '../class/userProfile';
+import { UserProfile } from '../class/user-profile';
 
 
 class newProduct {
