@@ -21,12 +21,12 @@ export class HeaderComponent implements OnInit {
   drawer;
   authSubscription;
   constructor(private authService: AuthService, public dialog: MatDialog, private router: Router, private dataService: DataService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
    }
 
   ngOnInit() {
    this.authSubscription = this.authService.authState.subscribe((auth) => {
-    this.authorizedUser = auth ? true : false;
+    this.authorizedUser = auth;
     console.log('this is the login subscription', auth);
 
     // if(this.authorizedUser && auth.providerData) this.setCurrentUser();

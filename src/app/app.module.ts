@@ -47,6 +47,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { UserProfile } from './class/user-profile';
 import { SigninComponent } from './signin/signin.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const appRoutes: Routes = [
   {path: 'search', component: LandingPageComponent} ,
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: 'messages', component: MessagesComponent },
   { path: 'user', component: UserComponent,  resolve: { data: ''}} ,
   { path: 'create-demand', component: CreateDemandComponent },
   { path: 'privacy-terms', component: PrivacyTermsComponent },
@@ -84,6 +86,7 @@ const appRoutes: Routes = [
     SearchModalComponent,
     EditProfileComponent,
     SigninComponent,
+    MessagesComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: false, onSameUrlNavigation: "reload"}),

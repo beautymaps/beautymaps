@@ -1,16 +1,17 @@
 <div class="footer-container">
   <div class="nav-icon-container">
-    <div class="icon-container">
+    <div (click)="goToHome()" class="icon-container">
       <mat-icon>home</mat-icon>
     </div>
-    <div class="icon-container">
+    <div (click)="goToProfile()" class="icon-container">
       <mat-icon svgIcon="user"></mat-icon>
     </div>
-    <div class="icon-container">
+    <div (click)="goToMessages()" class="icon-container">
       <mat-icon>message</mat-icon>
     </div>
-    <div class="icon-container">
+    <div (click)="drawer.toggle()" class="icon-container">
       <mat-icon>more_horiz</mat-icon>
     </div>
   </div>
 </div>
+

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { UserProfile } from '../class/user-profile';
 
 
 @Component({
@@ -10,15 +12,34 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer) { 
-      this.matIconRegistry.addSvgIcon(
-        "unicorn",
-        this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/unicorn_icon.svg")
-      );
+  currentUser: UserProfile;
+  constructor(
+    private router: Router
+  ) { 
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
     }
 
   ngOnInit() {
   }
 
+  goToHome() {
+    this.router.navigate(['home']);
+  }
+
+  goToProfile() {
+    if(this.currentUser){
+      this.router.navigate(['profile/'+this.currentUser.uid]);
+    } else {
+      this.router.navigate(['signin', {params:'/profile/'+this.currentUser.uid}]);
+    } 
+  }
+
+  goToMessages() {
+    if(this.currentUser){
+      this.router.navigate(['messages']);
+    } else {
+      this.router.navigate(['signin', {params: '/messages'}]);
+    } 
+  }
 }
