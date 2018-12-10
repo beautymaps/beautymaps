@@ -6,7 +6,7 @@ import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule, MatFormFieldModule,
   MatDialog, MatDialogModule, MatTabsModule, MatDividerModule, MatSelectModule } from '@angular/material';
- 
+
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { AngularFireModule } from 'angularfire2';
@@ -43,9 +43,11 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { SearchModalComponent } from './shared/search-modal/search-modal.component';
 import { HttpModule } from '@angular/http';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
+import { HttpClientModule } from "@angular/common/http";
 
 import { UserProfile } from './class/user-profile';
 import { SigninComponent } from './signin/signin.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const appRoutes: Routes = [
   {path: 'search', component: LandingPageComponent} ,
@@ -54,6 +56,7 @@ const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: 'messages', component: MessagesComponent },
   { path: 'user', component: UserComponent,  resolve: { data: ''}} ,
   { path: 'create-demand', component: CreateDemandComponent },
   { path: 'privacy-terms', component: PrivacyTermsComponent },
@@ -83,6 +86,7 @@ const appRoutes: Routes = [
     SearchModalComponent,
     EditProfileComponent,
     SigninComponent,
+    MessagesComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: false, onSameUrlNavigation: "reload"}),
@@ -113,7 +117,8 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     MatTabsModule,
     MatDividerModule,
-    MatSelectModule 
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [AuthGuard, AuthService, MatDialog, LocationService, DataService, JwtHelperService, UserProfile],
   bootstrap: [AppComponent],
