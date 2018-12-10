@@ -12,3 +12,12 @@ p {
     line-height: 2.9;
     color: #fff;
 }
+
+.nav-icon-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    color: #fff;
+}

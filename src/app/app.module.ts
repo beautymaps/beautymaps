@@ -6,7 +6,7 @@ import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatInputModule, MatFormFieldModule,
   MatDialog, MatDialogModule, MatTabsModule, MatDividerModule, MatSelectModule } from '@angular/material';
- 
+
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { AngularFireModule } from 'angularfire2';
@@ -43,6 +43,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { SearchModalComponent } from './shared/search-modal/search-modal.component';
 import { HttpModule } from '@angular/http';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
+import { HttpClientModule } from "@angular/common/http";
 
 import { UserProfile } from './class/user-profile';
 import { SigninComponent } from './signin/signin.component';
@@ -113,7 +114,8 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     MatTabsModule,
     MatDividerModule,
-    MatSelectModule 
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [AuthGuard, AuthService, MatDialog, LocationService, DataService, JwtHelperService, UserProfile],
   bootstrap: [AppComponent],
