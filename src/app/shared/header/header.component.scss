@@ -36,10 +36,24 @@ mat-toolbar {
             max-width: 1280px;
             justify-content: space-between;
             .left-nav {
+                cursor: pointer;
                 display: flex;
+                font-size: 14px;
                 width: 300px;
                 justify-content: space-between;
-                cursor: pointer;
+                margin: 0 15px;
+            }
+
+            .user-icon {
+                padding: 5px;
+            }
+
+            .user-icon:hover {
+               color: #ff3588;
+            }
+
+            .user-icon:active {
+                color: #ff3588;
             }
 
             .logo {
@@ -60,10 +74,6 @@ mat-toolbar {
             }
             .mat-input-element {
                 font-size: 16px;
-            }
-            .left-nav {
-                font-size: 14px;
-                margin: 0 15px;
             }
         }
         .nav-container.authorized {
