@@ -1,15 +1,15 @@
 <div class="footer-container">
   <div class="nav-icon-container">
-    <div [style.color]="isHome() ? '#ff3588': '#ffffff'" class="icon-container">
-      <mat-icon (click)="goToHome()"> home</mat-icon>
+    <div [class.selected]="isHome()" (click)="goToHome()">
+      <mat-icon class="icon-container"> home</mat-icon>
     </div>
 
-    <div [style.color]="isProfile() ? '#ff3588': '#ffffff'" class="icon-container">
-      <mat-icon (click)="goToProfile()" svgIcon="user"></mat-icon>
+    <div [class.selected]="isProfile()" (click)="goToProfile()">
+      <mat-icon class="icon-container" svgIcon="user"></mat-icon>
     </div>
 
-    <div [style.color]="isMessages() ? '#ff3588': '#ffffff'" class="icon-container">
-      <mat-icon (click)="goToMessages()">message</mat-icon>
+    <div [class.selected]="isMessages()" (click)="goToMessages()">
+      <mat-icon class="icon-container">message</mat-icon>
     </div>
 
     <div class="icon-container">
