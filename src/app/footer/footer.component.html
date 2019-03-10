@@ -1,14 +1,17 @@
 <div class="footer-container">
   <div class="nav-icon-container">
-    <div (click)="goToHome()" class="icon-container">
-      <mat-icon>home</mat-icon>
+    <div [style.color]="isHome() ? '#ff3588': '#ffffff'" class="icon-container">
+      <mat-icon (click)="goToHome()"> home</mat-icon>
     </div>
-    <div (click)="goToProfile()" class="icon-container">
-      <mat-icon svgIcon="user"></mat-icon>
+
+    <div [style.color]="isProfile() ? '#ff3588': '#ffffff'" class="icon-container">
+      <mat-icon (click)="goToProfile()" svgIcon="user"></mat-icon>
     </div>
-    <div (click)="goToMessages()" class="icon-container">
-      <mat-icon>message</mat-icon>
+
+    <div [style.color]="isMessages() ? '#ff3588': '#ffffff'" class="icon-container">
+      <mat-icon (click)="goToMessages()">message</mat-icon>
     </div>
+
     <div class="icon-container">
       <mat-icon>more_horiz</mat-icon>
     </div>

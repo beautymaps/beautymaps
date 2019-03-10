@@ -27,6 +27,10 @@ export class FooterComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
+  isHome() {
+    return this.goToHome;
+  }
+
   goToProfile() {
     if(this.currentUser){
       this.router.navigate(['profile/'+this.currentUser.uid]);
@@ -35,11 +39,18 @@ export class FooterComponent implements OnInit {
     } 
   }
 
+  isProfile() {
+    return this.goToProfile;
+  }
+
   goToMessages() {
     if(this.currentUser){
       this.router.navigate(['messages']);
     } else {
       this.router.navigate(['signin', {params: '/messages'}]);
     } 
+  }
+  isMessages() {
+    return this.goToMessages;
   }
 }
