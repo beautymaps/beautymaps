@@ -1,19 +1,19 @@
 <div class="footer-container">
   <div class="nav-icon-container">
-    <div [class.selected]="isHome()" (click)="goToHome()">
+    <div [class.selected]="isHomeSelected" (click)="goToHome()">
       <mat-icon class="icon-container"> home</mat-icon>
-    </div>
+  </div>
 
-    <div [class.selected]="isProfile()" (click)="goToProfile()">
+    <div [class.selected]="isProfileSelected" (click)="goToProfile()">
       <mat-icon class="icon-container" svgIcon="user"></mat-icon>
     </div>
 
-    <div [class.selected]="isMessages()" (click)="goToMessages()">
+    <div [class.selected]="isMessagesSelected" (click)="goToMessages()">
       <mat-icon class="icon-container">message</mat-icon>
     </div>
 
-    <div class="icon-container">
-      <mat-icon>more_horiz</mat-icon>
+    <div [class.selected]="ismoreSelected" (click)="goToMore()">
+      <mat-icon class="icon-container">more_horiz</mat-icon>
     </div>
   </div>
 </div>

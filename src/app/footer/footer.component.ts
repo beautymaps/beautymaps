@@ -22,16 +22,15 @@ export class FooterComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  isHomeSelected = false;
   goToHome() {
-    this.router.navigate(['home']);
+      this.isHomeSelected = true;
+      this.router.navigate(['home']);
   }
-
-  isHome() {
-    return this.goToHome;
-  }
-
+  
+  isProfileSelected = false;
   goToProfile() {
+    this.isProfileSelected = true;
     if(this.currentUser){
       this.router.navigate(['profile/'+this.currentUser.uid]);
     } else {
@@ -39,18 +38,20 @@ export class FooterComponent implements OnInit {
     } 
   }
 
-  isProfile() {
-    return this.goToProfile;
-  }
-
+  isMessagesSelected = false;
   goToMessages() {
+    this.isMessagesSelected = true;
     if(this.currentUser){
       this.router.navigate(['messages']);
     } else {
       this.router.navigate(['signin', {params: '/messages'}]);
     } 
   }
-  isMessages() {
-    return this.goToMessages;
-  }
+
+  ismoreSelected = false;
+  goToMore() {
+    this.ismoreSelected = true;
+    return true
+  }  
+
 }
