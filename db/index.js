@@ -1,9 +1,12 @@
+'use strict';
+const mongoose = require('mongoose');
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://Simpcy:Just5673%2E@cluster0-tsbp2.mongodb.net/test?retryWrites=true";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+mongoose.Promise = global.Promise;
+
+// Set up mongoose connection
+module.exports = () => {
+    mongoose.connect('mongodb+srv://Simpcy:Just5673%2E@cluster0-tsbp2.mongodb.net/test?retryWrites=true', { useNewUrlParser: true }, () =>
+        // eslint-disable-next-line no-console
+        console.error.bind(console, 'MongoDB connection error:')
+    );
+};

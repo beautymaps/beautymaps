@@ -4,7 +4,7 @@ const path = require('path');
 const http = require('http');
 const app = express();
 
-import connectToMongoDb from './db';
+const connectToMongoDb = require('./db');
 
 // API file for interacting with MongoDB
 const api = require('./server/routes/api');
