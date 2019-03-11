@@ -4,6 +4,8 @@ const path = require('path');
 const http = require('http');
 const app = express();
 
+import connectToMongoDb from './db';
+
 // API file for interacting with MongoDB
 const api = require('./server/routes/api');
 var cors = require('cors')
@@ -30,4 +32,8 @@ app.set('port', port);
 
 const server = http.createServer(app);
 
-server.listen(port, () => console.log(`Running on localhost:${port}`));
+// server.listen(port, () => console.log(`Running on localhost:${port}`));
+server.listen(port, async() => {
+    await connectToMongoDb();
+    console.log(`Listening on port ${port}`); 
+});
