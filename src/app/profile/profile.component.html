@@ -1,7 +1,7 @@
 <div class="page-wrapper">
   <app-header></app-header>
   <div class="main-container">
-    <div class="profile_view">
+    <div>
       <div id="profile" *ngIf="productListView" [ngClass]="{'profile-display': !productListView}">
         <div>
           <div class="profile-pic">
@@ -15,7 +15,7 @@
             <div *ngIf="profile" class="username">{{profile.storeName}}</div>
             <div class="review-icon" *ngIf="canEdit && publicView">
               <div *ngFor="let star of stars">
-                  <mat-icon>star_border</mat-icon>
+                  <!-- <mat-icon>star_border</mat-icon> -->
               </div> 
               <p>Reviews</p>
             </div>
@@ -91,5 +91,5 @@
         </mat-tab-group>
     </div>
   </div>
-  <app-footer class="footer"></app-footer>
+  <!-- <app-footer class="footer"></app-footer> -->
 </div>

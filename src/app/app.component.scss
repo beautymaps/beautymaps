@@ -11,3 +11,10 @@ router-outlet {
 //     top: 0;
 //     left: 0;
 // }
+app-footer {
+    position: fixed;
+    bottom: 0;
+    max-width: 300px;
+    width: 100%;
+    z-index: 1;
+}
