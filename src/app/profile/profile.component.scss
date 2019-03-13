@@ -2,6 +2,9 @@
     padding: 15px;
     // display: flex;
 }
+.profile_view{
+    width: 100%;
+}
 
 #profile, #products {
     margin: 15px;
@@ -23,6 +26,7 @@
         margin-bottom:20px;
         background: url('/assets/img/imgicon.png') center;
         background-size: cover;
+        max-width: 100%;
     }
     .info-container {
         margin: 0px 20px;
