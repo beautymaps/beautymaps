@@ -23,9 +23,9 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
   }
   goToHome() {
-      this.router.navigate(['home']);
+    this.router.navigate(['home']);
   }
-  
+
   goToProfile() {
     if(this.currentUser){
       this.router.navigate(['profile/'+this.currentUser.uid]);
