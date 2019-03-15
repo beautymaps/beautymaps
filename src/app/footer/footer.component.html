@@ -1,20 +1,16 @@
 <div class="footer-container">
   <div class="nav-icon-container">
-    <div [class.selected]="isHomeSelected" (click)="goToHome()">
+    <div [ngClass]="{'selected': selectedLink === 'link1'}" (click)="goToHome(); selectedLink = 'link1'">
       <mat-icon class="icon-container"> home</mat-icon>
-  </div>
-
-    <div [class.selected]="isProfileSelected" (click)="goToProfile()">
+    </div>
+    <div [ngClass]="{'selected': selectedLink === 'link2'}" (click)="goToProfile(); selectedLink = 'link2'">
       <mat-icon class="icon-container" svgIcon="user"></mat-icon>
     </div>
-
-    <div [class.selected]="isMessagesSelected" (click)="goToMessages()">
+    <div [ngClass]="{'selected': selectedLink === 'link3'}" (click)="goToMessages(); selectedLink = 'link3'">
       <mat-icon class="icon-container">message</mat-icon>
     </div>
-
-    <div [class.selected]="ismoreSelected" (click)="goToMore()">
+    <div [ngClass]="{'selected': selectedLink === 'link4'}" (click)="goToMore(); selectedLink = 'link4'">
       <mat-icon class="icon-container">more_horiz</mat-icon>
     </div>
   </div>
 </div>
-
