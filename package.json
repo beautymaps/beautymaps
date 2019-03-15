@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "gulp create-config && ng build --aot -prod",
-    "start": "nodemon ng build && node server"
+    "start": "ng build && node server"
   },
   "main": "server.js",
   "private": true,

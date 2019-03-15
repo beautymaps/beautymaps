@@ -32,6 +32,7 @@
         display: flex;
         text-align: right;
         justify-content: flex-end;
+        width: 300px;
         p {
             margin: 0 10px;
         }
@@ -101,7 +102,6 @@
 .label-container {
     display: flex;
     justify-content: space-between;
-    width: 300px !important;
     label {
         width: 100px;
     }

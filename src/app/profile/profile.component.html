@@ -15,7 +15,7 @@
             <div *ngIf="profile" class="username">{{profile.storeName}}</div>
             <div class="review-icon" *ngIf="canEdit && publicView">
               <div *ngFor="let star of stars">
-                  <!-- <mat-icon>star_border</mat-icon> -->
+                  <mat-icon>star_border</mat-icon>
               </div> 
               <p>Reviews</p>
             </div>
@@ -91,5 +91,4 @@
         </mat-tab-group>
     </div>
   </div>
-  <!-- <app-footer class="footer"></app-footer> -->
 </div>
