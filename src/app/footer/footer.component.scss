@@ -19,5 +19,13 @@ p {
     align-items: center;
     max-width: 500px;
     width: 100%;
-    color: #fff;
+    color: #ffffff;
+}
+
+.icon-container:hover {
+   color: #ff71ab;
+}
+
+.selected {
+    color: #ff3588;
 }

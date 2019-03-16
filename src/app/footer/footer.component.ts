@@ -22,7 +22,6 @@ export class FooterComponent implements OnInit {
 
   ngOnInit() {
   }
-
   goToHome() {
     this.router.navigate(['home']);
   }
@@ -42,4 +41,9 @@ export class FooterComponent implements OnInit {
       this.router.navigate(['signin', {params: '/messages'}]);
     } 
   }
+
+  goToMore() {
+    return true
+  }  
+
 }
