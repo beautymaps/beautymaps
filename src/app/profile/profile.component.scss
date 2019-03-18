@@ -1,17 +1,20 @@
 .main-container{
     padding: 15px;
-    // display: flex;
+    display: flex;
+    flex-direction: column;
 }
 
 #profile, #products {
     margin: 15px;
-    position: relative; 
+    position: relative;
     top: 45px;
 }
+
 #profile{
     display:flex;
+    flex-direction: column;
     max-width: 980px;
-    min-height: 200px; 
+    min-height: 200px;
     height: 100%;
     .address-container {
         display: flex;
@@ -23,16 +26,19 @@
         margin-bottom:20px;
         background: url('/assets/img/imgicon.png') center;
         background-size: cover;
+        max-width: 100%;
     }
     .info-container {
         margin: 0px 20px;
-    }
-    .pen {
-        display: flex;
-        text-align: right;
-        justify-content: flex-end;
-        p {
-            margin: 0 10px;
+
+        .pen {
+            display: flex;
+            text-align: right;
+            justify-content: flex-end;
+            width: 300px;
+            p {
+                margin: 0 10px;
+            }
         }
     }
     .review-icon {
@@ -46,6 +52,7 @@
         }
     }
 }
+
 .add-product-container {
     margin-top: 50px;
 }
@@ -53,10 +60,11 @@
 .profile-button .button-container {
     margin: auto;
     width: 300px !important;
-} 
+}
+
 #products  {
     width: 100%;
-    // display: flex;
+    display: flex;
     justify-content: center;
 }
 
@@ -67,7 +75,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
+
     margin: 20px 20px 0 20px;
     .profile-pic {
         background: url('/assets/img/imgicon.png') center;
@@ -113,7 +121,7 @@
 }
 
 .store-hours-container {
-    width: 400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: 239px;
@@ -121,16 +129,7 @@
 }
 
 @media only screen and (max-width: 649px){
-    .main-container {
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    #profile {
-        display: flex;
-        flex-direction: column;
-        max-width: 450px;
+    #profile, #products {
         .info-container {
             margin: 0px;
         }
@@ -141,23 +140,8 @@
             margin-right: 20px;
         }
     }
-
-    
     .profile-pic  {
         display: flex;
-        width: 100%;
-        justify-content: center; 
+        justify-content: center;
     }
-    .product-tile {
-        max-width: 300px;
-        width: 300px;
-        height: 360px;
-    }
-}
-
-app-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 12;
 }
