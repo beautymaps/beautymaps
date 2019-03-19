@@ -47,7 +47,7 @@
     }
 }
 .add-product-container {
-    margin: 50px;
+    margin-top: 50px;
 }
 
 .profile-button .button-container {
@@ -157,7 +157,7 @@
 }
 
 app-footer {
-    // position: fixed;
+    position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 12;
